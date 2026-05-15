@@ -22,7 +22,6 @@ body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif
 <script>
 // ──────────────────────────────────────────────
 // ★ Google Sheets Apps Script URL 여기에 입력 ★
-// 배포 후 받은 Web App URL로 교체하세요.
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw1RPAw87bv5cw0xv1VgwdXZ52LjKbN4iY2kFnfJ3zutbGJo3HBmihcNYj80Doc8--GTw/exec";
 // ──────────────────────────────────────────────
 
@@ -69,181 +68,78 @@ const COLS=[-5,-4,-3,-2,-1,0,1,2,3,4,5];
 const LIM={'-5':1,'-4':2,'-3':3,'-2':4,'-1':5,'0':6,'1':5,'2':4,'3':3,'4':2,'5':1};
 const TOTAL=36;
 
-let S={screen:'start',pid:'',P:{},dragId:null,saved:false,saving:false,copied:false};
+let S={screen:'start',pid:'',P:{},dragId:null,saved:false,saving:false,saveError:null,copied:false};
 const set=p=>{S={...S,...p};render();};
 const inCol=c=>QS.filter(q=>S.P[q.id]===c);
 const unplaced=()=>QS.filter(q=>S.P[q.id]===undefined);
 const placed=()=>Object.keys(S.P).length;
 const done=()=>placed()===TOTAL;
-const lbl=c=>c===0?'0':c>0?`+${c}`:`${c}`;
+const lbl=c=>c===0?'0':c>0?'+'+c:''+c;
 const clr=c=>c<0?'#E24B4A':c>0?'#378ADD':'#64748B';
 
-// ── Google Sheets 전송 함수 ──────────────────
 async function submitToSheets(pid, P) {
   const scores = QS.map(q => P[q.id] ?? '');
-  
   const url = WEB_APP_URL + '?' + new URLSearchParams({
     pid: pid,
     scores: JSON.stringify(scores)
   });
-
   await fetch(url, { method: 'GET', mode: 'no-cors' });
-}
-  // no-cors는 응답을 읽을 수 없으므로 전송 후 성공으로 간주
 }
 
 function renderStart(){
-  const distRow=COLS.map(c=>`<div style="flex:1;min-width:0;text-align:center">
-    <div style="font-size:13px;font-weight:600;color:${clr(c)}">${lbl(c)}</div>
-    <div style="font-size:11px;color:#94A3B8">${LIM[String(c)]}</div>
-  </div>`).join('');
-  return `<div style="display:flex;align-items:center;justify-content:center;padding:28px 18px;min-height:80vh">
-  <div style="background:var(--color-background-primary,#fff);border:0.5px solid #E2E8F0;border-radius:14px;padding:34px 38px;max-width:440px;width:100%;box-shadow:0 4px 24px rgba(0,0,0,.07)">
-    <div style="font-size:12px;font-weight:600;color:#378ADD;letter-spacing:2px;margin-bottom:12px">Q-SORT · 36 ITEMS</div>
-    <h2 style="font-size:22px;font-weight:600;color:#1B3A6B;line-height:1.4;margin-bottom:8px">공무원 시민참여 인식<br>유형화 연구</h2>
-    <p style="font-size:13px;color:#64748B;line-height:1.8;margin-bottom:20px">36개 진술문 카드를 강제분포표에 배치해 주세요.<br>연구자와 Zoom 화면공유로 함께 진행됩니다.</p>
-    <div style="background:#F8FAFC;border-radius:10px;padding:12px 14px;margin-bottom:20px">
-      <div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:9px">강제분포 (-5 ~ +5, 합계 36개)</div>
-      <div style="display:flex;gap:3px">${distRow}</div>
-    </div>
-    <div style="margin-bottom:8px;font-size:13px;font-weight:600;color:#334155">참여자 ID</div>
-    <input id="pid-in" placeholder="예: P01" style="width:100%;padding:11px 14px;border-radius:8px;border:1.5px solid #E2E8F0;font-size:16px;font-weight:500;margin-bottom:14px;background:#fff;color:#1B3A6B;outline:none;display:block;transition:border-color .15s" onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#E2E8F0'">
-    <button id="start-btn" class="btn" style="width:100%;padding:13px;background:#1B3A6B;color:#fff;font-size:15px;border-radius:9px">Q-sort 시작하기 →</button>
-  </div></div>`;
+  const distRow=COLS.map(c=>'<div style="flex:1;min-width:0;text-align:center"><div style="font-size:13px;font-weight:600;color:'+clr(c)+'">'+lbl(c)+'</div><div style="font-size:11px;color:#94A3B8">'+LIM[String(c)]+'</div></div>').join('');
+  return '<div style="display:flex;align-items:center;justify-content:center;padding:28px 18px;min-height:80vh"><div style="background:#fff;border:0.5px solid #E2E8F0;border-radius:14px;padding:34px 38px;max-width:440px;width:100%;box-shadow:0 4px 24px rgba(0,0,0,.07)"><div style="font-size:12px;font-weight:600;color:#378ADD;letter-spacing:2px;margin-bottom:12px">Q-SORT · 36 ITEMS</div><h2 style="font-size:22px;font-weight:600;color:#1B3A6B;line-height:1.4;margin-bottom:8px">공무원 시민참여 인식<br>유형화 연구</h2><p style="font-size:13px;color:#64748B;line-height:1.8;margin-bottom:20px">36개 진술문 카드를 강제분포표에 배치해 주세요.<br>연구자와 Zoom 화면공유로 함께 진행됩니다.</p><div style="background:#F8FAFC;border-radius:10px;padding:12px 14px;margin-bottom:20px"><div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:9px">강제분포 (-5 ~ +5, 합계 36개)</div><div style="display:flex;gap:3px">'+distRow+'</div></div><div style="margin-bottom:8px;font-size:13px;font-weight:600;color:#334155">참여자 ID</div><input id="pid-in" placeholder="예: P01" style="width:100%;padding:11px 14px;border-radius:8px;border:1.5px solid #E2E8F0;font-size:16px;font-weight:500;margin-bottom:14px;background:#fff;color:#1B3A6B;outline:none;display:block" /><button id="start-btn" class="btn" style="width:100%;padding:13px;background:#1B3A6B;color:#fff;font-size:15px;border-radius:9px">Q-sort 시작하기 →</button></div></div>';
 }
 
 function renderSort(){
   const pc=placed(), up=unplaced();
-
   const colHead=COLS.map(c=>{
     const cnt=inCol(c).length, lim=LIM[String(c)], full=cnt>=lim;
-    return `<div style="flex:1;min-width:72px;text-align:center">
-      <div style="font-size:16px;font-weight:600;color:${clr(c)};margin-bottom:3px">${lbl(c)}</div>
-      <div style="font-size:11px;color:${full?'#10B981':'#94A3B8'}">${cnt}/${lim}</div>
-    </div>`;
+    return '<div style="flex:1;min-width:72px;text-align:center"><div style="font-size:16px;font-weight:600;color:'+clr(c)+';margin-bottom:3px">'+lbl(c)+'</div><div style="font-size:11px;color:'+(full?'#10B981':'#94A3B8')+'">'+cnt+'/'+lim+'</div></div>';
   }).join('');
 
   let slots='';
   for(let r=0;r<6;r++){
-    slots+=`<div style="display:flex;gap:4px;margin-bottom:4px">`;
+    slots+='<div style="display:flex;gap:4px;margin-bottom:4px">';
     slots+=COLS.map(c=>{
       const lim=LIM[String(c)];
-      if(r>=lim) return `<div style="flex:1;min-width:72px;height:90px;border-radius:6px;background:#F1F5F9;opacity:.2"></div>`;
+      if(r>=lim) return '<div style="flex:1;min-width:72px;height:90px;border-radius:6px;background:#F1F5F9;opacity:.2"></div>';
       const card=inCol(c)[r];
-      if(card) return `<div class="slot card" draggable="true" data-sc="${c}" data-sid="${card.id}" style="flex:1;min-width:72px">
-        <div style="font-size:11px;font-weight:700;color:#1B3A6B;margin-bottom:4px">${card.id}</div>
-        <div style="font-size:11px;line-height:1.5;color:#334155">${card.text.length>60?card.text.slice(0,58)+'…':card.text}</div>
-      </div>`;
-      return `<div class="slot" data-sc="${c}" data-sr="${r}" style="flex:1;min-width:72px;display:flex;align-items:center;justify-content:center">
-        <span style="font-size:11px;color:#CBD5E1">여기에</span>
-      </div>`;
+      if(card) return '<div class="slot card" draggable="true" data-sc="'+c+'" data-sid="'+card.id+'" style="flex:1;min-width:72px"><div style="font-size:11px;font-weight:700;color:#1B3A6B;margin-bottom:4px">'+card.id+'</div><div style="font-size:11px;line-height:1.5;color:#334155">'+(card.text.length>60?card.text.slice(0,58)+'…':card.text)+'</div></div>';
+      return '<div class="slot" data-sc="'+c+'" data-sr="'+r+'" style="flex:1;min-width:72px;display:flex;align-items:center;justify-content:center"><span style="font-size:11px;color:#CBD5E1">여기에</span></div>';
     }).join('');
-    slots+=`</div>`;
+    slots+='</div>';
   }
 
-  const upCards=up.map(q=>`<div class="card" draggable="true" data-card="${q.id}" style="width:165px;flex-shrink:0">
-    <div style="font-size:11px;font-weight:700;color:#1B3A6B;margin-bottom:4px">${q.id}</div>
-    <div style="font-size:12px;line-height:1.55;color:#334155">${q.text}</div>
-  </div>`).join('');
+  const upCards=up.map(q=>'<div class="card" draggable="true" data-card="'+q.id+'" style="width:165px;flex-shrink:0"><div style="font-size:11px;font-weight:700;color:#1B3A6B;margin-bottom:4px">'+q.id+'</div><div style="font-size:12px;line-height:1.55;color:#334155">'+q.text+'</div></div>').join('');
 
-  return `<div style="background:#F8FAFC;min-height:100vh;display:flex;flex-direction:column">
-  <div style="background:#1B3A6B;color:#fff;padding:11px 15px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
-    <div>
-      <div style="font-size:11px;opacity:.55;margin-bottom:2px">공무원 시민참여 인식 유형화 · Q-sort</div>
-      <div style="font-size:16px;font-weight:600">참여자 ${S.pid}</div>
-    </div>
-    <div style="display:flex;align-items:center;gap:14px">
-      <div style="text-align:right">
-        <div style="font-size:11px;opacity:.55">배치 완료</div>
-        <div style="font-size:22px;font-weight:600">${pc}<span style="font-size:13px;opacity:.6">/${TOTAL}</span></div>
-      </div>
-      ${done()?`<button id="done-btn" class="btn" style="background:#10B981;color:#fff;font-size:14px">완료 확인 →</button>`:''}
-    </div>
-  </div>
-  <div style="height:4px;background:rgba(0,0,0,.08)"><div class="pbar" style="height:100%;background:#10B981;width:${Math.round(pc/TOTAL*100)}%"></div></div>
-
-  <div style="padding:12px 13px 8px;overflow-x:auto;flex-shrink:0">
-    <div style="min-width:860px">
-      <div style="display:flex;gap:4px;margin-bottom:8px">
-        <div style="width:34px;font-size:11px;color:#E24B4A;font-weight:600;writing-mode:vertical-rl;text-align:center;padding:4px 0">← 비동의</div>
-        <div style="flex:1;display:flex;gap:4px">${colHead}</div>
-        <div style="width:34px;font-size:11px;color:#378ADD;font-weight:600;writing-mode:vertical-rl;text-align:center;padding:4px 0">동의 →</div>
-      </div>
-      <div id="slot-grid">${slots}</div>
-    </div>
-  </div>
-
-  <div style="flex:1;padding:0 13px 16px">
-    <div id="unp-zone" style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:12px 13px">
-      <div style="font-size:13px;font-weight:600;color:#64748B;margin-bottom:10px">
-        미배치 <span style="color:${up.length?'#E24B4A':'#10B981'};font-weight:700">${up.length}개</span>
-        ${!up.length?'<span style="color:#10B981;margin-left:10px">모두 배치 완료 — 위의 완료 버튼을 누르세요 ✓</span>':''}
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px">${upCards}</div>
-    </div>
-  </div>
-</div>`;
+  return '<div style="background:#F8FAFC;min-height:100vh;display:flex;flex-direction:column"><div style="background:#1B3A6B;color:#fff;padding:11px 15px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0"><div><div style="font-size:11px;opacity:.55;margin-bottom:2px">공무원 시민참여 인식 유형화 · Q-sort</div><div style="font-size:16px;font-weight:600">참여자 '+S.pid+'</div></div><div style="display:flex;align-items:center;gap:14px"><div style="text-align:right"><div style="font-size:11px;opacity:.55">배치 완료</div><div style="font-size:22px;font-weight:600">'+pc+'<span style="font-size:13px;opacity:.6">/'+TOTAL+'</span></div></div>'+(done()?'<button id="done-btn" class="btn" style="background:#10B981;color:#fff;font-size:14px">완료 확인 →</button>':'')+'</div></div><div style="height:4px;background:rgba(0,0,0,.08)"><div class="pbar" style="height:100%;background:#10B981;width:'+Math.round(pc/TOTAL*100)+'%"></div></div><div style="padding:12px 13px 8px;overflow-x:auto;flex-shrink:0"><div style="min-width:860px"><div style="display:flex;gap:4px;margin-bottom:8px"><div style="width:34px;font-size:11px;color:#E24B4A;font-weight:600;writing-mode:vertical-rl;text-align:center;padding:4px 0">← 비동의</div><div style="flex:1;display:flex;gap:4px">'+colHead+'</div><div style="width:34px;font-size:11px;color:#378ADD;font-weight:600;writing-mode:vertical-rl;text-align:center;padding:4px 0">동의 →</div></div><div id="slot-grid">'+slots+'</div></div></div><div style="flex:1;padding:0 13px 16px"><div id="unp-zone" style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:12px 13px"><div style="font-size:13px;font-weight:600;color:#64748B;margin-bottom:10px">미배치 <span style="color:'+(up.length?'#E24B4A':'#10B981')+';font-weight:700">'+up.length+'개</span>'+(up.length===0?'<span style="color:#10B981;margin-left:10px">모두 배치 완료 — 위의 완료 버튼을 누르세요 ✓</span>':'')+'</div><div style="display:flex;flex-wrap:wrap;gap:8px">'+upCards+'</div></div></div></div>';
 }
 
 function renderResult(){
   const colCells=COLS.map(c=>{
     const cards=inCol(c);
     const inner=cards.length
-      ? cards.map(q=>`<div style="padding:6px 8px;margin-bottom:4px;background:#F8FAFC;border-radius:5px;border:0.5px solid #E2E8F0">
-          <div style="font-size:11px;font-weight:700;color:#1B3A6B;margin-bottom:2px">${q.id}</div>
-          <div style="font-size:11px;line-height:1.45;color:#334155">${q.text.slice(0,52)}…</div>
-        </div>`).join('')
-      : `<div style="font-size:12px;color:#D1D5DB;text-align:center;padding:8px">—</div>`;
-    return `<div style="flex:1;min-width:0">
-      <div style="font-size:16px;font-weight:600;color:${clr(c)};text-align:center;padding-bottom:6px;border-bottom:1.5px solid #E2E8F0;margin-bottom:8px">${lbl(c)}</div>
-      ${inner}
-    </div>`;
+      ? cards.map(q=>'<div style="padding:6px 8px;margin-bottom:4px;background:#F8FAFC;border-radius:5px;border:0.5px solid #E2E8F0"><div style="font-size:11px;font-weight:700;color:#1B3A6B;margin-bottom:2px">'+q.id+'</div><div style="font-size:11px;line-height:1.45;color:#334155">'+q.text.slice(0,52)+'…</div></div>').join('')
+      : '<div style="font-size:12px;color:#D1D5DB;text-align:center;padding:8px">—</div>';
+    return '<div style="flex:1;min-width:0"><div style="font-size:16px;font-weight:600;color:'+clr(c)+';text-align:center;padding-bottom:6px;border-bottom:1.5px solid #E2E8F0;margin-bottom:8px">'+lbl(c)+'</div>'+inner+'</div>';
   }).join('');
 
-  const csv=['번호,진술문,점수',...QS.map(q=>`${q.id},"${q.text}",${S.P[q.id]??''}`)].join('\n');
+  const csv=['번호,진술문,점수',...QS.map(q=>q.id+',"'+q.text+'",'+(S.P[q.id]??''))].join('\n');
+  const saveBtnStyle=S.saving?'background:#94A3B8;color:#fff;cursor:not-allowed':S.saved?'background:#10B981;color:#fff':'background:#fff;color:#1B3A6B';
+  const saveBtnLabel=S.saving?'저장 중…':S.saved?'저장됨 ✓':'시트 저장';
 
-  const saveBtnStyle = S.saving
-    ? 'background:#94A3B8;color:#fff;cursor:not-allowed'
-    : S.saved
-      ? 'background:#10B981;color:#fff'
-      : 'background:#fff;color:#1B3A6B';
-  const saveBtnLabel = S.saving ? '저장 중…' : S.saved ? '저장됨 ✓' : '시트 저장';
-
-  return `<div style="padding:15px;background:#F8FAFC;min-height:100vh">
-  <div style="background:#1B3A6B;color:#fff;border-radius:12px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between">
-    <div>
-      <div style="font-size:12px;opacity:.6">Q-sort 완료</div>
-      <div style="font-size:18px;font-weight:600">참여자 ${S.pid}의 배치 결과</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
-      <button id="back-btn" class="btn" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);font-size:13px">← 수정</button>
-      <button id="save-btn" class="btn" style="${saveBtnStyle};font-size:13px" ${S.saving?'disabled':''}>${saveBtnLabel}</button>
-      <button id="copy-btn" class="btn" style="background:${S.copied?'#10B981':'#E8A020'};color:#fff;font-size:13px">${S.copied?'복사됨 ✓':'CSV 복사'}</button>
-      <button id="dl-btn" class="btn" style="background:#475569;color:#fff;font-size:13px">CSV 다운로드</button>
-    </div>
-  </div>
-
-  ${S.saved?`<div style="background:#ECFDF5;border:1px solid #6EE7B7;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-size:13px;color:#065F46;font-weight:500">✅ Google Sheets에 저장되었습니다.</div>`:''}
-  ${S.saveError?`<div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-size:13px;color:#991B1B;font-weight:500">⚠️ 저장 실패: ${S.saveError}<br><span style="font-weight:400">CSV 복사 또는 다운로드를 이용해 주세요.</span></div>`:''}
-
-  <div style="background:#fff;border:0.5px solid #E2E8F0;border-radius:12px;padding:15px;overflow-x:auto">
-    <div style="display:flex;gap:6px;min-width:860px">${colCells}</div>
-  </div>
-  <textarea id="csv-ta" style="position:absolute;left:-9999px;opacity:0">${csv}</textarea>
-</div>`;
+  return '<div style="padding:15px;background:#F8FAFC;min-height:100vh"><div style="background:#1B3A6B;color:#fff;border-radius:12px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px"><div><div style="font-size:12px;opacity:.6">Q-sort 완료</div><div style="font-size:18px;font-weight:600">참여자 '+S.pid+'의 배치 결과</div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="back-btn" class="btn" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);font-size:13px">← 수정</button><button id="save-btn" class="btn" style="'+saveBtnStyle+';font-size:13px" '+(S.saving?'disabled':'')+'>'+saveBtnLabel+'</button><button id="copy-btn" class="btn" style="background:'+(S.copied?'#10B981':'#E8A020')+';color:#fff;font-size:13px">'+(S.copied?'복사됨 ✓':'CSV 복사')+'</button><button id="dl-btn" class="btn" style="background:#475569;color:#fff;font-size:13px">CSV 다운로드</button></div></div>'+(S.saved?'<div style="background:#ECFDF5;border:1px solid #6EE7B7;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-size:13px;color:#065F46;font-weight:500">✅ Google Sheets에 저장되었습니다.</div>':'')+(S.saveError?'<div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-size:13px;color:#991B1B;font-weight:500">⚠️ 저장 실패: '+S.saveError+'</div>':'')+'<div style="background:#fff;border:0.5px solid #E2E8F0;border-radius:12px;padding:15px;overflow-x:auto"><div style="display:flex;gap:6px;min-width:860px">'+colCells+'</div></div><textarea id="csv-ta" style="position:absolute;left:-9999px;opacity:0">'+csv+'</textarea></div>';
 }
 
 function bindSort(){
   document.querySelectorAll('.slot[data-sc]').forEach(el=>{
     const col=parseInt(el.dataset.sc);
-    if(el.dataset.sid){
-      el.addEventListener('dragstart',e=>{S.dragId=el.dataset.sid;e.dataTransfer.effectAllowed='move';});
-    }
+    if(el.dataset.sid) el.addEventListener('dragstart',e=>{S.dragId=el.dataset.sid;e.dataTransfer.effectAllowed='move';});
     el.addEventListener('dragover',e=>{
       e.preventDefault();
       const id=S.dragId; if(!id) return;
-      const cur=inCol(col).length, lim=LIM[String(col)];
-      if(cur<lim||S.P[id]===col) el.classList.add('over');
+      if(inCol(col).length<LIM[String(col)]||S.P[id]===col) el.classList.add('over');
     });
     el.addEventListener('dragleave',()=>el.classList.remove('over'));
     el.addEventListener('drop',e=>{
@@ -254,12 +150,10 @@ function bindSort(){
       set({P:{...S.P,[id]:col},dragId:null});
     });
   });
-
   document.querySelectorAll('[data-card]').forEach(el=>{
     el.addEventListener('dragstart',e=>{S.dragId=el.dataset.card;e.dataTransfer.effectAllowed='move';});
     el.addEventListener('dragend',()=>{S.dragId=null;});
   });
-
   const uz=document.getElementById('unp-zone');
   if(uz){
     uz.addEventListener('dragover',e=>{e.preventDefault();uz.style.borderColor='#E8A020';});
@@ -276,38 +170,25 @@ function bindSort(){
 
 function bindResult(){
   document.getElementById('back-btn')?.addEventListener('click',()=>set({screen:'sort'}));
-
-  // ── 시트 저장 버튼 ──────────────────────────
   document.getElementById('save-btn')?.addEventListener('click',async()=>{
     if(S.saving||S.saved) return;
-    set({saving:true, saveError:null});
+    set({saving:true,saveError:null});
     try{
-      await submitToSheets(S.pid, S.P);
-      set({saving:false, saved:true});
+      await submitToSheets(S.pid,S.P);
+      set({saving:false,saved:true});
     }catch(err){
-      set({saving:false, saveError: err.message||'알 수 없는 오류'});
+      set({saving:false,saveError:err.message||'알 수 없는 오류'});
     }
   });
-
-  // ── CSV 클립보드 복사 ────────────────────────
   document.getElementById('copy-btn')?.addEventListener('click',()=>{
-    const ta=document.getElementById('csv-ta');
-    navigator.clipboard.writeText(ta.value).then(()=>{
-      set({copied:true});
-      setTimeout(()=>set({copied:false}),2000);
-    });
+    navigator.clipboard.writeText(document.getElementById('csv-ta').value).then(()=>{set({copied:true});setTimeout(()=>set({copied:false}),2000);});
   });
-
-  // ── CSV 파일 다운로드 ────────────────────────
   document.getElementById('dl-btn')?.addEventListener('click',()=>{
-    const ta=document.getElementById('csv-ta');
-    const blob=new Blob([ta.value],{type:'text/csv;charset=utf-8;'});
+    const blob=new Blob([document.getElementById('csv-ta').value],{type:'text/csv;charset=utf-8;'});
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');
-    a.href=url;
-    a.download=`qsort_${S.pid}_${new Date().toISOString().slice(0,10)}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+    a.href=url; a.download='qsort_'+S.pid+'_'+new Date().toISOString().slice(0,10)+'.csv';
+    a.click(); URL.revokeObjectURL(url);
   });
 }
 
