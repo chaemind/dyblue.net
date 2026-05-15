@@ -84,12 +84,12 @@ async function submitToSheets(pid, P) {
   const scores = QS.map(q => P[q.id] ?? '');
   const payload = { pid, scores };
 
-  const resp = await fetch(WEB_APP_URL, {
+    await fetch(WEB_APP_URL, {
     method: 'POST',
+    mode: 'no-cors',
     body: JSON.stringify(payload)
   });
-  const json = await resp.json();
-  if (json.result !== 'success') throw new Error(json.message || '저장 오류');
+  // no-cors는 응답을 읽을 수 없으므로 전송 후 성공으로 간주
 }
 
 function renderStart(){
