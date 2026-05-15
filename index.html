@@ -201,6 +201,30 @@
   .ext-link svg.ico{width:16px;height:16px;display:block;flex-shrink:0;fill:currentColor}
   .ext-link .out{display:inline-block;width:9px;height:9px;border-top:1.2px solid currentColor;border-right:1.2px solid currentColor;transform:rotate(45deg);margin-left:2px;opacity:.7;flex-shrink:0}
 
+  /* ---------- Research CTA ---------- */
+  .research-cta{position:relative;padding:120px 0;border-top:1px solid var(--border);z-index:2}
+  .research-cta a{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);transition:border-color .35s,color .35s}
+  .research-cta a:hover{border-color:var(--accent-bright)}
+  .research-cta .rc-num{font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--accent-bright);text-transform:uppercase}
+  .research-cta .rc-title{font-size:clamp(40px,6vw,72px);font-weight:900;letter-spacing:-0.04em;line-height:1.0;color:var(--text-primary);transition:color .35s}
+  .research-cta a:hover .rc-title{color:var(--accent-bright)}
+  .research-cta .rc-title em{font-style:italic;color:var(--accent-bright);font-weight:900}
+  .research-cta .rc-sub{margin-top:14px;font-size:14px;color:var(--text-secondary);letter-spacing:.04em;max-width:520px;line-height:1.7}
+  .research-cta .rc-arrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--text-primary);display:inline-flex;align-items:center;gap:14px;white-space:nowrap}
+  .research-cta .rc-arrow .a{display:inline-block;width:32px;height:1.5px;background:currentColor;position:relative}
+  .research-cta .rc-arrow .a::after{content:"";position:absolute;right:0;top:50%;width:9px;height:9px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:translateY(-50%) rotate(45deg)}
+  @media (max-width:768px){
+    .research-cta{padding:64px 0}
+    .research-cta a{grid-template-columns:1fr;gap:18px;padding:32px 0}
+    .research-cta .rc-arrow{justify-self:start}
+  }
+
+  /* ---------- Theme FAB (visible to all visitors) ---------- */
+  .theme-fab{position:fixed;right:20px;bottom:20px;z-index:150;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:999px;background:rgba(22,22,22,.92);backdrop-filter:blur(12px);border:1px solid var(--border);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:border-color .25s, color .25s;font-family:inherit}
+  .theme-fab:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
+  .theme-fab .sw{width:18px;height:18px;border-radius:50%;background:var(--accent);border:1px solid color-mix(in oklab, var(--accent-bright) 50%, transparent);flex-shrink:0}
+  .theme-fab.tweaks-shifted{bottom:calc(20px + 250px)}
+
   /* ---------- Footer ---------- */
   .footer{padding:32px 0;border-top:1px solid var(--border);font-size:12px;color:var(--text-secondary);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;position:relative;z-index:2}
   .footer .left{letter-spacing:.08em}
@@ -545,6 +569,18 @@
   </div>
 </section>
 
+<!-- ============ RESEARCH CTA ============ -->
+<section class="research-cta wrap" data-screen-label="07 Research Plan">
+  <a href="research-plan/index.html" data-cursor="hover">
+    <div class="rc-num">06 · Currently Researching</div>
+    <div>
+      <div class="rc-title">학업계획서 <em>→</em></div>
+      <div class="rc-sub">어댑티브 거버넌스 관점의 지방의회 정책지원관 역량 측정 도구 개발. 박사과정 연구 계획과 진행 현황을 정리한 페이지입니다.</div>
+    </div>
+    <div class="rc-arrow">Read more <span class="a" aria-hidden="true"></span></div>
+  </a>
+</section>
+
 <footer class="footer wrap">
   <div class="left">© 2026 Chaemin Lim · dyblue.net</div>
   <div class="right">Designed & Coded by C.M.L</div>
@@ -762,6 +798,59 @@ window.addEventListener('load', ()=>{
     btn.style.transform = 'translate(0,0)';
     setTimeout(()=>{ btn.style.transition=''; }, 500);
   });
+})();
+</script>
+
+<!-- Public theme toggle FAB (always visible) -->
+<button class="theme-fab" id="themeFab" aria-label="Toggle theme">
+  <span class="sw" aria-hidden="true"></span>
+  <span id="themeLabel">Midnight</span>
+</button>
+
+<script>
+/* =====================================================================
+   Public-facing theme toggle (works on the live site, syncs with Tweaks)
+===================================================================== */
+(function(){
+  const KEY = 'dyblue_theme';
+  const fab = document.getElementById('themeFab');
+  const label = document.getElementById('themeLabel');
+  let stored = null;
+  try{ stored = localStorage.getItem(KEY); }catch(e){}
+  if(stored === 'neon' || stored === 'midnight'){
+    if(typeof setTweak === 'function'){ setTweak({ accent: stored }); }
+    else { document.documentElement.classList.toggle('theme-neon', stored === 'neon'); }
+  }
+  function syncLabel(){
+    const isNeon = document.documentElement.classList.contains('theme-neon');
+    label.textContent = isNeon ? 'Neon' : 'Midnight';
+  }
+  syncLabel();
+  new MutationObserver(syncLabel).observe(document.documentElement, { attributes:true, attributeFilter:['class'] });
+
+  fab.addEventListener('click', ()=>{
+    const next = document.documentElement.classList.contains('theme-neon') ? 'midnight' : 'neon';
+    if(typeof setTweak === 'function'){ setTweak({ accent: next }); }
+    else { document.documentElement.classList.toggle('theme-neon', next === 'neon'); }
+    try{ localStorage.setItem(KEY, next); }catch(e){}
+  });
+
+  /* Shift FAB up when tweaks panel is visible so they don't overlap */
+  const tweaks = document.getElementById('tweaks');
+  if(tweaks){
+    new MutationObserver(()=>{
+      fab.classList.toggle('tweaks-shifted', tweaks.classList.contains('visible'));
+    }).observe(tweaks, { attributes:true, attributeFilter:['class'] });
+  }
+
+  /* Also persist when host edit-mode triggers a change via the existing panel */
+  const origSetTweak = window.setTweak;
+  if(typeof origSetTweak === 'function'){
+    window.setTweak = function(patch){
+      origSetTweak(patch);
+      if(patch && patch.accent){ try{ localStorage.setItem(KEY, patch.accent); }catch(e){} }
+    };
+  }
 })();
 </script>
 
