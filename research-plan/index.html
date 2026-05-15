@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>학업계획서 · Research Plan — 임채민 / dyblue.net</title>
+<meta name="description" content="어댑티브 거버넌스 관점의 지방의회 정책지원관 역량 측정 도구 개발 — 임채민 학업계획서" />
+<style>
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+</style>
+
+<style>
+  :root{
+    --bg:#0A0A0A;
+    --bg-alt:#111111;
+    --bg-card:#161616;
+    --text-primary:#F0F0F0;
+    --text-secondary:#888888;
+    --border:#222222;
+    --accent:#191970;
+    --accent-bright:#6D6DF5;
+    --accent-ink:#FFFFFF;
+  }
+  .theme-neon{
+    --accent:#39FF14;
+    --accent-bright:#39FF14;
+    --accent-ink:#000000;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--text-primary);font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth}
+  body{overflow-x:hidden;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:var(--accent-ink)}
+
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 64px}
+  @media (max-width:768px){ .wrap{padding:0 24px} }
+
+  /* Top bar / back link */
+  .topbar{padding:32px 0;display:flex;justify-content:space-between;align-items:center}
+  .back{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-primary);transition:color .25s}
+  .back:hover{color:var(--accent-bright)}
+  .back .arr{display:inline-block;width:22px;height:1.5px;background:currentColor;position:relative}
+  .back .arr::after{content:"";position:absolute;left:0;top:50%;width:8px;height:8px;border-top:1.5px solid currentColor;border-left:1.5px solid currentColor;transform:translateY(-50%) rotate(-45deg)}
+  .topbar .meta{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--text-secondary);text-transform:uppercase}
+
+  /* Hero */
+  .hero{padding:120px 0 80px;border-bottom:1px solid var(--border)}
+  .hero .label{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);display:inline-flex;align-items:center;gap:14px;margin-bottom:36px}
+  .hero .label::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-bright)}
+  .hero h1{font-weight:900;letter-spacing:-0.04em;line-height:1.0;font-size:clamp(48px,7vw,84px);margin-bottom:36px}
+  .hero h1 em{font-style:italic;color:var(--accent-bright);font-weight:900}
+  .hero .sub{font-size:clamp(16px,1.5vw,18px);color:var(--text-secondary);max-width:680px;line-height:1.8}
+  .hero .sub strong{color:var(--text-primary);font-weight:600}
+
+  /* Content body */
+  .body{padding:96px 0 120px}
+  .block + .block{margin-top:80px}
+  .block .lbl{font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--accent-bright);text-transform:uppercase;margin-bottom:20px}
+  .block h2{font-size:clamp(28px,3.2vw,40px);font-weight:800;letter-spacing:-0.02em;margin-bottom:24px;line-height:1.25}
+  .block p{font-size:16px;line-height:1.9;color:#cccccc}
+  .block p + p{margin-top:14px}
+  .block ul{list-style:none;margin-top:16px}
+  .block li{font-size:15px;line-height:1.9;color:#cccccc;padding-left:22px;position:relative}
+  .block li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:1px;background:var(--accent-bright)}
+
+  /* Status callout */
+  .status{margin-top:48px;padding:32px 36px;border:1px solid var(--border);border-left:3px solid var(--accent-bright);background:var(--bg-card);display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+  .status .dot{width:10px;height:10px;border-radius:50%;background:var(--accent-bright);box-shadow:0 0 0 6px color-mix(in oklab, var(--accent-bright) 20%, transparent);flex-shrink:0}
+  .status .txt{flex:1;min-width:240px;font-size:14px;line-height:1.7;color:var(--text-primary)}
+  .status .txt strong{color:var(--accent-bright);font-weight:700;letter-spacing:.05em}
+
+  /* Bottom footer */
+  footer{padding:48px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-secondary);flex-wrap:wrap;gap:16px}
+  footer .right{letter-spacing:.16em;text-transform:uppercase;color:var(--text-primary);font-weight:600}
+
+  /* Theme FAB shared */
+  .theme-fab{position:fixed;right:20px;bottom:20px;z-index:150;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:999px;background:rgba(22,22,22,.92);backdrop-filter:blur(12px);border:1px solid var(--border);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:border-color .25s, color .25s}
+  .theme-fab:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
+  .theme-fab .sw{width:18px;height:18px;border-radius:50%;background:var(--accent);border:1px solid color-mix(in oklab, var(--accent-bright) 50%, transparent);flex-shrink:0}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <a href="../index.html" class="back">
+      <span class="arr" aria-hidden="true"></span>
+      Back to CV
+    </a>
+    <div class="meta">dyblue.net / research-plan</div>
+  </div>
+
+  <header class="hero">
+    <div class="label">학업계획서 · Research Plan</div>
+    <h1>경계확장자로서의<br/><em>지방의회 정책지원관.</em></h1>
+    <p class="sub">
+      <strong>어댑티브 거버넌스(Adaptive Governance)</strong> 관점에서 지방의회의 제도적 가능성을 탐구합니다. 정책지원관과 지방의원의 역량 체계를 측정 가능한 형태로 구축하는 것을 박사과정의 연구 과제로 삼고 있습니다.
+    </p>
+  </header>
+</div>
+
+<div class="wrap">
+  <section class="body">
+
+    <div class="block">
+      <div class="lbl">01 · Research Question</div>
+      <h2>지방의회의 적응적 역량은 어떻게 측정되고 길러질 수 있는가?</h2>
+      <p>중앙·기초·광역의 비대칭적 권한 구조와 빠르게 변화하는 지역 사회 의제 사이에서, 지방의회는 점점 더 적응적·학습적 거버넌스를 요구받고 있습니다. 그러나 의회의 학습 역량과 적응 역량을 구조적으로 진단하고 개선할 수 있는 측정 도구는 아직 충분히 정립되어 있지 않습니다.</p>
+    </div>
+
+    <div class="block">
+      <div class="lbl">02 · Approach</div>
+      <h2>행정학 이론 × UX 혼합방법론 × 의정 현장 실무.</h2>
+      <p>본 연구는 다음 세 가지 자원을 통합합니다.</p>
+      <ul>
+        <li>공공행정 이론 — 어댑티브 거버넌스, 경계확장자(Boundary Spanner), 학습조직 이론</li>
+        <li>UX 기반 혼합방법론 — 사용자 리서치, 정보 설계, 행동 측정 도구의 정량/정성 결합</li>
+        <li>의정 현장 실무 — 국회의원실 비서관, 충주시의회 정책지원관으로서의 1인칭 관찰</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="lbl">03 · Expected Outcome</div>
+      <h2>측정 가능한 역량 체계 + 정책 도구로의 환류.</h2>
+      <p>최종 산출물은 단순한 학술적 모델에 그치지 않습니다. 지방의회와 정책지원관이 실제로 사용할 수 있는 진단 도구·체크리스트·운영 가이드의 형태로 정책 현장에 환류되는 것을 목표로 합니다.</p>
+    </div>
+
+    <div class="status">
+      <div class="dot" aria-hidden="true"></div>
+      <div class="txt">
+        <strong>STATUS · 2026.05</strong><br/>
+        이 페이지는 학업계획서의 공개용 요약 페이지입니다. 전체 학업계획서(PDF) 및 진행 중인 문헌 검토는 정리되는 대로 이 폴더에 업로드될 예정입니다.
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div class="left">© 2026 Chaemin Lim · dyblue.net</div>
+    <div class="right">Research Plan / In Progress</div>
+  </footer>
+</div>
+
+<!-- Theme toggle FAB (shared with CV) -->
+<button class="theme-fab" id="themeFab" aria-label="Toggle theme">
+  <span class="sw" aria-hidden="true"></span>
+  <span id="themeLabel">Midnight</span>
+</button>
+
+<script>
+(function(){
+  const KEY = 'dyblue_theme';
+  const root = document.documentElement;
+  const label = document.getElementById('themeLabel');
+  let theme = 'midnight';
+  try{ const s = localStorage.getItem(KEY); if(s === 'neon' || s === 'midnight') theme = s; }catch(e){}
+  function apply(t){
+    root.classList.toggle('theme-neon', t === 'neon');
+    if(label) label.textContent = t === 'neon' ? 'Neon' : 'Midnight';
+  }
+  apply(theme);
+  document.getElementById('themeFab').addEventListener('click', ()=>{
+    theme = theme === 'neon' ? 'midnight' : 'neon';
+    apply(theme);
+    try{ localStorage.setItem(KEY, theme); }catch(e){}
+  });
+})();
+</script>
+
+</body>
+</html>
