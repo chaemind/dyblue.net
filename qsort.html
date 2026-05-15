@@ -80,15 +80,15 @@ const clr=c=>c<0?'#E24B4A':c>0?'#378ADD':'#64748B';
 
 // ── Google Sheets 전송 함수 ──────────────────
 async function submitToSheets(pid, P) {
-  // 행 구성: 타임스탬프, 참여자ID, Q1~Q36 점수
   const scores = QS.map(q => P[q.id] ?? '');
-  const payload = { pid, scores };
-
-    await fetch(WEB_APP_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: JSON.stringify(payload)
+  
+  const url = WEB_APP_URL + '?' + new URLSearchParams({
+    pid: pid,
+    scores: JSON.stringify(scores)
   });
+
+  await fetch(url, { method: 'GET', mode: 'no-cors' });
+}
   // no-cors는 응답을 읽을 수 없으므로 전송 후 성공으로 간주
 }
 
