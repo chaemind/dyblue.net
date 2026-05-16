@@ -101,7 +101,6 @@ function submitToSheets(pid, P) {
     document.head.appendChild(script);
   });
 }
-}
 
 function renderStart(){
   const distRow=COLS.map(c=>'<div style="flex:1;min-width:0;text-align:center"><div style="font-size:13px;font-weight:600;color:'+clr(c)+'">'+lbl(c)+'</div><div style="font-size:11px;color:#94A3B8">'+LIM[String(c)]+'</div></div>').join('');
