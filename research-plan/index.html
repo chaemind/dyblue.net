@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>학업계획서 · Research Plan — 임채민 / dyblue.net</title>
+<title>학업계획서 · Research Plan v3 — 임채민 / dyblue.net</title>
 <meta name="description" content="지방의회 의정 과정에서 퍼실리테이팅 역량의 구성요소와 측정도구 개발 — 임채민 학업계획서" />
 
 <!-- Google tag (gtag.js) -->
@@ -13,10 +13,13 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-RK0ZMLP0FR');
+  gtag('config', 'G-LE59P2VWC2');
 </script>
+
 <style>
   @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
 </style>
+
 <style>
   :root{
     --bg:#0A0A0A;
@@ -24,7 +27,9 @@
     --bg-card:#161616;
     --text-primary:#F0F0F0;
     --text-secondary:#888888;
+    --text-soft:#cccccc;
     --border:#222222;
+    --border-soft:#1c1c1c;
     --accent:#191970;
     --accent-bright:#6D6DF5;
     --accent-ink:#FFFFFF;
@@ -38,298 +43,554 @@
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html,body{background:var(--bg);color:var(--text-primary);font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   html{scroll-behavior:smooth}
-  body{overflow-x:hidden;line-height:1.6}
+  body{line-height:1.7;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   ::selection{background:var(--accent);color:var(--accent-ink)}
 
-  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 64px}
+  .wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 64px}
   @media (max-width:768px){ .wrap{padding:0 24px} }
 
-  /* Top bar */
-  .topbar{padding:32px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-  .back{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-primary);transition:color .25s}
-  .back:hover{color:var(--accent-bright)}
-  .back .arr{display:inline-block;width:22px;height:1.5px;background:currentColor;position:relative}
-  .back .arr::after{content:"";position:absolute;left:0;top:50%;width:8px;height:8px;border-top:1.5px solid currentColor;border-left:1.5px solid currentColor;transform:translateY(-50%) rotate(-45deg)}
-  .topbar .meta{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--text-secondary);text-transform:uppercase}
+  /* ========== TOP BAR ========== */
+  .top-bar{position:sticky;top:0;z-index:80;background:rgba(10,10,10,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .top-bar .row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;gap:16px;flex-wrap:wrap}
+  .back-link{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-primary);padding:8px 14px;border:1px solid var(--border);border-radius:999px;transition:border-color .25s,color .25s}
+  .back-link:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
+  .top-bar .meta{font-size:11px;font-weight:600;letter-spacing:.18em;color:var(--text-secondary);text-transform:uppercase}
+  .print-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid var(--border);color:var(--text-primary);padding:8px 16px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:border-color .25s,color .25s,background .25s}
+  .print-btn:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
 
-  /* Hero */
-  .hero{padding:96px 0 80px;border-bottom:1px solid var(--border)}
-  .hero .label{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);display:inline-flex;align-items:center;gap:14px;margin-bottom:36px}
-  .hero .label::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-bright)}
-  .hero h1{font-weight:900;letter-spacing:-0.03em;line-height:1.05;font-size:clamp(36px,5.5vw,64px);margin-bottom:28px}
-  .hero h1 em{font-style:italic;color:var(--accent-bright);font-weight:900}
-  .hero .en{font-size:14px;font-weight:600;letter-spacing:.04em;color:var(--text-secondary);margin-bottom:28px;font-style:italic}
-  .hero .sub{font-size:clamp(15px,1.4vw,17px);color:#cccccc;max-width:760px;line-height:1.85}
-  .hero .sub strong{color:var(--text-primary);font-weight:600}
+  /* ========== COVER / HERO ========== */
+  .cover{padding:120px 0 96px;border-bottom:1px solid var(--border);position:relative}
+  .cover .badge{display:inline-flex;align-items:center;gap:14px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:36px}
+  .cover .badge::before{content:"";display:inline-block;width:36px;height:1px;background:var(--accent-bright)}
+  .cover .inst{font-size:13px;font-weight:600;color:var(--text-secondary);letter-spacing:.06em;margin-bottom:36px}
+  .cover h1{font-weight:900;letter-spacing:-0.035em;line-height:1.05;font-size:clamp(40px,5.4vw,68px);margin-bottom:32px}
+  .cover h1 em{font-style:italic;color:var(--accent-bright);font-weight:900}
+  .cover .sub-en{font-size:14px;line-height:1.7;color:var(--text-secondary);font-style:italic;letter-spacing:.04em;margin-bottom:56px;max-width:760px}
+  .cover .meta-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+  @media (max-width:768px){ .cover .meta-strip{grid-template-columns:1fr} }
+  .cover .meta-strip .cell{background:var(--bg-alt);padding:24px 26px}
+  .cover .meta-strip .k{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:8px}
+  .cover .meta-strip .v{font-size:15px;color:var(--text-primary);font-weight:700;line-height:1.5}
+  .cover .meta-strip .v small{display:block;font-size:11px;color:var(--text-secondary);font-weight:500;letter-spacing:.06em;margin-top:4px}
 
-  /* Meta strip */
-  .meta-strip{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-  @media (max-width:768px){ .meta-strip{grid-template-columns:1fr} }
-  .meta-strip .cell{background:var(--bg-alt);padding:24px 24px}
-  .meta-strip .k{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:8px}
-  .meta-strip .v{font-size:14px;color:var(--text-primary);font-weight:600;line-height:1.5}
+  /* ========== SECTION ========== */
+  section.block{padding:96px 0;border-bottom:1px solid var(--border)}
+  @media (max-width:768px){ section.block{padding:64px 0} }
+  .sec-head{display:flex;align-items:baseline;gap:24px;margin-bottom:48px}
+  .sec-head .num{font-size:clamp(56px,7vw,80px);font-weight:900;letter-spacing:-0.04em;line-height:1;color:var(--accent-bright);font-style:italic}
+  .sec-head .ttl{font-size:clamp(28px,3.2vw,40px);font-weight:800;letter-spacing:-0.02em;line-height:1.2;color:var(--text-primary)}
 
-  /* Body */
-  .body{padding:96px 0 64px}
-  .block + .block{margin-top:80px}
-  .block .lbl{font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--accent-bright);text-transform:uppercase;margin-bottom:18px}
-  .block h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.02em;margin-bottom:22px;line-height:1.3}
-  .block h2 em{font-style:italic;color:var(--accent-bright);font-weight:800}
-  .block p{font-size:15px;line-height:1.9;color:#cccccc}
-  .block p + p{margin-top:14px}
-  .block strong{color:var(--text-primary);font-weight:600}
+  .subsec{margin-top:64px}
+  .subsec:first-of-type{margin-top:0}
+  .subsec .sub-num{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:14px}
+  .subsec h3{font-size:clamp(22px,2.4vw,28px);font-weight:800;letter-spacing:-0.01em;line-height:1.35;color:var(--text-primary);margin-bottom:28px}
+  .subsec h3 em{font-style:italic;color:var(--accent-bright);font-weight:800}
 
-  /* 4-grid for theory axes */
-  .quad{margin-top:32px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-  @media (max-width:1024px){ .quad{grid-template-columns:1fr 1fr} }
-  @media (max-width:640px){ .quad{grid-template-columns:1fr} }
-  .quad .card{background:var(--bg-card);padding:24px 22px;min-height:170px;display:flex;flex-direction:column;gap:10px}
-  .quad .card .q{font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--accent-bright);text-transform:uppercase}
-  .quad .card h4{font-size:16px;font-weight:800;letter-spacing:-0.01em;color:var(--text-primary);line-height:1.35}
-  .quad .card p{font-size:13px;line-height:1.7;color:var(--text-secondary)}
+  /* paragraphs */
+  .p{font-size:15.5px;line-height:1.9;color:var(--text-soft);margin-bottom:16px}
+  .p strong{color:var(--text-primary);font-weight:700}
+  .p em{font-style:italic;color:var(--accent-bright);font-style:normal;font-weight:600}
+  .p:last-child{margin-bottom:0}
 
-  /* 4-grid for sub-dimensions of facilitative capacity */
-  .dim{margin-top:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-  @media (max-width:768px){ .dim{grid-template-columns:1fr} }
-  .dim .card{background:var(--bg-alt);padding:28px 26px;display:flex;flex-direction:column;gap:10px;min-height:170px}
-  .dim .card .no{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--accent-bright);text-transform:uppercase}
-  .dim .card h4{font-size:18px;font-weight:800;letter-spacing:-0.01em;color:var(--text-primary)}
-  .dim .card .stage{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-secondary)}
-  .dim .card p{font-size:13px;line-height:1.75;color:#cccccc;margin-top:auto}
+  /* minor heading */
+  .minor{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-bright);margin:40px 0 18px}
+  .minor::before{content:"";display:inline-block;width:24px;height:1px;background:var(--accent-bright);vertical-align:middle;margin-right:12px}
 
-  /* Method 2-stage */
-  .method{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
-  @media (max-width:768px){ .method{grid-template-columns:1fr} }
-  .method .card{background:var(--bg-card);padding:32px 30px;display:flex;flex-direction:column;gap:14px}
-  .method .card .stg{font-size:11px;font-weight:800;letter-spacing:.22em;color:var(--accent-bright);text-transform:uppercase}
-  .method .card h4{font-size:20px;font-weight:800;letter-spacing:-0.01em;color:var(--text-primary)}
-  .method .card ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:4px}
-  .method .card li{font-size:13px;line-height:1.7;color:#cccccc;padding-left:18px;position:relative}
-  .method .card li::before{content:"";position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--accent-bright)}
+  /* note */
+  .note{font-size:13px;line-height:1.7;color:var(--text-secondary);padding-left:14px;border-left:2px solid var(--border);margin-top:14px}
 
-  /* Roadmap */
-  .road{margin-top:24px;display:flex;flex-direction:column;border-top:1px solid var(--border)}
-  .road .row{display:grid;grid-template-columns:160px 1fr;gap:32px;padding:24px 0;border-bottom:1px solid var(--border)}
-  @media (max-width:768px){
-    .road .row{grid-template-columns:1fr;gap:6px;padding:18px 0}
+  /* Callout / Blockquote */
+  .callout{margin:24px 0;padding:24px 28px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--accent-bright);font-size:15.5px;line-height:1.85;color:var(--text-primary)}
+  .callout strong{color:var(--accent-bright);font-weight:700}
+  .callout em{font-style:italic;color:var(--text-primary);font-weight:600}
+
+  /* ========== Logic chain ========== */
+  .chain{margin:32px 0;padding:32px;background:var(--bg-alt);border:1px solid var(--border);display:flex;flex-direction:column;gap:0}
+  .chain-row{display:flex;align-items:flex-start;gap:18px;padding:14px 0;font-size:14.5px;line-height:1.7;color:var(--text-soft)}
+  .chain-row strong{color:var(--accent-bright);font-weight:700}
+  .chain-num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;letter-spacing:0}
+  .chain-arr{margin-left:14px;color:var(--accent-bright);font-size:14px;letter-spacing:.1em;line-height:1;padding:2px 0 6px 0;font-family:monospace}
+
+  /* ========== Table (border-grid style) ========== */
+  .tbl{margin:24px 0;border:1px solid var(--border);overflow:hidden}
+  .tbl table{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th{background:var(--bg-card);color:var(--accent-bright);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:11px;text-align:left;padding:14px 18px;border-bottom:1px solid var(--border)}
+  .tbl td{background:var(--bg-alt);padding:16px 18px;border-bottom:1px solid var(--border-soft);border-right:1px solid var(--border-soft);color:var(--text-soft);line-height:1.6;vertical-align:top}
+  .tbl td:last-child{border-right:none}
+  .tbl th:not(:last-child){border-right:1px solid var(--border)}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl tr:hover td{background:var(--bg-card)}
+  .tbl td strong{color:var(--text-primary);font-weight:700}
+  .tbl td em{font-style:italic;color:var(--accent-bright);font-weight:600}
+  .tbl td small{font-size:11px;color:var(--text-secondary);font-weight:500;display:block;margin-top:3px;letter-spacing:.04em}
+  .tbl td code, .tbl td .mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:var(--accent-bright);letter-spacing:0;background:transparent}
+
+  @media (max-width:640px){
+    .tbl{font-size:12.5px;overflow-x:auto}
+    .tbl table{min-width:540px}
   }
-  .road .row .yr{font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--accent-bright);font-variant-numeric:tabular-nums;padding-top:3px}
-  .road .row .what{font-size:15px;line-height:1.7;color:var(--text-primary);font-weight:500}
-  .road .row .what strong{color:var(--text-primary);font-weight:700}
-  .road .row .what span{display:block;color:var(--text-secondary);font-size:13px;font-weight:400;margin-top:4px}
 
-  /* Status callout */
-  .status{margin-top:64px;padding:28px 32px;border:1px solid var(--border);border-left:3px solid var(--accent-bright);background:var(--bg-card);display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-  .status .dot{width:10px;height:10px;border-radius:50%;background:var(--accent-bright);box-shadow:0 0 0 6px color-mix(in oklab, var(--accent-bright) 20%, transparent);flex-shrink:0}
-  .status .txt{flex:1;min-width:240px;font-size:13px;line-height:1.75;color:#cccccc}
-  .status .txt strong{color:var(--accent-bright);font-weight:700;letter-spacing:.05em;display:block;margin-bottom:4px;font-size:11px}
+  /* Milestone badge */
+  .badge-m{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-bright);background:color-mix(in oklab, var(--accent) 30%, transparent);border:1px solid color-mix(in oklab, var(--accent-bright) 55%, transparent);padding:4px 10px;border-radius:999px;line-height:1}
 
-  /* Footer */
-  footer{padding:48px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-secondary);flex-wrap:wrap;gap:16px}
+  /* ========== References ========== */
+  .ref-group{margin-top:24px}
+  .ref-group .head{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);padding:12px 0;border-bottom:1px solid var(--border);margin-bottom:14px}
+  .ref-item{display:grid;grid-template-columns:48px 1fr;gap:16px;font-size:13.5px;line-height:1.7;color:var(--text-soft);padding:10px 0;border-bottom:1px solid var(--border-soft)}
+  .ref-item:last-child{border-bottom:0}
+  .ref-num{color:var(--accent-bright);font-weight:700;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;letter-spacing:0;padding-top:1px}
+  .ref-item em{font-style:italic;color:var(--text-primary)}
+
+  /* ========== Footer ========== */
+  footer{padding:48px 0 80px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-secondary);flex-wrap:wrap;gap:16px}
   footer .right{letter-spacing:.16em;text-transform:uppercase;color:var(--text-primary);font-weight:600}
 
-  /* Theme FAB */
+  /* ========== Theme FAB ========== */
   .theme-fab{position:fixed;right:20px;bottom:20px;z-index:150;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:999px;background:rgba(22,22,22,.92);backdrop-filter:blur(12px);border:1px solid var(--border);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:border-color .25s,color .25s;font-family:inherit}
   .theme-fab:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
   .theme-fab .sw{width:18px;height:18px;border-radius:50%;background:var(--accent);border:1px solid color-mix(in oklab, var(--accent-bright) 50%, transparent);flex-shrink:0}
+
+  /* ========== Section rule ========== */
+  hr.section-rule{display:none}
+
+  /* ========== Print ========== */
+  @media print{
+    :root{
+      --bg:#ffffff;
+      --bg-alt:#ffffff;
+      --bg-card:#fafafa;
+      --text-primary:#111111;
+      --text-secondary:#555555;
+      --text-soft:#222222;
+      --border:#cccccc;
+      --border-soft:#e5e5e5;
+      --accent:#1a1a4a;
+      --accent-bright:#1a1a4a;
+      --accent-ink:#ffffff;
+    }
+    .top-bar, .theme-fab, .back-link, .print-btn{display:none !important}
+    body{background:#fff;color:#111}
+    .wrap{padding:0 24px;max-width:none}
+    section.block{padding:32px 0;page-break-inside:avoid}
+    .cover{padding:24px 0 32px}
+    .callout{background:#f6f6fb}
+    .chain{background:#f8f8f5}
+    .chain-num{background:#1a1a4a !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .tbl th{background:#1a1a4a !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .tbl td{background:#fff}
+    .badge-m{background:transparent;color:#1a1a4a;border-color:#1a1a4a}
+  }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <div class="topbar">
-    <a href="../index.html" class="back">
-      <span class="arr" aria-hidden="true"></span>
-      Back to CV
-    </a>
-    <div class="meta">dyblue.net / research-plan</div>
+<!-- ========== TOP BAR ========== -->
+<div class="top-bar">
+  <div class="wrap">
+    <div class="row">
+      <a href="../index.html" class="back-link">← Back to CV</a>
+      <div class="meta">Research Plan v3 · 2026.05</div>
+      <button class="print-btn" onclick="window.print()">Print / PDF</button>
+    </div>
   </div>
+</div>
 
-  <header class="hero">
-    <div class="label">학업계획서 · Research Plan</div>
+<div class="wrap">
+
+  <!-- ========== COVER ========== -->
+  <header class="cover" data-screen-label="00 Cover">
+    <div class="badge">학업계획서 v3 · Research Plan</div>
+    <div class="inst">성균관대학교 국정전문대학원 · 행정학 석박사통합과정</div>
     <h1>지방의회 의정 과정에서<br/><em>퍼실리테이팅 역량의</em><br/>구성요소와 측정도구 개발.</h1>
-    <div class="en">Development and Validation of a Local Council Facilitative Capacity Scale — A Citizen Policy Journey Perspective</div>
-    <p class="sub">
-      주민의 요구가 <strong>정책 의제</strong>로 번역되고, 이해관계자 간 <strong>조정과 심의</strong>를 거쳐 <strong>제도 개선으로 환류</strong>되는 일련의 과정을 지방의회의 핵심 역량으로 본다. 이 과정 역량을 <strong>지방의회 퍼실리테이팅 역량(Local Council Facilitative Capacity)</strong>으로 개념화하고, 측정 가능한 척도로 개발·타당화하는 것이 박사논문의 범위다.
-    </p>
+    <div class="sub-en">Development and Validation of a Local Council Facilitative Capacity Scale — A Citizen Policy Journey Perspective</div>
 
     <div class="meta-strip">
       <div class="cell">
-        <div class="k">소속</div>
-        <div class="v">성균관대학교 국정전문대학원<br/>행정학 석박사통합과정</div>
+        <div class="k">제출자</div>
+        <div class="v">임 채 민<small>학번 2026730441</small></div>
       </div>
       <div class="cell">
-        <div class="k">기간</div>
-        <div class="v">2026 — 2028<br/>코스워크 · 척도개발 · 학위논문</div>
+        <div class="k">지도교수</div>
+        <div class="v">김승현 교수님<small>시민참여 · 정책혁신 · 관료제</small></div>
       </div>
       <div class="cell">
         <div class="k">학문 분야</div>
-        <div class="v">공공행정 × UX·서비스디자인<br/>Design-Based Public Administration</div>
+        <div class="v">공공행정 × UX·서비스디자인<small>Design-Based Public Administration</small></div>
       </div>
     </div>
   </header>
-</div>
 
-<div class="wrap">
-  <section class="body">
-
-    <!-- 01 Research Question -->
-    <div class="block">
-      <div class="lbl">01 · Research Question</div>
-      <h2>지방의회의 <em>적응적 역량</em>은 어떻게 측정되고 길러질 수 있는가?</h2>
-      <p>정보대학원에서 UX·MIS를 공부하며, 서비스의 품질이 ‘내용’보다 <strong>전달과 경험의 설계</strong>에 의해 결정된다는 점을 실증적으로 확인했다. 이 관점은 충주시의회 정책지원관으로 일하며 새로운 의미로 전환되었다 — 주민은 정책을 법령 문구보다 <strong>안내·민원·참여 절차·심의 과정·환류 구조</strong>를 통해 ‘서비스’로 경험한다.</p>
-      <p>그러나 한국의 지방의회에는 참여 절차가 의제 설정·조례 발의·예산 심의·집행 점검으로 체계적으로 환류되는 구조가 충분히 제도화되어 있지 않다. 연구는 이 <strong>‘과정 설계 역량’</strong>을 학술적 구성개념으로 정립하고, 진단 가능한 도구로 만드는 것을 목표로 한다.</p>
+  <!-- ============================================================== -->
+  <!-- ═══ Ⅰ. 학문적 목표 ═══ -->
+  <!-- ============================================================== -->
+  <section class="block" data-screen-label="01 학문적 목표">
+    <div class="sec-head">
+      <div class="num">Ⅰ</div>
+      <div class="ttl">학문적 목표</div>
     </div>
 
-    <!-- 02 Theory axes -->
-    <div class="block">
-      <div class="lbl">02 · Theoretical Approach</div>
-      <h2>네 개의 이론 축으로 분석한다.</h2>
-      <p>다중 이론을 하나의 거대 이론으로 통합하지 않고, 지방의회 의정 과정을 설명하는 서로 다른 분석 관점으로 활용한다. 네 축이 수렴하는 지점이 학위논문의 핵심 구성개념인 <strong>퍼실리테이팅 역량</strong>이다.</p>
+    <div class="subsec">
+      <div class="sub-num">01 · 출발점</div>
+      <h3>UX·서비스디자인에서 <em>거버넌스로.</em></h3>
+      <p class="p">정보대학원에서 사용자경험(UX)과 경영정보시스템(MIS)을 공부하며, 서비스의 품질이 <strong>'내용'보다 '전달과 경험의 설계'</strong>에 의해 결정된다는 점을 실증적으로 확인하였다. 이 관점은 지방의회 정책지원관으로 근무하면서 새로운 의미로 전환되었다. 주민은 정책을 법령 문구로 체감하기보다, 안내문·민원 응대·참여 절차·심의 과정의 소통·집행 이후 피드백을 통해 정책을 '서비스'로 경험한다.</p>
+      <p class="p">같은 정책이라도 문제 정의 방식, 전달 언어, 절차의 명확성에 따라 주민 수용성과 집행 결과가 달라지는 장면을 반복적으로 관찰할 수 있었다. <strong>이 문제의식이 지방의회의 퍼실리테이팅 역량 연구로 이어진 출발점이다.</strong></p>
+      <p class="p"><strong>왜 지방의회인가?</strong> 지방의회는 물리적 근접성·제도적 분리성·생활 권한·반복 학습 구조·선출 권위를 동시에 갖춘 기관으로, 주민 요구를 체감 가능한 정책으로 전환하는 어댑티브 거버넌스의 최적 실행 단위다.</p>
+    </div>
 
-      <div class="quad">
-        <div class="card">
-          <div class="q">Why</div>
-          <h4>어댑티브 거버넌스</h4>
-          <p>복잡·불확실 환경에서 학습·피드백 거버넌스가 요청되는 시대적·맥락적 정당화.</p>
-        </div>
-        <div class="card">
-          <div class="q">Who</div>
-          <h4>협력적 거버넌스 · 공동생산</h4>
-          <p>주민·이해관계자 참여의 메커니즘과 유형을 제공.</p>
-        </div>
-        <div class="card">
-          <div class="q">What</div>
-          <h4>행정부담 · Friction</h4>
-          <p>참여를 가로막는 학습·심리·순응 비용의 진단 프레임.</p>
-        </div>
-        <div class="card">
-          <div class="q">How</div>
-          <h4>Design-Based PA</h4>
-          <p>정책 여정·접점 관점에서 개입 도구(intervention)를 제공.</p>
-        </div>
+    <div class="subsec">
+      <div class="sub-num">02 · Adaptive Governance</div>
+      <h3>어댑티브 거버넌스의 정의와 <em>퍼실리테이팅 역량의 필요성.</em></h3>
+      <p class="p"><strong>어댑티브 거버넌스(Adaptive Governance)</strong>는 복잡하고 불확실한 사회문제에 대응하기 위해 다수의 행위자가 지속적인 학습·실험·피드백을 통해 제도와 규칙을 조정하는 집합적 통치 방식이다(Folke et al., 2005; Pahl-Wostl, 2009).</p>
+      <p class="p">지방의회가 다루는 지역소멸·인구구조 변화·기후위기·지역갈등 등의 현안은 정답이 없고, 이해관계자마다 문제 정의가 다르며, 단일 기관이 해결할 수 없는 <strong>Wicked Problem</strong>(Rittel &amp; Webber, 1973)이다. 기존의 역량 교육·훈련이나 협력적 거버넌스 접근은 정답을 전제하거나 합의 이후 수정 메커니즘이 없다는 한계를 지닌다.</p>
+      <div class="callout">
+        <strong>그러나 어댑티브 거버넌스는 저절로 작동하지 않는다</strong>(Eshuis &amp; Gerrits, 2019). 위기가 지나면 관료제는 위계와 통제로 복귀한다. 이해관계자 간 학습과 조정을 실질적으로 매개하는 행위자의 역량이 없으면, AG는 제도적 선언에 그친다.
+      </div>
+      <p class="p">이 미시적 작동 역량이 곧 <strong>퍼실리테이팅 역량</strong>이며, 선출된 권위를 보유한 지방의회 의원이 그 핵심 실행 주체다. 어댑티브 거버넌스가 거시 수준에서 요청하는 학습·환류는, 미시 수준에서 의원과 정책지원관이 의정 과정을 매개·설계·조정할 때 비로소 작동한다.</p>
+
+      <div class="chain">
+        <div class="chain-row"><span class="chain-num">1</span><span>지방의회는 복잡·불확실한 정책 환경(<strong>Wicked Problem</strong>)에 직면해 있다.</span></div>
+        <div class="chain-arr">↓</div>
+        <div class="chain-row"><span class="chain-num">2</span><span>이 환경은 <strong>학습·환류·적응이 작동하는 거버넌스</strong>(어댑티브 거버넌스)를 요구한다.</span></div>
+        <div class="chain-arr">↓</div>
+        <div class="chain-row"><span class="chain-num">3</span><span>그러나 AG가 실제 작동하려면 이해관계자 간 학습과 조정을 <strong>매개하는 행위자</strong>가 필요하다.</span></div>
+        <div class="chain-arr">↓</div>
+        <div class="chain-row"><span class="chain-num">4</span><span>이 매개 기능이 <strong>퍼실리테이팅</strong>이며, 한국 맥락에서 <strong>지방의회·의원</strong>이 핵심 주체다.</span></div>
+        <div class="chain-arr">↓</div>
+        <div class="chain-row"><span class="chain-num">5</span><span><strong>정책지원관</strong>은 의원·시민·집행부 경계를 매개하는 <strong>촉매(Boundary Spanner)</strong>로서 핵심 실행 주체다.</span></div>
       </div>
     </div>
 
-    <!-- 03 Construct - 4 sub-dimensions -->
-    <div class="block">
-      <div class="lbl">03 · Construct</div>
-      <h2>퍼실리테이팅 역량의 <em>네 하위차원.</em></h2>
-      <p>퍼실리테이팅 역량은 의정 과정의 단계별 기능과 관련 이론을 교차하여 구성한 작업가설이며, 박사논문 1단계 질적 연구에서 검증·수정된다.</p>
+    <div class="subsec">
+      <div class="sub-num">03 · Construct</div>
+      <h3>퍼실리테이팅 역량의 <em>개념화</em>와 정책지원관의 위치.</h3>
+      <div class="callout">
+        <strong>지방의회 퍼실리테이팅 역량</strong>이란, 복잡·불확실한 정책 환경에서 이해관계자 간 학습과 조정이 작동하도록 의정 과정을 매개·설계·환류하는 지방의회의 <em>과정 역량</em>을 말한다.
+      </div>
+      <p class="p">기존 의정역량 척도(김영수, 2007; 신원득 외, 2015)가 결과 지표(조례 발의 건수, 출석률 등)나 역할 인식을 측정하는 것과 달리, 본 연구의 척도는 주민·이해관계자와의 상호작용을 설계·운영하는 <strong>과정 역량(process competency)</strong>을 측정 대상으로 삼는다.</p>
 
-      <div class="dim">
-        <div class="card">
-          <div class="no">가</div>
-          <div class="stage">의제 형성 단계</div>
-          <h4>의제 번역 역량</h4>
-          <p>주민 요구를 정책 의제로 변환하는 역량. 공동생산 이론과 행정부담의 학습비용 개념을 결합.</p>
-        </div>
-        <div class="card">
-          <div class="no">나</div>
-          <div class="stage">심의 · 조정 단계</div>
-          <h4>갈등 조정 역량</h4>
-          <p>이해관계자 간 입장 차이를 중재하는 역량. 협력적 거버넌스 이론과 facilitative leadership 논의에 기반.</p>
-        </div>
-        <div class="card">
-          <div class="no">다</div>
-          <div class="stage">심의 절차 단계</div>
-          <h4>절차 설계 역량</h4>
-          <p>회의·공론 과정의 접근성과 명료성을 확보하는 역량. Design-based PA와 행정부담 이론의 교차점.</p>
-        </div>
-        <div class="card">
-          <div class="no">라</div>
-          <div class="stage">환류 · 학습 단계</div>
-          <h4>학습 환류 역량</h4>
-          <p>심의 결과를 제도 개선과 차기 의제로 환류하는 역량. 어댑티브 거버넌스의 다층 학습 이론에 근거.</p>
-        </div>
+      <div class="minor">잠정 4차원 — 질적 연구에서 수정·보완 예정</div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>하위차원</th><th>의정 과정 단계</th><th>기능 설명</th></tr></thead>
+          <tbody>
+            <tr><td><strong>(가) 의제 번역 역량</strong></td><td>의제 형성</td><td>주민 요구를 정책 의제로 전환</td></tr>
+            <tr><td><strong>(나) 갈등 조정 역량</strong></td><td>심의 · 조정</td><td>이해관계자 간 입장 차이 중재</td></tr>
+            <tr><td><strong>(다) 절차 설계 역량</strong></td><td>심의 절차</td><td>회의 · 공론 과정의 접근성 · 명료성 확보</td></tr>
+            <tr><td><strong>(라) 학습 환류 역량</strong></td><td>환류 · 학습</td><td>심의 결과를 제도 개선 · 차기 의제로 환류</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="p">특히 2022년부터 본격화된 <strong>정책지원관 제도</strong>는 이 역량의 분석 단위로 주목할 필요가 있다. 정책지원관은 의원·시민·집행부 세 영역의 경계에 동시에 발을 걸친 위치에서 Williams(2002)가 말하는 번역·조정·연결·학습의 <strong>경계확장(Boundary Spanning)</strong> 기능을 수행하며, 의회 차원의 퍼실리테이팅 역량을 실질적으로 담지하는 <em>촉매(catalyst)</em>로 기능한다.</p>
+    </div>
+
+    <div class="subsec">
+      <div class="sub-num">04 · Research Questions</div>
+      <h3>학위논문 <em>연구질문.</em></h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>단계</th><th>연구질문</th><th>방법론적 응답</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Q1 · 개념화</strong></td><td>퍼실리테이팅 역량은 어떤 하위차원으로 구성되는가?</td><td>1단계 질적 연구(문헌 검토 + 심층인터뷰 + FGI) → 하위차원 도출 + 초기 문항 풀</td></tr>
+            <tr><td><strong>Q2 · 측정 · 타당화</strong></td><td>Q1의 하위차원을 측정하는 척도는 어떻게 개발·검증될 수 있는가?</td><td>2단계 양적 연구(내용타당도 → 파일럿 → EFA → CFA) → 측정모형 타당화</td></tr>
+            <tr><td><strong>Q3 · 후속 연구</strong></td><td>퍼실리테이팅 역량은 협력적·적응적 의정 작동과 어떤 관계를 갖는가?</td><td>박사 후속 SEM 기반 매개·조절 연구로 예고</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">연구 범위는 Q1·Q2로 한정 — Hinkin(1998) 6단계 + MacKenzie et al.(2011) 8단계 프로토콜에 따라 EFA·CFA 타당화까지. Q3 SEM 검증은 박사 후속 연구.</p>
+    </div>
+
+    <div class="subsec">
+      <div class="sub-num">05 · Significance</div>
+      <h3>학문적 의의.</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>차원</th><th>내용</th></tr></thead>
+          <tbody>
+            <tr><td><strong>이론적 의의</strong></td><td>어댑티브 거버넌스·퍼실리테이팅 역량 이론을 한국 지방의회 맥락에 최초로 체계 적용</td></tr>
+            <tr><td><strong>방법론적 의의</strong></td><td>표준 척도 개발 프로토콜(Hinkin, MacKenzie et al.)에 따라 퍼실리테이팅 역량을 측정 가능한 도구로 조작화</td></tr>
+            <tr><td><strong>실천적 의의</strong></td><td>의정 품질 평가를 '내용(what)' 중심에서 '과정(how)' 중심으로 전환 — 역량 진단·교육·연수 프로그램 설계 근거 제공</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <!-- 04 Method -->
-    <div class="block">
-      <div class="lbl">04 · Methodology</div>
-      <h2>2단계 척도 개발 — Hinkin × MacKenzie 프로토콜.</h2>
-      <p>박사논문은 ‘문항 생성 → 내용 타당도 검토 → 파일럿 검증 → EFA → CFA’ 단계까지를 범위로 한정한다. SEM 기반 매개·조절 관계 검증은 박사 후속 연구로 예고한다.</p>
+    <div class="subsec">
+      <div class="sub-num">06 · Dissertation Plan</div>
+      <h3>최종 학위논문 방향.</h3>
+      <div class="callout">
+        <strong>「지방의회 의정 과정에서 퍼실리테이팅 역량의 구성요소와 측정도구 개발 — 주민 정책 여정 관점을 중심으로 —」</strong><br/>
+        <em>Development and Validation of a Local Council Facilitative Capacity Scale: A Citizen Policy Journey Perspective</em>
+      </div>
 
-      <div class="method">
-        <div class="card">
-          <div class="stg">Stage 1 · Qualitative</div>
-          <h4>개념화 + 문항 풀 생성</h4>
-          <ul>
-            <li>전·현직 지방의원 12–15명 / 정책지원관 6–8명 / 시민사회 활동가 4–6명</li>
-            <li>심층 반구조화 인터뷰(60–90분) + FGI 2–3회</li>
-            <li>광역·기초·도시·농어촌 균형의 목적표집 + 이론적 표집 병행</li>
-            <li>Braun &amp; Clarke(2006) 주제분석 + 감사추적·동료 검토</li>
-            <li>산출물: 하위차원 확정 + 초기 문항 50–80개</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="stg">Stage 2 · Quantitative</div>
-          <h4>척도 타당화</h4>
-          <ul>
-            <li>전문가 패널 8–10명 내용타당도(CVI ≥ .80)</li>
-            <li>광역별 의회 명부 기반 비례할당 표집</li>
-            <li>EFA(주축분해, promax) → CFA → 수렴·판별 타당도</li>
-            <li>측정 동일성(measurement invariance) 검증</li>
-            <li>도구: SPSS, R(lavaan, semTools), Mplus</li>
-          </ul>
-        </div>
+      <div class="minor">Stage 1 · 질적 연구 — 개념화 및 문항 생성</div>
+      <div class="tbl">
+        <table>
+          <tbody>
+            <tr><td style="width:22%"><strong>연구 참여자</strong></td><td>전·현직 지방의원 12~15명, 정책지원관 6~8명, 시민사회 활동가 4~6명</td></tr>
+            <tr><td><strong>자료 수집</strong></td><td>심층 반구조화 인터뷰(60~90분) + FGI 2~3회(회당 5~7명)</td></tr>
+            <tr><td><strong>표집 전략</strong></td><td>광역·기초의회 균형, 도시·농어촌 균형, 의정 경력 균형 고려한 목적표집 + 이론적 표집</td></tr>
+            <tr><td><strong>분석 방법</strong></td><td>Braun &amp; Clarke(2006) 주제분석 절차 — 감사추적 방식으로 해석 과정 기록</td></tr>
+            <tr><td><strong>산출물</strong></td><td>퍼실리테이팅 역량 하위차원 도출 + 초기 측정 문항 50~80개 생성</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="minor">Stage 2 · 양적 연구 — 척도 타당화</div>
+      <div class="tbl">
+        <table>
+          <tbody>
+            <tr><td style="width:22%"><strong>목표 표본</strong></td><td>예비조사·본조사 분리 원칙; 응답률에 따라 EFA·CFA 표본 운용 방식을 지도교수와 협의</td></tr>
+            <tr><td><strong>내용 타당도</strong></td><td>학계·실무계 전문가 패널 8~10명, CVI ≥ .80 기준</td></tr>
+            <tr><td><strong>타당도 검증</strong></td><td>EFA(주축분해, promax 회전) → CFA → 수렴타당도(AVE ≥ .50, CR ≥ .70) → 판별타당도(Fornell-Larcker, HTMT) → 측정 동일성 검증</td></tr>
+            <tr><td><strong>분석 도구</strong></td><td>SPSS, R(lavaan, semTools), Mplus</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">SEM 기반 매개·조절 관계 검증은 박사 후속 연구 프로그램으로 예고</p>
+    </div>
+
+    <div class="subsec">
+      <div class="sub-num">07 · References</div>
+      <h3>주요 참고문헌.</h3>
+
+      <div class="ref-group">
+        <div class="head">[A] Adaptive Governance · 4편</div>
+        <div class="ref-item"><span class="ref-num">[1]</span><div>Folke, C. et al. (2005). Adaptive governance of social-ecological systems. <em>Annual Review of Environment and Resources, 30</em>, 441–473.</div></div>
+        <div class="ref-item"><span class="ref-num">[2]</span><div>Pahl-Wostl, C. (2009). A conceptual framework for analysing adaptive capacity and multi-level learning processes. <em>Global Environmental Change, 19</em>(3), 354–365.</div></div>
+        <div class="ref-item"><span class="ref-num">[3]</span><div>Chaffin, B. C. et al. (2014). A decade of adaptive governance scholarship. <em>Ecology and Society, 19</em>(3), 56.</div></div>
+        <div class="ref-item"><span class="ref-num">[4]</span><div>Ostrom, E. (2010). Beyond markets and states: Polycentric governance. <em>American Economic Review, 100</em>(3), 641–672.</div></div>
+      </div>
+
+      <div class="ref-group">
+        <div class="head">[B] Facilitating · Boundary Spanning · 4편</div>
+        <div class="ref-item"><span class="ref-num">[5]</span><div>Svara, J. H. (1999). Complementarity of politics and administration. <em>Administration &amp; Society, 30</em>(6), 676–705.</div></div>
+        <div class="ref-item"><span class="ref-num">[6]</span><div>Svara, J. H. (2008). <em>The facilitative leader in city hall</em>. CRC Press.</div></div>
+        <div class="ref-item"><span class="ref-num">[7]</span><div>Williams, P. (2002). The competent boundary spanner. <em>Public Administration, 80</em>(1), 103–124.</div></div>
+        <div class="ref-item"><span class="ref-num">[8]</span><div>Ansell, C., &amp; Gash, A. (2008). Collaborative governance in theory and practice. <em>JPART, 18</em>(4), 543–571.</div></div>
+      </div>
+
+      <div class="ref-group">
+        <div class="head">[C] Scale Development Methodology · 4편</div>
+        <div class="ref-item"><span class="ref-num">[9]</span><div>Hinkin, T. R. (1998). A brief tutorial on the development of measures. <em>Organizational Research Methods, 1</em>(1), 104–121.</div></div>
+        <div class="ref-item"><span class="ref-num">[10]</span><div>MacKenzie, S. B. et al. (2011). Construct measurement and validation procedures in MIS and behavioral research. <em>MIS Quarterly, 35</em>(2), 293–334.</div></div>
+        <div class="ref-item"><span class="ref-num">[11]</span><div>신원득, 문현미, 백현식. (2015). 지방의정 전문성 측정지표 개발에 관한 연구. <em>정책연구</em>, 1–119.</div></div>
+        <div class="ref-item"><span class="ref-num">[12]</span><div>김영수. (2007). 지방의회의 의정활동 성과평가에 관한 연구. <em>지방정부연구, 11</em>(1), 185–207.</div></div>
       </div>
     </div>
-
-    <!-- 05 Roadmap -->
-    <div class="block">
-      <div class="lbl">05 · Roadmap</div>
-      <h2>2026 — 2028 학기별 진행.</h2>
-      <div class="road">
-        <div class="row">
-          <div class="yr">2026 · 1학기</div>
-          <div class="what">코스워크 시작 (12학점)
-            <span>조사연구방법론 · 시민참여와 거버넌스 · 조직학이론 · 정부-기업관계론 / 어댑티브 거버넌스·design-based PA 문헌 집중 독해</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="yr">2026 · 2학기</div>
-          <div class="what">이론 심화 + 행정계량분석 (12학점)
-            <span>정책학·행정학 이론세미나 · 행정계량분석 · 갈등관리 / 행정부담 유형 분류 소논문 착수</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="yr">2027 · 1학기</div>
-          <div class="what">질적 연구 진입
-            <span>심층인터뷰 설계 · 파일럿 수행 / 퍼실리테이팅 역량 개념화 착수 </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="yr">2027 · 2학기</div>
-          <div class="what">논문제출자격시험 대비
-            <span>사회과학연구방법론 · 지방정부와 행정 (논자시) / 퍼실리테이팅 역량 예비연구 소논문</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="yr">2028</div>
-          <div class="what">본조사 → EFA → CFA → 학위논문
-            <span>예심 2028-1 / 본심 2028-2 이후 · 인터랙션사이언스·인간AI인터랙션 융합전공 선택과목 병행</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="status">
-      <div class="dot" aria-hidden="true"></div>
-      <div class="txt">STATUS · 2026.04 (DRAFT v.1)
-본 페이지는 학업계획서의 공개용 요약입니다. 진행 중인 소논문·인터뷰 자료·문헌 검토는 정리되는 대로 별도 페이지로 추가됩니다. 자세한 내용은 chaemin@skku.edu를 통해 요청 및 문의 부탁드립니다.</div>
-    </div>
-
   </section>
-</div>
 
-<div class="wrap">
+  <!-- ============================================================== -->
+  <!-- ═══ Ⅱ. 수강 계획 ═══ -->
+  <!-- ============================================================== -->
+  <section class="block" data-screen-label="02 수강 계획">
+    <div class="sec-head">
+      <div class="num">Ⅱ</div>
+      <div class="ttl">학기별 수강 계획</div>
+    </div>
+    <p class="p">석박사통합과정 이수학점: 전공과목 42학점 이상 + 선택과목 18학점 이하 = <strong>총 60학점 이상</strong>. 2026-1·2학기에 12학점 수강 가능 학기를 활용하여 이후 학위논문 연구에 투입할 시간을 확보한다.</p>
+
+    <div class="minor">2026 봄학기 (1기, 진행 중) · 12학점</div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th style="width:10%">학점</th><th style="width:18%">비고</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mono">GSP5048-01</span></td><td>조사연구방법론</td><td>3</td><td><span class="badge-m">필수</span></td></tr>
+        <tr><td><span class="mono">GSP5260-01</span></td><td>시민참여와 거버넌스</td><td>3</td><td></td></tr>
+        <tr><td><span class="mono">GSP5004-01</span></td><td>조직학이론</td><td>3</td><td></td></tr>
+        <tr><td><span class="mono">GSP5024-01</span></td><td>정부-기업관계론</td><td>3</td><td></td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="minor">2026 가을학기 (2기) · 이론 심화 · 12학점</div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th style="width:10%">학점</th><th style="width:18%">비고</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mono">GSP5230-01</span></td><td>행정학이론세미나</td><td>3</td><td></td></tr>
+        <tr><td><span class="mono">GSP5107-01</span></td><td>정책학이론세미나</td><td>3</td><td></td></tr>
+        <tr><td><span class="mono">GSP5216-01</span></td><td>행정계량분석</td><td>3</td><td><span class="badge-m">필수</span></td></tr>
+        <tr><td><span class="mono">CHS7007</span></td><td>AI기반전략적의사결정</td><td>3</td><td>도전학기</td></tr>
+        <tr><td><span class="mono">COV7003-I7</span></td><td>논문작성법및연구윤리1</td><td>선수</td><td><span class="badge-m">필수</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">도전학기: 신인류AI사피엔스경험디자인(CHS7006) 청강 병행 검토</p>
+
+    <div class="minor">2027 봄학기 (3기) · 질적 연구 진입 · 9학점</div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th style="width:10%">학점</th><th style="width:22%">비고</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mono">GSP5235-01</span></td><td>의회와 국정관리</td><td>3</td><td>월요일</td></tr>
+        <tr><td><span class="mono">PSY5136-01</span></td><td>구조방정식이론</td><td>3</td><td>수 15:00–17:45</td></tr>
+        <tr><td><span class="mono">GSP5204-01</span></td><td>사회혁신플랫폼과 정책설계</td><td>3</td><td>수요일</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">2027년 2월 충주시의회 정책지원관 재계약 시기</p>
+
+    <div class="minor">2027 가을학기 (4기) · 논문제출자격시험 대비 · 9학점</div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th style="width:10%">학점</th><th style="width:24%">비고</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mono">GSP5271-01</span></td><td>사회과학연구방법론</td><td>3</td><td><span class="badge-m">★ 논자시</span></td></tr>
+        <tr><td><span class="mono">GSP5006-01</span></td><td>지방정부와 행정</td><td>3</td><td><span class="badge-m">★ 논자시</span></td></tr>
+        <tr><td><span class="mono">GSP5040-01</span></td><td>갈등관리</td><td>3</td><td></td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="minor">2028 봄·가을학기 (5–6기) · 본연구 및 학위논문 작성 · 9+9학점</div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:14%">학기</th><th>과목 구성</th><th style="width:10%">학점</th><th style="width:22%">비고</th></tr></thead>
+      <tbody>
+        <tr><td><strong>2028-1</strong></td><td>전공필수 + 토요일 개설 선택과목 (시간표 확인 후 결정)</td><td>9</td><td>논자시 이후</td></tr>
+        <tr><td><strong>2028-2</strong></td><td>전공필수 + 토요일 개설 선택과목 (혼합연구방법론 개설 시 우선)</td><td>9</td><td>학위논문 작성</td></tr>
+      </tbody>
+    </table></div>
+    <p class="p">✦ 논자시 응시(사회과학연구방법론 + 지방정부와 행정) / 선택과목 2개는 KCI 논문게재 실적으로 면제 신청<br/>✦ 본조사 설문 실시 → EFA → CFA → 학위논문 예심·본심</p>
+
+    <div class="minor">선택과목 후보 — 타 대학원·타 전공 포함</div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th>소속</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mono">GSP5049-01</span></td><td>질적연구방법론</td><td>국정전문대학원</td></tr>
+        <tr><td><span class="mono">GSP5261-01</span></td><td>혼합연구방법론</td><td>국정전문대학원</td></tr>
+        <tr><td><span class="mono">GSP5165-01</span></td><td>혁신발전론</td><td>국정전문대학원</td></tr>
+        <tr><td><span class="mono">GSP5222-01</span></td><td>지방재정의이해</td><td>국정전문대학원</td></tr>
+        <tr><td><span class="mono">GSP5243-01</span></td><td>살기좋은도시를위한정책</td><td>국정전문대학원</td></tr>
+        <tr><td><span class="mono">SIC5026-01</span></td><td>사회혁신이론및사례연구</td><td>소셜이노베이션융합</td></tr>
+        <tr><td><span class="mono">GSP5233-01</span></td><td>거버넌스특강</td><td>국정전문대학원</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- ═══ Ⅲ. 소논문 ═══ -->
+  <!-- ============================================================== -->
+  <section class="block" data-screen-label="03 소논문 계획">
+    <div class="sec-head">
+      <div class="num">Ⅲ</div>
+      <div class="ttl">학기별 소논문 연구 계획</div>
+    </div>
+    <p class="p">소논문은 박사학위논문의 이론적·방법론적 준비 과정으로 추진하며, 투고 여부와 순서는 지도교수 면담, 자료 확보 가능성, 학술지 심사 일정에 따라 조정한다. <strong>Step 1/2/3은 학위논문의 이론적 선행연구를 스스로 생산하는 연구 프로그램</strong>을 구성한다.</p>
+
+    <div class="tbl"><table>
+      <thead><tr><th style="width:12%">구분</th><th style="width:14%">시기</th><th>논문 제목(안)</th><th style="width:16%">방법론</th><th style="width:18%">목표 저널</th></tr></thead>
+      <tbody>
+        <tr><td><strong>진행 ①</strong></td><td>2026-1 → 방학</td><td>자치입법 과정에서 생성형 AI 활용 의향의 결정 요인</td><td>TAM · 구조방정식</td><td>의정논총</td></tr>
+        <tr><td><strong>진행 ②</strong></td><td>2026-1 → 학회</td><td>창업가의 출신지역에 따른 지역활성화 사업 인식의 차이</td><td>집단 비교 · 설문</td><td>지방자치학회 발표</td></tr>
+        <tr><td><strong>진행 ③</strong></td><td>2026-2</td><td>공공서비스디자인에 대한 공무원의 인식: Q방법론 연구</td><td>Q방법론</td><td>Archives / 행정연구</td></tr>
+        <tr><td><strong>Step 1</strong></td><td>2027-1</td><td>지방의회 Wicked Problem과 어댑티브 거버넌스의 필요성</td><td>문헌 · 사례 분석</td><td>한국행정학보</td></tr>
+        <tr><td><strong>Step 2</strong></td><td>2027-2</td><td>지방의회 퍼실리테이팅 역량의 개념화: 질적 연구</td><td>심층인터뷰 · FGI</td><td>지방자치학회보</td></tr>
+        <tr><td><strong>Step 3</strong></td><td>2028-1</td><td>경계확장자로서 정책지원관의 역할 인식 유형화</td><td>Q방법론</td><td>의정논총</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">행정부담 × UX 관점 논문은 Step 1과 이론적 연결이 높아 지도교수 협의 후 통합 또는 분리 결정<br/>우수등재지(한국행정학보 등)는 박사 수료 이후 지도교수와의 공저 투고 경로로 병행 추진</p>
+
+    <div class="minor">소논문과 학위논문의 연계 구조</div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:32%">소논문</th><th>학위논문 기여 부분</th></tr></thead>
+      <tbody>
+        <tr><td><strong>① AI 활용 의향</strong></td><td>2장: 기술변화 맥락 — 어댑티브 거버넌스 필요성 근거</td></tr>
+        <tr><td><strong>② 창업가 출신지역</strong></td><td>2장: 지역 맥락 이론적 근거</td></tr>
+        <tr><td><strong>③ 공공서비스디자인 Q</strong></td><td>2장: 정책 여정 이론, 방법론 예비 연습</td></tr>
+        <tr><td><strong>Step 1 (WHY)</strong></td><td>2장 이론: 지방의회 AG 필요성 논거 완성</td></tr>
+        <tr><td><strong>Step 2 (WHAT)</strong></td><td>3장: 퍼실리테이팅 역량 구성요소 도출</td></tr>
+        <tr><td><strong>Step 3 (WHO)</strong></td><td>2장 이론: 정책지원관 Boundary Spanner 위치 정당화</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- ═══ Ⅳ. 종합 로드맵 ═══ -->
+  <!-- ============================================================== -->
+  <section class="block" data-screen-label="04 종합 로드맵">
+    <div class="sec-head">
+      <div class="num">Ⅳ</div>
+      <div class="ttl">종합 연구 로드맵</div>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:14%">시기</th><th>코스워크</th><th>소논문 · 연구 활동</th><th>핵심 마일스톤</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>2026-1</strong><small>12학점</small></td>
+          <td>조사연구방법론<br/>시민참여와거버넌스<br/>조직학이론<br/>정부-기업관계론</td>
+          <td>① AI 활용 의향 초안<br/>② 창업가 출신지역 프리테스팅<br/>③ 공공서비스디자인 컨셉페이퍼</td>
+          <td>AG·퍼실리테이팅 이론 독해<br/>지도교수 면담 추진</td>
+        </tr>
+        <tr>
+          <td><strong>2026 방학</strong></td>
+          <td>AI기반전략적의사결정<br/>(도전학기)</td>
+          <td>① AI 논문 재정리<br/>② 창업가 학회발표 준비<br/>Q방법론 재공부</td>
+          <td>구조방정식 자습<br/>학회발표 자료 작성</td>
+        </tr>
+        <tr>
+          <td><strong>2026-2</strong><small>12학점</small></td>
+          <td>행정학이론세미나<br/>정책학이론세미나<br/>행정계량분석<br/>[도전학기 포함]</td>
+          <td>① AI 수용성 투고<br/>② 창업가 학회발표<br/>③ Q방법론 논문 보완 투고</td>
+          <td>KCI 실적 확보<br/>행정계량분석 이수</td>
+        </tr>
+        <tr>
+          <td><strong>2027-1</strong><small>9학점</small></td>
+          <td>의회와국정관리<br/>구조방정식이론<br/>사회혁신플랫폼과정책설계</td>
+          <td>Step 1 투고<br/>행정부담×UX 투고<br/>Step 2 심층인터뷰·FGI 시작</td>
+          <td>질적 연구 설계 완료<br/>정책지원관 재계약</td>
+        </tr>
+        <tr>
+          <td><strong>2027-2</strong><small>9학점</small></td>
+          <td>사회과학연구방법론<br/>지방정부와행정<br/>갈등관리</td>
+          <td>Step 2 투고<br/>Step 3 Q방법론 착수<br/>논자시 준비 집중</td>
+          <td><span class="badge-m">★ 논자시 응시</span><br/>선택과목 면제 신청</td>
+        </tr>
+        <tr>
+          <td><strong>2028-1</strong><small>9학점</small></td>
+          <td>토요일 과목<br/>(시간표 확인 후)</td>
+          <td>Step 3 투고<br/>본조사 실시<br/>EFA 분석</td>
+          <td><span class="badge-m">★ 논자시 통과</span><br/>게재 실적 1편 이상</td>
+        </tr>
+        <tr>
+          <td><strong>2028-2~</strong><small>9학점</small></td>
+          <td>토요일 과목<br/>(혼합연구방법론 우선)</td>
+          <td>CFA → 척도 타당화<br/>Prospectus 작성<br/>예심·본심 준비</td>
+          <td><span class="badge-m">★ 예심 → 본심</span></td>
+        </tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- ═══ Ⅴ. 지도 체계 ═══ -->
+  <!-- ============================================================== -->
+  <section class="block" data-screen-label="05 지도 체계">
+    <div class="sec-head">
+      <div class="num">Ⅴ</div>
+      <div class="ttl">지도 체계 구상</div>
+    </div>
+    <p class="p">연구는 시민참여 · 의정혁신 · 협력적 거버넌스의 접점에 위치하므로, 주지도교수님의 조언을 바탕으로 관련 전공 교수진의 자문을 병행한다. 최종 지도교수와 심사위원 구성은 향후 면담 및 연구 진행 상황에 따라 확정한다.</p>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:32%">자문 영역</th><th>연구 단계별 활용</th><th style="width:22%">교수진</th></tr></thead>
+      <tbody>
+        <tr><td><strong>주지도 · 시민참여 · 정책혁신 · 관료제</strong></td><td>연구 전체 방향, 박사논문 지도, 심사위원 구성</td><td>김승현 교수님</td></tr>
+        <tr><td>지방자치 · 지역거버넌스</td><td>지방의회 맥락 해석, 한국 지방자치 실천 함의</td><td>정문기 교수님</td></tr>
+        <tr><td>공공관리 · 시민참여 · 혼합연구</td><td>공동생산 이론, 시민참여 메커니즘, 혼합연구방법론</td><td>이슬기 교수님</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- ═══ Ⅵ. 맺음말 ═══ -->
+  <!-- ============================================================== -->
+  <section class="block" data-screen-label="06 맺음말" style="border-bottom:0">
+    <div class="sec-head">
+      <div class="num">Ⅵ</div>
+      <div class="ttl">맺음말</div>
+    </div>
+    <p class="p">본 학업계획의 핵심은 지방의회 의정 과정을 단순한 의사결정 절차가 아니라, 주민 요구가 정책 언어로 번역되고 이해관계자 간 조정과 학습을 거쳐 제도 개선으로 이어지는 과정으로 분석하는 데 있다. UX·서비스디자인 석사 과정에서 형성한 사용자 관점, 그리고 지방의회 정책지원관으로 근무하며 경험한 의정 과정의 실제 문제를 행정학 연구로 연결하고자 한다.</p>
+    <p class="p">석박통합과정에서는 <strong>어댑티브 거버넌스 + 퍼실리테이팅 역량 + 지방의회</strong>라는 삼원 구조 위에서, 퍼실리테이팅 역량의 개념과 하위차원을 정교화하고, 문항 개발과 타당화 절차를 통해 측정도구를 개발한다. 이 연구가 완성될 때, 한국 지방의회는 주민이 체감할 수 있는 어댑티브 거버넌스 플랫폼으로 기능하기 위한 <em>첫 번째 측정 인프라</em>를 갖추게 될 것이다.</p>
+  </section>
+
   <footer>
     <div class="left">© 2026 Chaemin Lim · dyblue.net</div>
-    <div class="right">Research Plan · In Progress</div>
+    <div class="right">Research Plan v3 · In Progress</div>
   </footer>
+
 </div>
 
 <!-- Theme FAB -->
