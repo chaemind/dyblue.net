@@ -25,31 +25,55 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
 <style>
+  /* ============================================================
+     SKKU GSG Design System — Graduate School of Governance
+     Warm cream canvas · four-tier green · Pretendard.
+     LIGHT is default; the FAB / Tweaks invert surface + text. */
   :root{
-    --bg:#0A0A0A;
-    --bg-alt:#111111;
-    --bg-card:#161616;
-    --text-primary:#F0F0F0;
-    --text-secondary:#888888;
-    --border:#222222;
+    --bg:#F2F0EB;
+    --bg-alt:#EDEBE9;
+    --bg-card:#FFFFFF;
+    --text-primary:rgba(0,0,0,.87);
+    --text-secondary:rgba(0,0,0,.56);
+    --border:#E4E2DC;
 
-    /* dual-accent system: --accent is the deep brand color (fills, blocks);
-       --accent-bright is a readable shade for thin text on dark bg.
-       Toggle (midnight ↔ neon) rewrites both via .theme-neon class. */
-    --accent:#191970;          /* MidnightBlue */
-    --accent-bright:#6D6DF5;   /* readable indigo on #0A0A0A */
-    --accent-ink:#FFFFFF;      /* readable text ON accent fills */
+    /* green-house brand band + ghost-grid lines */
+    --band-bg:#1E3932;
+    --band-ink:#D4E9E2;
+    --grid-line:rgba(0,0,0,.045);
+
+    /* accent — green in light, flips to mint in dark.
+       --accent fills blocks/buttons; --accent-bright is readable accent text;
+       --accent-ink is text ON accent fills. */
+    --accent:#00704A;          /* green-primary */
+    --accent-bright:#00704A;
+    --accent-ink:#FFFFFF;
+    --chip-bg:#D4E9E2;
   }
-  .theme-neon{
-    --accent:#39FF14;
-    --accent-bright:#39FF14;
-    --accent-ink:#000000;
+  /* DARK — full surface + text inversion (deep green-house) */
+  .theme-dark{
+    --bg:#172E28;
+    --bg-alt:#13241F;
+    --bg-card:#21413A;
+    --text-primary:#F3F1EB;
+    --text-secondary:rgba(243,241,235,.56);
+    --border:rgba(212,233,226,.16);
+
+    --band-bg:#102019;
+    --band-ink:#D4E9E2;
+    --grid-line:rgba(212,233,226,.06);
+
+    --accent:#D4E9E2;          /* mint fills read on deep green */
+    --accent-bright:#BFE3D6;
+    --accent-ink:#16302A;
+    --chip-bg:rgba(212,233,226,.14);
   }
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:var(--bg);color:var(--text-primary);font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  html{background-color:var(--bg);color:var(--text-primary)}
+  html,body{font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   html{scroll-behavior:smooth}
-  body{overflow-x:hidden;line-height:1.5}
+  body{background-color:transparent;color:var(--text-primary);overflow-x:hidden;line-height:1.5}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
   button{background:none;border:0;color:inherit;font:inherit;cursor:pointer}
@@ -73,8 +97,8 @@
   /* ---------- Ghost grid overlay ---------- */
   .grid-overlay{position:fixed;inset:0;pointer-events:none;z-index:1;
     background-image:
-      repeating-linear-gradient(to right, rgba(240,240,240,0.04) 0 1px, transparent 1px 80px),
-      repeating-linear-gradient(to bottom, rgba(240,240,240,0.04) 0 1px, transparent 1px 80px);
+      repeating-linear-gradient(to right, var(--grid-line) 0 1px, transparent 1px 80px),
+      repeating-linear-gradient(to bottom, var(--grid-line) 0 1px, transparent 1px 80px);
     opacity:.6}
 
   /* ---------- Hero ---------- */
@@ -92,6 +116,11 @@
   .hero-name .en em{font-style:italic;color:var(--accent-bright);font-weight:900}
   .hero-name .dot{display:inline-block;width:.16em;height:.16em;background:var(--accent-bright);border-radius:50%;vertical-align:.16em;margin-left:.04em}
 
+  /* SKKU emblem — subtle brand mark filling the hero's open right field */
+  .hero-emblem{position:absolute;top:50%;right:3%;transform:translateY(-50%);width:clamp(220px,27vw,400px);aspect-ratio:216/256;background:url("assets/mark-skku-emblem-green.png") center/contain no-repeat;opacity:.13;pointer-events:none;z-index:0}
+  .theme-dark .hero-emblem{background-image:url("assets/mark-skku-emblem-white.png");opacity:.16}
+  @media (max-width:1024px){ .hero-emblem{opacity:.07;right:-4%;width:clamp(200px,40vw,320px)} }
+
   .hero-bio{max-width:520px;font-size:15px;line-height:1.8;color:var(--text-secondary)}
   .hero-bio strong{color:var(--text-primary);font-weight:600}
   .hero-scroll{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--text-primary)}
@@ -106,10 +135,10 @@
   }
 
   /* ---------- Marquee ---------- */
-  .marquee{position:relative;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#000;overflow:hidden;padding:22px 0;z-index:2}
+  .marquee{position:relative;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--band-bg);overflow:hidden;padding:22px 0;z-index:2}
   .marquee-track{display:flex;gap:48px;width:max-content;animation:marquee 28s linear infinite;will-change:transform}
-  .marquee-track span{font-size:14px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);white-space:nowrap}
-  .marquee-track .sep{color:var(--accent-bright);opacity:.7}
+  .marquee-track span{font-size:14px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--band-ink);white-space:nowrap}
+  .marquee-track .sep{color:var(--band-ink);opacity:.7}
   @keyframes marquee{ from{transform:translate3d(0,0,0)} to{transform:translate3d(-50%,0,0)} }
 
   /* ---------- Section base ---------- */
@@ -230,9 +259,9 @@
   }
 
   /* ---------- Theme FAB (visible to all visitors) ---------- */
-  .theme-fab{position:fixed;right:20px;bottom:20px;z-index:150;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:999px;background:rgba(22,22,22,.92);backdrop-filter:blur(12px);border:1px solid var(--border);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:border-color .25s, color .25s;font-family:inherit}
+  .theme-fab{position:fixed;right:20px;bottom:20px;z-index:150;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:999px;background:color-mix(in srgb, var(--bg-card) 92%, transparent);backdrop-filter:blur(12px);border:1px solid var(--border);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:border-color .25s, color .25s;font-family:inherit;box-shadow:0 8px 24px rgba(0,0,0,.12)}
   .theme-fab:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
-  .theme-fab .sw{width:18px;height:18px;border-radius:50%;background:var(--accent);border:1px solid color-mix(in oklab, var(--accent-bright) 50%, transparent);flex-shrink:0}
+  .theme-fab .sw{width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,var(--text-primary) 0 50%,var(--bg) 50% 100%);border:1.5px solid var(--accent-bright);flex-shrink:0}
   .theme-fab.tweaks-shifted{bottom:calc(20px + 250px)}
 
   /* ---------- Footer ---------- */
@@ -244,19 +273,19 @@
   .tweaks{position:fixed;right:24px;bottom:24px;background:rgba(22,22,22,.92);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:18px;padding:18px;z-index:200;display:none;min-width:260px;box-shadow:0 24px 64px rgba(0,0,0,.6)}
   .tweaks.visible{display:block}
   .tweaks-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-  .tweaks-head h6{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright)}
-  .tweaks-head .x{font-size:18px;color:var(--text-secondary);line-height:1;padding:4px 8px;border-radius:8px}
+  .tweaks-head h6{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#BFE3D6}
+  .tweaks-head .x{font-size:18px;color:rgba(243,241,235,.6);line-height:1;padding:4px 8px;border-radius:8px}
   .tweaks-head .x:hover{background:#222;color:#fff}
-  .tweaks p.hint{font-size:11px;color:var(--text-secondary);margin-bottom:14px;line-height:1.6}
+  .tweaks p.hint{font-size:11px;color:rgba(243,241,235,.6);margin-bottom:14px;line-height:1.6}
   .tweaks .row{display:flex;gap:8px}
-  .tweaks .opt{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:14px;background:#0e0e0e;border:1px solid var(--border);border-radius:12px;text-align:left;transition:border-color .2s,background .2s}
+  .tweaks .opt{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:14px;background:#0e0e0e;border:1px solid rgba(255,255,255,.12);border-radius:12px;text-align:left;transition:border-color .2s,background .2s}
   .tweaks .opt:hover{border-color:#444}
-  .tweaks .opt.active{border-color:var(--accent-bright);background:#0a0a0a}
+  .tweaks .opt.active{border-color:#BFE3D6;background:#0a0a0a}
   .tweaks .opt .sw{width:24px;height:24px;border-radius:6px;border:1px solid #2a2a2a}
-  .tweaks .opt[data-val="midnight"] .sw{background:#191970}
-  .tweaks .opt[data-val="neon"] .sw{background:#39FF14}
-  .tweaks .opt .nm{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--text-primary)}
-  .tweaks .opt .sub{font-size:10px;color:var(--text-secondary);letter-spacing:.08em;text-transform:uppercase}
+  .tweaks .opt[data-val="light"] .sw{background:#F2F0EB}
+  .tweaks .opt[data-val="dark"] .sw{background:#172E28;border-color:#2f5247}
+  .tweaks .opt .nm{font-size:12px;font-weight:700;letter-spacing:.06em;color:#F3F1EB}
+  .tweaks .opt .sub{font-size:10px;color:rgba(243,241,235,.55);letter-spacing:.08em;text-transform:uppercase}
 
   /* ---------- Reveal initial state ---------- */
   .reveal-line{clip-path:inset(0 0 100% 0);transform:translateY(0)}
@@ -275,6 +304,7 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero wrap" data-screen-label="01 Hero">
+  <div class="hero-emblem" aria-hidden="true"></div>
   <div class="hero-top">
     <div class="role">
       <span class="label" id="heroRole">정책지원관 · 서비스디자인 디자이너</span>
@@ -285,12 +315,12 @@
 
   <h1 class="hero-name" aria-label="임채민 Chaemin Lim">
     <span class="row"><span class="reveal-line"><span class="han">임채민<span class="dot"></span></span></span></span>
-    <span class="row"><span class="reveal-line"><span class="en">Chae<em style="color:rgb(248,248,248)">min</em></span></span></span>
+    <span class="row"><span class="reveal-line"><span class="en">Chae<em style="color:var(--text-secondary)">min</em></span></span></span>
     <span class="row"><span class="reveal-line"><span class="en" style="color:var(--accent-bright)">Lim<em>.</em></span></span></span>
   </h1>
 
   <div class="hero-bottom">
-    <p class="hero-bio reveal-up-sm" id="heroBio" style="color:var(--accent-bright)">A researcher conceptualizing local council facilitative capacity through a citizen policy journey lens, developing measurable theoretical models using UX methodology and mixed methods.</p>
+    <p class="hero-bio reveal-up-sm" id="heroBio">A researcher conceptualizing local council facilitative capacity through a citizen policy journey lens, developing measurable theoretical models using UX methodology and mixed methods.</p>
     <a href="#contact" class="hero-scroll" data-cursor="hover">
       Scroll <span class="arr" aria-hidden="true"></span>
     </a>
@@ -326,13 +356,13 @@
   <h2 class="sec-display reveal-up">Spanning Boundaries,<br/><em style="font-style:italic;color:var(--accent-bright)">Governing Adaptively.</em></h2>
 
   <div class="about-grid">
-    <blockquote class="about-quote reveal-up" style="color:var(--accent-bright)">
+    <blockquote class="about-quote reveal-up">
       어댑티브 거버넌스 관점에서 지방의회의 제도적 가능성을 탐구하며, <em>경계확장자(Boundary Spanner)</em>로서 정책지원관과 지방의원의 역량 체계 구축을 연구 과제로 삼습니다.
     </blockquote>
 
     <div class="about-body reveal-up-sm">
       <p>한양대학교 ERICA에서 신문방송학과 시각·패키지디자인학을 함께 전공하며 디지털 기술을 활용한 서비스 디자인의 기초를 다졌고, 연세대학교 정보대학원에서 디지털 문화콘텐츠/UX 전공으로 경영정보시스템학 석사를 마쳤습니다. LG전자 MC사업본부와 조선일보 디지털뉴스본부, 증강현실 스타트업 애니펜을 거치며 산업과 언론, 콘텐츠 현장의 실무를 경험했습니다. </p>
-      <p style="font-weight:600;color:rgb(234,234,234)">이후 <strong>국회의원실 비서관</strong>으로 입법·정책 실무에 합류, <strong>JBKLAB 대외협력본부</strong>를 거쳐 현재는 <strong>충주시의회 정책지원관</strong>으로 일하고 있습니다. 이 경험들을 기반으로, 현재 <strong>성균관대학교 국정전문대학원 행정학 통합과정</strong>에서 어댑티브 거버넌스 관점의 지방의회 역량 연구를 이어가고 있습니다.</p>
+      <p style="font-weight:600;color:var(--text-primary)">이후 <strong>국회의원실 비서관</strong>으로 입법·정책 실무에 합류, <strong>JBKLAB 대외협력본부</strong>를 거쳐 현재는 <strong>충주시의회 정책지원관</strong>으로 일하고 있습니다. 이 경험들을 기반으로, 현재 <strong>성균관대학교 국정전문대학원 행정학 통합과정</strong>에서 어댑티브 거버넌스 관점의 지방의회 역량 연구를 이어가고 있습니다.</p>
     </div>
   </div>
 
@@ -542,8 +572,8 @@
 <section class="contact wrap" id="contact" data-screen-label="06 Contact">
   <div class="sec-label reveal-up-sm">05 · Contact</div>
   <h2 class="contact-display">
-    <span class="lets reveal-line-wrap"><span class="reveal-line">LET'S</span></span>
-    <span class="talk reveal-line-wrap"><span class="reveal-line">TALK.</span></span>
+    <span class="lets reveal-line-wrap"><span class="reveal-line">Connecting</span></span>
+    <span class="talk reveal-line-wrap"><span class="reveal-line">Dots.</span></span>
   </h2>
 
   <div class="contact-meta">
@@ -602,17 +632,17 @@
     <h6>Tweaks</h6>
     <button class="x" id="tweakClose" aria-label="Close">×</button>
   </div>
-  <p class="hint">Accent color — switch between classic Midnight and editorial Neon.</p>
+  <p class="hint">Surface theme — the page inverts between warm cream (Light) and deep green-house (Dark).</p>
   <div class="row">
-    <button class="opt active" data-val="midnight">
+    <button class="opt active" data-val="light">
       <span class="sw" aria-hidden="true"></span>
-      <span class="nm">Midnight</span>
-      <span class="sub">#191970</span>
+      <span class="nm">Light</span>
+      <span class="sub">Cream</span>
     </button>
-    <button class="opt" data-val="neon">
+    <button class="opt" data-val="dark">
       <span class="sw" aria-hidden="true"></span>
-      <span class="nm">Neon</span>
-      <span class="sub">#39FF14</span>
+      <span class="nm">Dark</span>
+      <span class="sub">Green-house</span>
     </button>
   </div>
 </aside>
@@ -622,15 +652,15 @@
    Tweak defaults — persisted via host
 ===================================================================== */
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "accent": "midnight"
+  "theme": "light"
 }/*EDITMODE-END*/;
 
 let tweakState = { ...TWEAK_DEFAULTS };
 
 function applyTweaks(state){
-  document.documentElement.classList.toggle('theme-neon', state.accent === 'neon');
+  document.documentElement.classList.toggle('theme-dark', state.theme === 'dark');
   document.querySelectorAll('.tweaks .opt').forEach(b=>{
-    b.classList.toggle('active', b.dataset.val === state.accent);
+    b.classList.toggle('active', b.dataset.val === state.theme);
   });
 }
 applyTweaks(tweakState);
@@ -657,7 +687,7 @@ document.getElementById('tweakClose').addEventListener('click', ()=>{
   try{ window.parent.postMessage({ type:'__edit_mode_dismissed' }, '*'); }catch(e){}
 });
 document.querySelectorAll('.tweaks .opt').forEach(b=>{
-  b.addEventListener('click', ()=> setTweak({ accent: b.dataset.val }));
+  b.addEventListener('click', ()=> setTweak({ theme: b.dataset.val }));
 });
 
 /* =====================================================================
@@ -768,7 +798,7 @@ window.addEventListener('load', ()=>{
     });
   });
 
-  /* Contact LET'S / TALK lines */
+  /* Contact Connecting line */
   gsap.set('.contact-display .reveal-line', { clipPath:'inset(0 0 100% 0)' });
   ScrollTrigger.create({
     trigger: '.contact-display',
@@ -814,7 +844,7 @@ window.addEventListener('load', ()=>{
 <!-- Public theme toggle FAB (always visible) -->
 <button class="theme-fab" id="themeFab" aria-label="Toggle theme">
   <span class="sw" aria-hidden="true"></span>
-  <span id="themeLabel">Midnight</span>
+  <span id="themeLabel">Dark</span>
 </button>
 
 <script>
@@ -827,21 +857,21 @@ window.addEventListener('load', ()=>{
   const label = document.getElementById('themeLabel');
   let stored = null;
   try{ stored = localStorage.getItem(KEY); }catch(e){}
-  if(stored === 'neon' || stored === 'midnight'){
-    if(typeof setTweak === 'function'){ setTweak({ accent: stored }); }
-    else { document.documentElement.classList.toggle('theme-neon', stored === 'neon'); }
+  if(stored === 'light' || stored === 'dark'){
+    if(typeof setTweak === 'function'){ setTweak({ theme: stored }); }
+    else { document.documentElement.classList.toggle('theme-dark', stored === 'dark'); }
   }
   function syncLabel(){
-    const isNeon = document.documentElement.classList.contains('theme-neon');
-    label.textContent = isNeon ? 'Neon' : 'Midnight';
+    const isDark = document.documentElement.classList.contains('theme-dark');
+    label.textContent = isDark ? 'Light' : 'Dark';
   }
   syncLabel();
   new MutationObserver(syncLabel).observe(document.documentElement, { attributes:true, attributeFilter:['class'] });
 
   fab.addEventListener('click', ()=>{
-    const next = document.documentElement.classList.contains('theme-neon') ? 'midnight' : 'neon';
-    if(typeof setTweak === 'function'){ setTweak({ accent: next }); }
-    else { document.documentElement.classList.toggle('theme-neon', next === 'neon'); }
+    const next = document.documentElement.classList.contains('theme-dark') ? 'light' : 'dark';
+    if(typeof setTweak === 'function'){ setTweak({ theme: next }); }
+    else { document.documentElement.classList.toggle('theme-dark', next === 'dark'); }
     try{ localStorage.setItem(KEY, next); }catch(e){}
   });
 
@@ -858,7 +888,7 @@ window.addEventListener('load', ()=>{
   if(typeof origSetTweak === 'function'){
     window.setTweak = function(patch){
       origSetTweak(patch);
-      if(patch && patch.accent){ try{ localStorage.setItem(KEY, patch.accent); }catch(e){} }
+      if(patch && patch.theme){ try{ localStorage.setItem(KEY, patch.theme); }catch(e){} }
     };
   }
 })();
