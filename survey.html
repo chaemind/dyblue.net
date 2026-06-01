@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관아골 로컬 창업가 설문조사</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/dist/tabler-icons.min.css">
+<style>
+:root {
+  --green-dark: #1E3932;
+  --green-mid: #00754A;
+  --green-light: #E1F5EE;
+  --cream: #F2F0EB;
+  --ceramic: #EDEBE9;
+  --white: #ffffff;
+  --text-main: #1a1a1a;
+  --text-sub: #5a5a5a;
+  --text-hint: #888;
+  --border: rgba(0,0,0,0.12);
+  --border-em: rgba(0,0,0,0.25);
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  background:var(--cream);
+  color:var(--text-main);
+  line-height:1.6;
+  min-height:100vh;
+  padding:2rem 1rem 4rem;
+}
+
+.survey-wrap{
+  max-width:660px;
+  margin:0 auto;
+}
+
+/* Header */
+.survey-header{
+  background:var(--green-dark);
+  color:#F2F0EB;
+  border-radius:var(--radius-xl);
+  padding:2.25rem 2rem;
+  margin-bottom:1.5rem;
+  position:relative;
+  overflow:hidden;
+}
+.survey-header::before{
+  content:'';
+  position:absolute;
+  top:-40px;right:-40px;
+  width:200px;height:200px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.04);
+  pointer-events:none;
+}
+.header-tag{
+  font-size:11px;
+  letter-spacing:.1em;
+  color:#9FE1CB;
+  text-transform:uppercase;
+  margin-bottom:.6rem;
+  font-weight:500;
+}
+.survey-header h1{
+  font-size:20px;
+  font-weight:700;
+  line-height:1.4;
+  margin-bottom:.8rem;
+}
+.survey-header .subtitle{
+  font-size:13.5px;
+  color:#B4B2A9;
+  line-height:1.65;
+}
+.anon-notice{
+  margin-top:1.1rem;
+  padding-top:.9rem;
+  border-top:0.5px solid rgba(255,255,255,.15);
+  font-size:12px;
+  color:#9FE1CB;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* Progress */
+.progress-wrap{margin-bottom:1.25rem}
+.progress-meta{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:var(--text-hint);
+  margin-bottom:.4rem;
+}
+.progress-bar{
+  height:4px;
+  background:rgba(0,0,0,0.1);
+  border-radius:2px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  background:var(--green-mid);
+  border-radius:2px;
+  transition:width .4s cubic-bezier(.4,0,.2,1);
+}
+
+/* Section card */
+.section{
+  background:var(--white);
+  border:0.5px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:1.75rem 1.5rem;
+  margin-bottom:1rem;
+}
+.section-header{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:1.5rem;
+  padding-bottom:1rem;
+  border-bottom:0.5px solid var(--border);
+}
+.section-badge{
+  background:var(--green-mid);
+  color:#E1F5EE;
+  font-size:13px;
+  font-weight:700;
+  width:32px;height:32px;
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.section-meta .section-name{font-size:15px;font-weight:700;color:var(--text-main)}
+.section-meta .section-desc{font-size:12px;color:var(--text-hint);margin-top:2px}
+
+/* Question blocks */
+.q-block{margin-bottom:1.5rem}
+.q-block:last-child{margin-bottom:0}
+.q-label{
+  font-size:13.5px;
+  font-weight:500;
+  margin-bottom:.6rem;
+  line-height:1.5;
+}
+.q-num{color:var(--green-mid);margin-right:5px;font-weight:700}
+.q-required{color:#E24B4A;margin-left:2px}
+.q-hint{font-size:11.5px;color:var(--text-hint);margin-bottom:.6rem;margin-top:-.2rem}
+
+/* Radio / Checkbox */
+.radio-group,.check-group{display:flex;flex-direction:column;gap:7px}
+.radio-group.inline,.check-group.inline{flex-direction:row;flex-wrap:wrap;gap:7px}
+.radio-item,.check-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 14px;
+  border:0.5px solid var(--border);
+  border-radius:var(--radius-md);
+  cursor:pointer;
+  font-size:13.5px;
+  transition:background .12s,border-color .12s;
+  user-select:none;
+}
+.radio-item:hover,.check-item:hover{background:var(--ceramic)}
+.radio-item.selected,.check-item.selected{
+  background:rgba(0,117,74,.07);
+  border-color:rgba(0,117,74,.45);
+  color:var(--green-dark);
+}
+.radio-item input,.check-item input{
+  accent-color:var(--green-mid);
+  width:16px;height:16px;
+  flex-shrink:0;
+  cursor:pointer;
+}
+
+/* Likert table */
+.likert-hint{
+  display:flex;justify-content:space-between;
+  font-size:11px;color:var(--text-hint);
+  margin-bottom:.5rem;
+  padding:0 2px;
+}
+.likert-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.likert-table{width:100%;border-collapse:collapse;min-width:460px}
+.likert-table th{
+  text-align:center;color:var(--text-hint);
+  padding:4px 4px 8px;
+  font-weight:400;font-size:12px;
+  min-width:48px;
+}
+.likert-table th:first-child{
+  text-align:left;min-width:0;
+  width:55%;
+  padding-left:0;
+}
+.likert-table td{
+  text-align:center;
+  padding:8px 4px;
+  border-top:0.5px solid var(--border);
+}
+.likert-table td:first-child{
+  text-align:left;padding-left:0;
+  font-size:13px;color:var(--text-main);
+  padding-right:12px;line-height:1.4;
+}
+.likert-table input[type=radio]{
+  accent-color:var(--green-mid);
+  width:17px;height:17px;cursor:pointer;
+}
+.likert-row:hover td{background:rgba(0,117,74,.03)}
+.dim-label{color:var(--text-hint);font-size:11px;display:block;margin-bottom:1px}
+
+/* Text / Select inputs */
+.text-input,.select-input{
+  width:100%;
+  padding:9px 13px;
+  border:0.5px solid var(--border);
+  border-radius:var(--radius-md);
+  font-size:13.5px;
+  font-family:inherit;
+  background:var(--white);
+  color:var(--text-main);
+  transition:border-color .15s,box-shadow .15s;
+}
+.text-input:focus,.select-input:focus{
+  outline:none;
+  border-color:var(--green-mid);
+  box-shadow:0 0 0 3px rgba(0,117,74,.12);
+}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* Priority */
+.priority-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.priority-slot{
+  border:0.5px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:10px 8px;
+  text-align:center;
+}
+.priority-slot .slot-label{
+  font-size:11px;color:var(--text-hint);
+  margin-bottom:6px;font-weight:500;
+}
+.priority-slot .select-input{
+  padding:5px 8px;
+  font-size:12px;
+  text-align:center;
+}
+
+/* Validation */
+.error-msg{font-size:11.5px;color:#E24B4A;margin-top:5px;display:none}
+.field-error .error-msg{display:block}
+.field-error .text-input,
+.field-error .select-input{border-color:#E24B4A!important}
+.field-error .radio-group,
+.field-error .check-group{
+  border-radius:var(--radius-md);
+  outline:1.5px solid #E24B4A;
+  outline-offset:3px;
+}
+
+/* Navigation */
+.nav-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:1.5rem;
+  gap:12px;
+}
+.btn{
+  padding:11px 26px;
+  border-radius:var(--radius-md);
+  font-size:13.5px;font-weight:500;
+  cursor:pointer;
+  border:0.5px solid var(--border);
+  background:transparent;
+  color:var(--text-main);
+  font-family:inherit;
+  transition:background .14s,transform .1s;
+}
+.btn:hover{background:rgba(0,0,0,.05)}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-next{
+  background:var(--green-dark);
+  color:#F2F0EB;
+  border-color:var(--green-dark);
+}
+.btn-next:hover{background:#2a4e45}
+.btn-submit{
+  background:var(--green-mid);
+  color:#fff;
+  border-color:var(--green-mid);
+}
+.btn-submit:hover{background:#005c3a}
+
+/* Success */
+.success-box{
+  background:var(--white);
+  border:0.5px solid var(--border);
+  border-radius:var(--radius-xl);
+  padding:3rem 2rem;
+  text-align:center;
+  display:none;
+}
+.check-circle{
+  width:60px;height:60px;
+  background:var(--green-light);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.25rem;
+}
+.success-box h2{font-size:18px;font-weight:700;margin-bottom:.5rem}
+.success-box p{font-size:13.5px;color:var(--text-sub);line-height:1.65}
+.success-link{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:1.5rem;font-size:13px;
+  color:var(--green-mid);
+  text-decoration:none;
+  border-bottom:0.5px solid var(--green-mid);
+  padding-bottom:1px;
+}
+
+/* Spinner */
+.submit-status{
+  text-align:center;padding:1.2rem;
+  font-size:13px;color:var(--text-hint);
+  display:none;
+}
+.spinner{
+  display:inline-block;width:16px;height:16px;
+  border:2px solid var(--border);
+  border-top-color:var(--green-mid);
+  border-radius:50%;
+  animation:spin .6s linear infinite;
+  vertical-align:-3px;margin-right:6px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Footer */
+.survey-footer{
+  text-align:center;
+  margin-top:2.5rem;
+  font-size:11.5px;
+  color:var(--text-hint);
+  line-height:1.8;
+}
+
+@media(max-width:500px){
+  body{padding:1rem .75rem 3rem}
+  .survey-header{padding:1.75rem 1.25rem}
+  .section{padding:1.25rem 1rem}
+  .input-row{grid-template-columns:1fr}
+  .priority-grid{grid-template-columns:1fr}
+  .btn{padding:10px 18px;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<div class="survey-wrap">
+
+  <!-- Header -->
+  <div class="survey-header">
+    <div class="header-tag">연구 설문 · 성균관대학교 국정전문대학원</div>
+    <h1>창업가의 출신 지역에 따른<br>지역 활성화 사업 인식 차이 연구</h1>
+    <p class="subtitle">충주 관아골에서 활동하시는 로컬 창업가 여러분의 소중한 의견을 듣고자 합니다.<br>응답 시간은 약 10분이며, 수집된 정보는 연구 목적으로만 사용됩니다.</p>
+    <div class="anon-notice">
+      <i class="ti ti-shield-check" aria-hidden="true"></i>
+      익명으로 처리되며 어떠한 개인식별 정보도 외부에 공개되지 않습니다.
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap">
+    <div class="progress-meta">
+      <span id="stepLabel">섹션 1 / 5</span>
+      <span id="stepPct">20%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
+  </div>
+
+  <form id="surveyForm" novalidate>
+
+  <!-- STEP 1 -->
+  <div class="step" id="step1">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-badge">A</div>
+        <div class="section-meta">
+          <div class="section-name">출신 지역 및 사업 현황</div>
+          <div class="section-desc">집단 구분 변수 · 이후 비교 분석에 활용됩니다</div>
+        </div>
+      </div>
+
+      <div class="q-block" id="qA1">
+        <div class="q-label"><span class="q-num">A1</span>출생지는 어디입니까?<span class="q-required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-item"><input type="radio" name="A1" value="충주시"> 충주시</label>
+          <label class="radio-item"><input type="radio" name="A1" value="충북_충주외"> 충청북도 내 충주 외 지역</label>
+          <label class="radio-item"><input type="radio" name="A1" value="타시도"> 충청북도 외 타 시·도</label>
+        </div>
+        <div class="error-msg">필수 항목입니다</div>
+      </div>
+
+      <div class="q-block" id="qA2">
+        <div class="q-label"><span class="q-num">A2</span>만 18세까지 가장 오래 거주한 지역(성장지)은?<span class="q-required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-item"><input type="radio" name="A2" value="충주시"> 충주시</label>
+          <label class="radio-item"><input type="radio" name="A2" value="충북_충주외"> 충청북도 내 충주 외 지역</label>
+          <label class="radio-item"><input type="radio" name="A2" value="타시도"> 충청북도 외 타 시·도</label>
+        </div>
+        <div class="error-msg">필수 항목입니다</div>
+      </div>
+
+      <div class="q-block" id="qA3">
+        <div class="q-label"><span class="q-num">A3</span>본인은 스스로를 어떻게 인식하십니까?<span class="q-required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-item"><input type="radio" name="A3" value="충주출신"> 충주 출신</label>
+          <label class="radio-item"><input type="radio" name="A3" value="타지역출신"> 타지역 출신</label>
+          <label class="radio-item"><input type="radio" name="A3" value="모르겠음"> 잘 모르겠음</label>
+        </div>
+        <div class="error-msg">필수 항목입니다</div>
+      </div>
+
+      <div class="q-block" id="qA4wrap" style="display:none">
+        <div class="q-label"><span class="q-num">A4</span>충주에 거주를 시작한 연도는?</div>
+        <div class="q-hint">타지역 이주 창업가만 응답해 주세요</div>
+        <input type="number" name="A4" class="text-input" placeholder="예) 2018" min="1950" max="2026" style="max-width:160px">
+      </div>
+
+      <div class="q-block" id="qA5">
+        <div class="q-label"><span class="q-num">A5</span>관아골에서 사업을 시작한 연도는?<span class="q-required">*</span></div>
+        <input type="number" name="A5" class="text-input" placeholder="예) 2020" min="1990" max="2026" style="max-width:160px">
+        <div class="error-msg">필수 항목입니다</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: 지역애착 -->
+  <div class="step" id="step2" style="display:none">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-badge">B</div>
+        <div class="section-meta">
+          <div class="section-name">지역 애착</div>
+          <div class="section-desc">Scannell &amp; Gifford(2010) 3차원 틀 · 5점 척도</div>
+        </div>
+      </div>
+
+      <div class="likert-hint">
+        <span>1 = 전혀 그렇지 않다</span>
+        <span>3 = 보통</span>
+        <span>5 = 매우 그렇다</span>
+      </div>
+      <div class="likert-scroll">
+        <table class="likert-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            </tr>
+          </thead>
+          <tbody id="bTableBody"></tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:1.5rem">
+        <div class="q-block" id="qB7">
+          <div class="q-label"><span class="q-num">B7</span>지난 1년간 관아골 지역행사 참여 횟수<span class="q-required">*</span></div>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="B7" value="0회"> 0회 (참여 없음)</label>
+            <label class="radio-item"><input type="radio" name="B7" value="1-2회"> 1–2회</label>
+            <label class="radio-item"><input type="radio" name="B7" value="3-5회"> 3–5회</label>
+            <label class="radio-item"><input type="radio" name="B7" value="6회이상"> 6회 이상</label>
+          </div>
+          <div class="error-msg">필수 항목입니다</div>
+        </div>
+
+        <div class="q-block" id="qB8">
+          <div class="q-label"><span class="q-num">B8</span>다른 관아골 창업가와 공동 프로젝트(공동 마케팅·행사 등) 참여 경험<span class="q-required">*</span></div>
+          <div class="radio-group inline">
+            <label class="radio-item"><input type="radio" name="B8" value="있음"> 있음</label>
+            <label class="radio-item"><input type="radio" name="B8" value="없음"> 없음</label>
+          </div>
+          <div class="error-msg">필수 항목입니다</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: 협력의향 -->
+  <div class="step" id="step3" style="display:none">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-badge">C</div>
+        <div class="section-meta">
+          <div class="section-name">협력 의향</div>
+          <div class="section-desc">Putnam(2000) bonding/bridging 구분 · 5점 척도</div>
+        </div>
+      </div>
+
+      <div class="likert-hint">
+        <span>1 = 전혀 그렇지 않다</span>
+        <span>3 = 보통</span>
+        <span>5 = 매우 그렇다</span>
+      </div>
+      <div class="likert-scroll">
+        <table class="likert-table">
+          <thead>
+            <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+          </thead>
+          <tbody id="cTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="q-block" style="margin-top:1.5rem" id="qC7">
+        <div class="q-label"><span class="q-num">C7</span>협력 참여의 가장 큰 이유를 선택해 주세요 <span style="font-weight:400;color:var(--text-hint)">(최대 3개)</span><span class="q-required">*</span></div>
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" name="C7" value="사업적이익"> 사업적 이익 (공동 마케팅·매출 증대)</label>
+          <label class="check-item"><input type="checkbox" name="C7" value="정보공유"> 정보·노하우 공유</label>
+          <label class="check-item"><input type="checkbox" name="C7" value="지역연결"> 지역사회 연결·소속감</label>
+          <label class="check-item"><input type="checkbox" name="C7" value="연대감"> 정서적 지지·연대감</label>
+          <label class="check-item"><input type="checkbox" name="C7" value="외부자원"> 외부 자원 확보</label>
+          <label class="check-item"><input type="checkbox" name="C7" value="기타"> 기타</label>
+        </div>
+        <div class="error-msg">하나 이상 선택해 주세요</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: 지원수요 -->
+  <div class="step" id="step4" style="display:none">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-badge">D</div>
+        <div class="section-meta">
+          <div class="section-name">지원 수요</div>
+          <div class="section-desc">Spigel(2017) 창업 생태계 요소 기반 · 5점 척도</div>
+        </div>
+      </div>
+
+      <div class="likert-hint">
+        <span>1 = 전혀 필요없다</span>
+        <span>3 = 보통</span>
+        <span>5 = 매우 필요하다</span>
+      </div>
+      <div class="likert-scroll">
+        <table class="likert-table">
+          <thead>
+            <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+          </thead>
+          <tbody id="dTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="q-block" style="margin-top:1.5rem" id="qD9">
+        <div class="q-label"><span class="q-num">D9</span>위 지원 항목 중 가장 시급한 3가지를 순서대로 선택해 주세요<span class="q-required">*</span></div>
+        <div class="priority-grid">
+          <div class="priority-slot">
+            <div class="slot-label">1순위</div>
+            <select name="D9_1" class="select-input"><option value="">선택</option></select>
+          </div>
+          <div class="priority-slot">
+            <div class="slot-label">2순위</div>
+            <select name="D9_2" class="select-input"><option value="">선택</option></select>
+          </div>
+          <div class="priority-slot">
+            <div class="slot-label">3순위</div>
+            <select name="D9_3" class="select-input"><option value="">선택</option></select>
+          </div>
+        </div>
+        <div class="error-msg">1·2·3순위를 모두 선택해 주세요</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: 기본정보 -->
+  <div class="step" id="step5" style="display:none">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-badge">E</div>
+        <div class="section-meta">
+          <div class="section-name">기본 정보</div>
+          <div class="section-desc">통제변수로 활용됩니다 · 익명 처리됩니다</div>
+        </div>
+      </div>
+
+      <div class="q-block" id="qE1">
+        <div class="q-label"><span class="q-num">E1</span>성별<span class="q-required">*</span></div>
+        <div class="radio-group inline">
+          <label class="radio-item"><input type="radio" name="E1" value="남성"> 남성</label>
+          <label class="radio-item"><input type="radio" name="E1" value="여성"> 여성</label>
+          <label class="radio-item"><input type="radio" name="E1" value="응답안함"> 응답하지 않음</label>
+        </div>
+        <div class="error-msg">필수 항목입니다</div>
+      </div>
+
+      <div class="q-block" id="qE2">
+        <div class="q-label"><span class="q-num">E2</span>연령대<span class="q-required">*</span></div>
+        <div class="radio-group inline">
+          <label class="radio-item"><input type="radio" name="E2" value="20대"> 20대</label>
+          <label class="radio-item"><input type="radio" name="E2" value="30대"> 30대</label>
+          <label class="radio-item"><input type="radio" name="E2" value="40대"> 40대</label>
+          <label class="radio-item"><input type="radio" name="E2" value="50대"> 50대</label>
+          <label class="radio-item"><input type="radio" name="E2" value="60대이상"> 60대 이상</label>
+        </div>
+        <div class="error-msg">필수 항목입니다</div>
+      </div>
+
+      <div class="q-block" id="qE4">
+        <div class="q-label"><span class="q-num">E4</span>사업 분야<span class="q-required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-item"><input type="radio" name="E4" value="음식_카페"> 음식·카페</label>
+          <label class="radio-item"><input type="radio" name="E4" value="디자인_공예"> 디자인·공예</label>
+          <label class="radio-item"><input type="radio" name="E4" value="문화_예술"> 문화·예술</label>
+          <label class="radio-item"><input type="radio" name="E4" value="소매_잡화"> 소매·잡화</label>
+          <label class="radio-item"><input type="radio" name="E4" value="기타"> 기타</label>
+        </div>
+        <div class="error-msg">필수 항목입니다</div>
+      </div>
+
+      <div class="input-row" style="margin-top:.75rem">
+        <div class="q-block" id="qE5">
+          <div class="q-label"><span class="q-num">E5</span>사업 운영 기간<span class="q-required">*</span></div>
+          <select name="E5" class="select-input">
+            <option value="">선택해 주세요</option>
+            <option>1년 미만</option>
+            <option>1–3년</option>
+            <option>3–5년</option>
+            <option>5–10년</option>
+            <option>10년 이상</option>
+          </select>
+          <div class="error-msg">필수 항목입니다</div>
+        </div>
+        <div class="q-block" id="qE6">
+          <div class="q-label"><span class="q-num">E6</span>직원 수 (본인 포함)<span class="q-required">*</span></div>
+          <select name="E6" class="select-input">
+            <option value="">선택해 주세요</option>
+            <option>1명 (혼자)</option>
+            <option>2–3명</option>
+            <option>4–5명</option>
+            <option>6명 이상</option>
+          </select>
+          <div class="error-msg">필수 항목입니다</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+  <!-- Nav -->
+  <div class="nav-row" id="navRow">
+    <button class="btn" id="btnPrev" onclick="prevStep()" disabled>← 이전</button>
+    <button class="btn btn-next" id="btnNext" onclick="nextStep()">다음 →</button>
+  </div>
+
+  <!-- Success -->
+  <div class="success-box" id="successBox">
+    <div class="check-circle">
+      <i class="ti ti-check" aria-hidden="true" style="font-size:26px;color:#00754A"></i>
+    </div>
+    <h2>응답이 제출되었습니다</h2>
+    <p>소중한 의견에 감사드립니다.<br>수집된 응답은 연구 목적으로만 활용됩니다.</p>
+    <a href="https://docs.google.com/spreadsheets/d/1xEzYCbEdUq6p_xTejn9BiIPMQYUSU9Drdm-6D2DLKoQ" target="_blank" class="success-link">
+      <i class="ti ti-table" aria-hidden="true"></i> 응답 데이터 스프레드시트 열기
+    </a>
+  </div>
+
+  <div class="submit-status" id="submitStatus">
+    <span class="spinner"></span> 제출 중입니다...
+  </div>
+
+  <div class="survey-footer">
+    성균관대학교 국정전문대학원 조사연구방법론 GSP5048-01<br>
+    연구자: 임채민 · 지도교수: 전희정 교수<br>
+    문의: 연구자에게 직접 연락 바랍니다
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const STEPS = 5;
+let currentStep = 1;
+
+const bItems = [
+  {name:'B1', dim:'정서', label:'관아골에 정서적으로 깊은 친밀감을 느낀다'},
+  {name:'B2', dim:'정서', label:'관아골에 있을 때 마음이 편안하고 안정감을 느낀다'},
+  {name:'B3', dim:'정서', label:'관아골을 떠나게 된다면 매우 아쉬울 것이다'},
+  {name:'B4', dim:'인지', label:'관아골은 내 정체성의 일부다'},
+  {name:'B5', dim:'인지', label:'관아골은 나에게 특별한 의미가 있는 장소다'},
+  {name:'B6', dim:'인지', label:'나는 관아골이 어떤 곳인지 잘 안다고 느낀다'},
+  {name:'B9', dim:'행동', label:'관아골 관련 회의나 모임에 정기적으로 참여한다'},
+];
+const cItems = [
+  {name:'C1', dim:'Bonding', label:'관아골 내 다른 창업가와 협력관계를 강화하고 싶다'},
+  {name:'C2', dim:'Bonding', label:'관아골 공동행사가 열리면 적극 참여할 의향이 있다'},
+  {name:'C3', dim:'Bonding', label:'관아골 창업가 협의체에 참여해 공동 문제를 해결하고 싶다'},
+  {name:'C4', dim:'Bridging', label:'외부(공공기관·전문기관)와의 연계가 사업에 도움이 된다'},
+  {name:'C5', dim:'Bridging', label:'관아골 외부의 창업 네트워크·자원에 적극 연결되고 싶다'},
+  {name:'C6', dim:'Bridging', label:'외부 전문가·기관과의 협업 기회가 있다면 적극 참여하겠다'},
+];
+const dItems = [
+  {name:'D1', dim:'물질적', label:'사업 자금 지원'},
+  {name:'D2', dim:'물질적', label:'점포·공간 지원'},
+  {name:'D3', dim:'물질적', label:'시설·인프라 지원'},
+  {name:'D4', dim:'물질적', label:'시장 접근(판로) 지원'},
+  {name:'D5', dim:'관계형', label:'지역사회 인적 네트워크 매개·소개'},
+  {name:'D6', dim:'관계형', label:'멘토링·컨설팅'},
+  {name:'D7', dim:'관계형', label:'창업가 협의체·공동체 참여 지원'},
+  {name:'D8', dim:'관계형', label:'공공기관과의 연결·중개'},
+];
+const d9Options = [
+  {val:'D1',txt:'D1 자금 지원'},
+  {val:'D2',txt:'D2 공간 지원'},
+  {val:'D3',txt:'D3 시설·인프라'},
+  {val:'D4',txt:'D4 판로 지원'},
+  {val:'D5',txt:'D5 네트워크 매개'},
+  {val:'D6',txt:'D6 멘토링'},
+  {val:'D7',txt:'D7 협의체 참여'},
+  {val:'D8',txt:'D8 공공 연결'},
+];
+
+function buildLikertRows(items, tbodyId) {
+  const tbody = document.getElementById(tbodyId);
+  items.forEach(it => {
+    const tr = document.createElement('tr');
+    tr.className = 'likert-row';
+    tr.innerHTML = `<td><span class="dim-label">${it.dim}</span>${it.label}</td>` +
+      [1,2,3,4,5].map(v=>`<td><input type="radio" name="${it.name}" value="${v}"></td>`).join('');
+    tbody.appendChild(tr);
+  });
+}
+buildLikertRows(bItems, 'bTableBody');
+buildLikertRows(cItems, 'cTableBody');
+buildLikertRows(dItems, 'dTableBody');
+
+const d9Selects = ['D9_1','D9_2','D9_3'].map(n => document.querySelector(`select[name="${n}"]`));
+d9Selects.forEach(sel => {
+  d9Options.forEach(o => {
+    const opt = document.createElement('option');
+    opt.value = o.val; opt.textContent = o.txt;
+    sel.appendChild(opt);
+  });
+});
+
+document.querySelectorAll('.radio-item input, .check-item input').forEach(inp => {
+  inp.addEventListener('change', function() {
+    if (this.type === 'radio') {
+      document.querySelectorAll(`.radio-item input[name="${this.name}"]`).forEach(r => {
+        r.closest('.radio-item').classList.remove('selected');
+      });
+    }
+    this.closest('.radio-item, .check-item').classList.toggle('selected', this.checked);
+  });
+});
+
+document.querySelectorAll('input[name="A3"]').forEach(r => {
+  r.addEventListener('change', function() {
+    const wrap = document.getElementById('qA4wrap');
+    if (wrap) wrap.style.display = (this.value === '타지역출신') ? 'block' : 'none';
+  });
+});
+
+document.querySelectorAll('input[name="C7"]').forEach(cb => {
+  cb.addEventListener('change', function() {
+    const checked = document.querySelectorAll('input[name="C7"]:checked');
+    if (checked.length > 3) { this.checked = false; this.closest('.check-item').classList.remove('selected'); }
+  });
+});
+
+function updateProgress() {
+  const pct = Math.round((currentStep / STEPS) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('stepLabel').textContent = `섹션 ${currentStep} / ${STEPS}`;
+  document.getElementById('stepPct').textContent = pct + '%';
+  document.getElementById('btnPrev').disabled = (currentStep === 1);
+  const isLast = (currentStep === STEPS);
+  const btn = document.getElementById('btnNext');
+  btn.textContent = isLast ? '제출하기' : '다음 →';
+  btn.className = isLast ? 'btn btn-submit' : 'btn btn-next';
+}
+
+function validateStep(step) {
+  let ok = true;
+  const stepEl = document.getElementById('step' + step);
+  if (step === 1) {
+    ['A1','A2','A3'].forEach(name => {
+      const checked = stepEl.querySelector(`input[name="${name}"]:checked`);
+      const block = document.getElementById('q' + name);
+      if (block) { block.classList.toggle('field-error', !checked); if (!checked) ok = false; }
+    });
+    const a5 = stepEl.querySelector('input[name="A5"]');
+    const a5block = document.getElementById('qA5');
+    const a5ok = a5 && a5.value.trim() !== '';
+    if (a5block) { a5block.classList.toggle('field-error', !a5ok); if (!a5ok) ok = false; }
+  }
+  if (step === 2) {
+    bItems.forEach(it => { if (!stepEl.querySelector(`input[name="${it.name}"]:checked`)) ok = false; });
+    ['B7','B8'].forEach(name => {
+      const checked = stepEl.querySelector(`input[name="${name}"]:checked`);
+      const block = document.getElementById('q' + name);
+      if (block) { block.classList.toggle('field-error', !checked); if (!checked) ok = false; }
+    });
+  }
+  if (step === 3) {
+    cItems.forEach(it => { if (!stepEl.querySelector(`input[name="${it.name}"]:checked`)) ok = false; });
+    const c7 = stepEl.querySelectorAll('input[name="C7"]:checked');
+    const c7block = document.getElementById('qC7');
+    if (c7block) { c7block.classList.toggle('field-error', c7.length === 0); if (c7.length === 0) ok = false; }
+  }
+  if (step === 4) {
+    dItems.forEach(it => { if (!stepEl.querySelector(`input[name="${it.name}"]:checked`)) ok = false; });
+    const d9ok = d9Selects.every(s => s.value !== '');
+    const d9block = document.getElementById('qD9');
+    if (d9block) { d9block.classList.toggle('field-error', !d9ok); if (!d9ok) ok = false; }
+  }
+  if (step === 5) {
+    ['E1','E2','E4'].forEach(name => {
+      const checked = stepEl.querySelector(`input[name="${name}"]:checked`);
+      const block = document.getElementById('q' + name);
+      if (block) { block.classList.toggle('field-error', !checked); if (!checked) ok = false; }
+    });
+    ['E5','E6'].forEach(name => {
+      const sel = stepEl.querySelector(`select[name="${name}"]`);
+      const block = document.getElementById('q' + name);
+      const selok = sel && sel.value !== '';
+      if (block) { block.classList.toggle('field-error', !selok); if (!selok) ok = false; }
+    });
+  }
+  return ok;
+}
+
+function nextStep() {
+  if (currentStep === STEPS) { submitForm(); return; }
+  if (!validateStep(currentStep)) return;
+  document.getElementById('step' + currentStep).style.display = 'none';
+  currentStep++;
+  document.getElementById('step' + currentStep).style.display = 'block';
+  updateProgress();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+function prevStep() {
+  if (currentStep === 1) return;
+  document.getElementById('step' + currentStep).style.display = 'none';
+  currentStep--;
+  document.getElementById('step' + currentStep).style.display = 'block';
+  updateProgress();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function collectData() {
+  const fd = new FormData(document.getElementById('surveyForm'));
+  const data = {};
+  for (const [k, v] of fd.entries()) {
+    data[k] = data[k] ? data[k] + ',' + v : v;
+  }
+  data['응답시각'] = new Date().toLocaleString('ko-KR');
+  return data;
+}
+
+function submitForm() {
+  if (!validateStep(STEPS)) return;
+  const data = collectData();
+  document.getElementById('btnNext').disabled = true;
+  document.getElementById('submitStatus').style.display = 'block';
+
+  if (SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+    setTimeout(showSuccess, 1200);
+    return;
+  }
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  }).then(() => showSuccess()).catch(() => showSuccess());
+}
+
+function showSuccess() {
+  document.getElementById('surveyForm').style.display = 'none';
+  document.getElementById('navRow').style.display = 'none';
+  document.getElementById('submitStatus').style.display = 'none';
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('stepLabel').textContent = '제출 완료';
+  document.getElementById('stepPct').textContent = '100%';
+  document.getElementById('successBox').style.display = 'block';
+}
+
+updateProgress();
+</script>
+</body>
+</html>
