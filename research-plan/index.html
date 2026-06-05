@@ -94,6 +94,9 @@
   html{scroll-behavior:smooth}
   body{line-height:1.7;overflow-x:hidden;transition:background-color .4s var(--ease),color .4s var(--ease)}
   a{color:inherit;text-decoration:none}
+  .tbl td a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);transition:text-decoration-color .2s var(--ease)}
+  .tbl td a:hover,.cell .v a:hover{text-decoration-color:var(--accent)}
+  .cell .v a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);transition:text-decoration-color .2s var(--ease)}
   ::selection{background:var(--accent);color:var(--accent-ink)}
 
   .wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 64px}
@@ -350,7 +353,7 @@
       </div>
       <div class="cell">
         <div class="k">지도교수</div>
-        <div class="v">김승현 교수님<small>시민참여 · 정책혁신 · 관료제</small></div>
+        <div class="v"><a href="https://professor.skku.edu/researcher/professorList.do?mode=view&perId=LZStrJITQtgzAWg1A7BCBDJBpATgVgIIHoAuADAF6EAcA7gLxVA%20&jojikCode2=7308&jojikCode1=7308&categoryId=P" target="_blank" rel="noopener">김승현 교수님</a><small>시민참여 · 정책혁신 · 관료제</small></div>
       </div>
       <div class="cell">
         <div class="k">학문 분야</div>
@@ -381,9 +384,7 @@
       <h3>어댑티브 거버넌스의 정의와 <em>퍼실리테이팅 역량의 필요성.</em></h3>
       <p class="p"><strong>어댑티브 거버넌스(Adaptive Governance)</strong>는 복잡하고 불확실한 사회문제에 대응하기 위해 다수의 행위자가 지속적인 학습·실험·피드백을 통해 제도와 규칙을 조정하는 집합적 통치 방식이다(Folke et al., 2005; Pahl-Wostl, 2009).</p>
       <p class="p">지방의회가 다루는 지역소멸·인구구조 변화·기후위기·지역갈등 등의 현안은 정답이 없고, 이해관계자마다 문제 정의가 다르며, 단일 기관이 해결할 수 없는 <strong>Wicked Problem</strong>(Rittel &amp; Webber, 1973)이다. 기존의 역량 교육·훈련이나 협력적 거버넌스 접근은 정답을 전제하거나 합의 이후 수정 메커니즘이 없다는 한계를 지닌다.</p>
-      <div class="callout">
-        <strong>그러나 어댑티브 거버넌스는 저절로 작동하지 않는다</strong>(Eshuis &amp; Gerrits, 2019). 위기가 지나면 관료제는 위계와 통제로 복귀한다. 이해관계자 간 학습과 조정을 실질적으로 매개하는 행위자의 역량이 없으면, AG는 제도적 선언에 그친다.
-      </div>
+      <div class="callout">그러나 어댑티브 거버넌스는 저절로 작동하지 않는다(Eshuis &amp; Gerrits, 2019). 위기가 지나면 관료제는 위계와 통제로 복귀한다. 이해관계자 간 학습과 조정을 실질적으로 매개하는 행위자의 역량이 없으면, 어댑티브 거버넌스는 제도적 선언에 그친다.</div>
       <p class="p">이 미시적 작동 역량이 곧 <strong>퍼실리테이팅 역량</strong>이며, 선출된 권위를 보유한 지방의회 의원이 그 핵심 실행 주체다. 어댑티브 거버넌스가 거시 수준에서 요청하는 학습·환류는, 미시 수준에서 의원과 정책지원관이 의정 과정을 매개·설계·조정할 때 비로소 작동한다.</p>
 
       <div class="chain">
@@ -468,7 +469,7 @@
                 <span class="cmap-plus" aria-hidden="true"></span>
               </div>
               <div class="cmap-body">
-                <p>선출직 의원은 <strong>정치-행정 경계</strong>를 지시·통제가 아닌 조정·매개·활성화 방식으로 다룬다. 집행부·주민·이해관계자가 각자의 역할을 잘 수행하도록 조건을 설계하는 것이 핵심.</p>
+                <p>선출직 의원은 정치-행정 경계를 지시·통제가 아닌 조정·매개·활성화 방식으로 다룬다. 집행부·주민·이해관계자가 각자의 역할을 잘 수행하도록 조건을 설계하는 것이 필요하다.</p>
                 <div class="cmap-kw"><span>정치-행정 상보성</span><span>선출직 조정</span><span>과정 설계</span></div>
               </div>
             </div>
@@ -522,7 +523,7 @@
                 </div>
                 <span class="cmap-plus" aria-hidden="true"></span>
               </div>
-              <div class="cmap-body"><p>주민 요구를 정책 의제로 번역·변환하는 역량. <strong>의제 형성</strong> 단계에서 작동.</p></div>
+              <div class="cmap-body"><p>주민 요구를 정책 의제로 번역·변환하는 역량을 말한다. 의제 형성 단계에서 작동한다.</p></div>
             </div>
             <div class="cmap-card" onclick="toggleCmap(this)">
               <div class="cmap-card-top">
@@ -533,7 +534,7 @@
                 </div>
                 <span class="cmap-plus" aria-hidden="true"></span>
               </div>
-              <div class="cmap-body"><p>이해관계자 간 입장 차이를 중재하는 역량. <strong>심의·조정</strong> 단계에서 작동.</p></div>
+              <div class="cmap-body"><p>이해관계자 간 입장 차이를 중재하는 역량이다. 심의·조정 단계에서 작동한다.</p></div>
             </div>
             <div class="cmap-card" onclick="toggleCmap(this)">
               <div class="cmap-card-top">
@@ -544,7 +545,7 @@
                 </div>
                 <span class="cmap-plus" aria-hidden="true"></span>
               </div>
-              <div class="cmap-body"><p>회의·공론 과정의 접근성·명료성을 확보하는 역량. <strong>심의 절차</strong> 단계에서 작동.</p></div>
+              <div class="cmap-body"><p>회의·공론 과정의 접근성·명료성을 확보하는 역량이다. 심의 절차 단계에서 작동한다.</p></div>
             </div>
             <div class="cmap-card" onclick="toggleCmap(this)">
               <div class="cmap-card-top">
@@ -555,7 +556,7 @@
                 </div>
                 <span class="cmap-plus" aria-hidden="true"></span>
               </div>
-              <div class="cmap-body"><p>심의 결과를 제도 개선·차기 의제로 환류하는 역량. <strong>환류·학습</strong> 단계에서 작동.</p></div>
+              <div class="cmap-body"><p>심의 결과를 제도 개선·차기 의제로 환류하는 역량이다. 환류·학습 단계에서 작동한다.</p></div>
             </div>
           </div>
           <p class="note" style="margin:0 14px 14px">※ 잠정 4차원 — 1단계 질적 연구(CIT·FGI)에서 수정·보완 예정 · Provisional dimensions subject to revision</p>
@@ -700,21 +701,21 @@
     <div class="tbl"><table>
       <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th style="width:10%">학점</th><th style="width:18%">비고</th></tr></thead>
       <tbody>
+        <tr><td><span class="mono">CHS7007-I1</span></td><td>AI기반전략적의사결정</td><td>3</td><td><button type="button" class="btn-challenge" aria-expanded="false" aria-controls="note-challenge" onclick="(function(b){var n=document.getElementById('note-challenge');var on=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!on));n.classList.toggle('is-active',!on);})(this)">도전학기</button></td></tr>
         <tr><td><span class="mono">GSP5230-01</span></td><td>행정학이론세미나</td><td>3</td><td></td></tr>
         <tr><td><span class="mono">GSP5107-01</span></td><td>정책학이론세미나</td><td>3</td><td></td></tr>
         <tr><td><span class="mono">GSP5216-01</span></td><td>행정계량분석</td><td>3</td><td><span class="badge-m">필수</span></td></tr>
-        <tr><td><span class="mono">CHS7007</span></td><td>AI기반전략적의사결정</td><td>3</td><td><button type="button" class="btn-challenge" aria-expanded="false" aria-controls="note-challenge" onclick="(function(b){var n=document.getElementById('note-challenge');var on=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!on));n.classList.toggle('is-active',!on);})(this)">도전학기</button></td></tr>
         <tr><td><span class="mono">COV7003-I7</span></td><td>논문작성법및연구윤리1</td><td>선수</td><td><span class="badge-m">필수</span></td></tr>
       </tbody>
     </table></div>
-    <p class="note" id="note-challenge">도전학기: 신인류AI사피엔스경험디자인(CHS7006) 청강 병행 검토</p>
+    <p class="note" id="note-challenge">도전학기: 신인류AI사피엔스경험디자인(CHS7006) 청강</p>
 
     <div class="minor">2027 봄학기 (3기) · 질적 연구 진입 · 9학점</div>
     <div class="tbl"><table>
       <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th style="width:10%">학점</th><th style="width:22%">비고</th></tr></thead>
       <tbody>
         <tr><td><span class="mono">GSP5235-01</span></td><td>의회와 국정관리</td><td>3</td><td>월요일</td></tr>
-        <tr><td><span class="mono">PSY5136-01</span></td><td>구조방정식이론</td><td>3</td><td>수 15:00–17:45</td></tr>
+        <tr><td><span class="mono">PSY5136-01</span></td><td>구조방정식이론</td><td>3</td><td>수요일</td></tr>
         <tr><td><span class="mono">GSP5204-01</span></td><td>사회혁신플랫폼과 정책설계</td><td>3</td><td>수요일</td></tr>
       </tbody>
     </table></div>
@@ -770,7 +771,8 @@
       <tbody>
         <tr><td><strong>진행 ①</strong></td><td>2026-1 → 방학</td><td>자치입법 과정에서 생성형 AI 활용 의향의 결정 요인</td><td>TAM · 구조방정식</td><td>의정논총<small>진행 중</small></td></tr>
         <tr><td><strong>진행 ②</strong></td><td>2026-1 → 학회</td><td>창업가의 출신지역에 따른 지역활성화 사업 인식의 차이</td><td>집단 비교 · 설문</td><td>한국지방자치학회 발표<small>진행 중</small></td></tr>
-        <tr><td><strong>진행 ③</strong></td><td>2026-1 → 2026-2</td><td>공공서비스디자인에 대한 공무원의 인식: Q방법론 연구</td><td>Q방법론</td><td>Archives / 행정연구<small>기말 → 투고</small></td></tr>
+        <tr><td><strong>진행 ③</strong></td><td>2026-1 → 2026-2</td><td>공공서비스디자인에 대한 공무원의 인식: Q방법론 연구</td><td>Q방법론</td><td>Archives / 한국행정연구
+기말 → 투고</td></tr>
         <tr><td><strong>④</strong></td><td>2026-2</td><td>지방의회 과정의 행정부담 유형 분류 및 개념화<small>퍼실리테이팅 필요성의 이론적 근거 — 박사논문 2장 흡수 가능성 검토</small></td><td>문헌 · 개념 분석</td><td><span class="badge-m">미투고 · 교수 상의</span></td></tr>
         <tr><td><strong>⑤</strong></td><td>2027-1</td><td>지방의회 퍼실리테이팅 역량 구성요소의 상대적 중요도 분석<small>4차원 간 상대적 중요도 → 척도 문항 구성의 선행 근거</small></td><td>AHP · 전문가 패널</td><td>한국지방자치학회보<small>예정</small></td></tr>
         <tr><td><strong>⑥</strong></td><td>2027-2</td><td>지방의회 퍼실리테이팅 역량의 개념화: 질적 예비연구<small>AHP 결과 + 질적 탐색 → 초기 문항 풀 → 박사논문 3장 직접 연결</small></td><td>심층인터뷰 · FGI</td><td>지방행정연구<small>예정</small></td></tr>
@@ -812,7 +814,9 @@
         <tr>
           <td><strong>2026 방학</strong></td>
           <td>AI기반전략적의사결정<br/>(도전학기)</td>
-          <td>① AI 논문 재정리<br/>② 창업가 학회발표 준비<br/>Q방법론 재공부</td>
+          <td>① AI 논문 재정리
+② 창업가 학회발표 준비
+Q방법론 다시 공부하기</td>
           <td>구조방정식 자습<br/>학회발표 자료 작성</td>
         </tr>
         <tr>
@@ -861,9 +865,9 @@
     <div class="tbl"><table>
       <thead><tr><th style="width:32%">자문 영역</th><th>연구 단계별 활용</th><th style="width:22%">교수진</th></tr></thead>
       <tbody>
-        <tr><td><strong>주지도 · 시민참여 · 정책혁신 · 관료제</strong></td><td>연구 전체 방향, 박사논문 지도, 심사위원 구성</td><td>김승현 교수님</td></tr>
-        <tr><td>지방자치 · 지역거버넌스</td><td>지방의회 맥락 해석, 한국 지방자치 실천 함의</td><td>정문기 교수님</td></tr>
-        <tr><td>공공관리 · 시민참여 · 혼합연구</td><td>공동생산 이론, 시민참여 메커니즘, 혼합연구방법론</td><td>이슬기 교수님</td></tr>
+        <tr><td><strong>주지도 · 시민참여 · 정책혁신 · 관료제</strong></td><td>연구 전체 방향, 박사논문 지도, 심사위원 구성</td><td><a href="https://professor.skku.edu/researcher/professorList.do?mode=view&perId=LZStrJITQtgzAWg1A7BCBDJBpATgVgIIHoAuADAF6EAcA7gLxVA%20&jojikCode2=7308&jojikCode1=7308&categoryId=P" target="_blank" rel="noopener">김승현 교수님</a></td></tr>
+        <tr><td>지방자치 · 지역거버넌스</td><td>지방의회 맥락 해석, 한국 지방자치 실천 함의</td><td><a href="https://professor.skku.edu/researcher/professorList.do?mode=view&perId=LZStrNYcwygRgkgthD0AzYANAKgEQFIGYDGAngJoCsAhgKoCKAvDUA%20&jojikCode2=7308&jojikCode1=7308&categoryId=P" target="_blank" rel="noopener">정문기 교수님</a></td></tr>
+        <tr><td>공공관리 · 시민참여 · 혼합연구</td><td>공동생산 이론, 시민참여 메커니즘, 혼합연구방법론</td><td><a href="https://professor.skku.edu/researcher/professorList.do?mode=view&perId=LZStrMYZgWgqgmgzg4gRgO4FsD2BhAalAHACywDcBqAUwBsBBAXhqA%20&jojikCode2=7308&jojikCode1=7308&categoryId=P" target="_blank" rel="noopener">이슬기 교수님</a></td></tr>
       </tbody>
     </table></div>
   </section>
@@ -877,7 +881,7 @@
       <div class="ttl">맺음말</div>
     </div>
     <p class="p">본 학업계획의 핵심은 지방의회 의정 과정을 단순한 의사결정 절차가 아니라, 주민 요구가 정책 언어로 번역되고 이해관계자 간 조정과 학습을 거쳐 제도 개선으로 이어지는 과정으로 분석하는 데 있다. UX·서비스디자인 석사 과정에서 형성한 사용자 관점, 그리고 지방의회 정책지원관으로 근무하며 경험한 의정 과정의 실제 문제를 행정학 연구로 연결하고자 한다.</p>
-    <p class="p">석박통합과정에서는 <strong>어댑티브 거버넌스 + 퍼실리테이팅 역량 + 지방의회</strong>라는 삼원 구조 위에서, 퍼실리테이팅 역량의 개념과 하위차원을 정교화하고, 문항 개발과 타당화 절차를 통해 측정도구를 개발한다. 이 연구가 완성될 때, 한국 지방의회는 주민이 체감할 수 있는 어댑티브 거버넌스 플랫폼으로 기능하기 위한 <em>첫 번째 측정 인프라</em>를 갖추게 될 것이다.</p>
+    <p class="p">석박통합과정에서는 어댑티브 거버넌스 + 퍼실리테이팅 역량 + 지방의회라는 삼원 구조 위에서, 퍼실리테이팅 역량의 개념과 하위차원을 정교화하고, 문항 개발과 타당화 절차를 통해 측정도구를 개발한다. 이 연구가 완성될 때, 한국 지방의회는 주민이 체감할 수 있는 어댑티브 거버넌스 플랫폼으로 기능하기 위한 측정 도구를 갖추게 될 것이다.</p>
   </section>
 
   <footer>
