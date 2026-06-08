@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>학업계획서 · Research Plan v5 — 임채민 / dyblue.net</title>
+<title>학업계획서 (인쇄용) · Research Plan v5 — 임채민 / dyblue.net</title>
 <meta name="description" content="지방의회의 퍼실리테이션 역량 구성요소와 측정도구 개발 — 임채민 학업계획서" />
 
 <!-- Google tag (gtag.js) -->
@@ -290,6 +290,12 @@
 
   /* ========== Print ========== */
   @media print{
+    @page{ size:A4 portrait; margin:14mm; }
+    *,*::before,*::after{
+      animation-delay:-99s !important;animation-duration:.001s !important;
+      animation-iteration-count:1 !important;animation-fill-mode:both !important;
+      transition-duration:0s !important;
+    }
     :root, .theme-dark{
       --bg:#ffffff;--bg-alt:#ffffff;--bg-card:#fafafa;
       --text-primary:#111111;--text-secondary:#555555;--text-soft:#222222;
@@ -300,8 +306,12 @@
     .top-bar, .theme-fab, .back-link, .print-btn{display:none !important}
     body{background:#fff;color:#111}
     .wrap{padding:0 24px;max-width:none}
-    section.block{padding:30px 0;page-break-inside:avoid}
-    .cover{padding:24px 0 32px}
+    section.block{padding:26px 0;border-bottom:1px solid #e2e2e2}
+    .sec-head,.minor,h3{break-after:avoid}
+    .tbl,.callout,.chain,.ref-item{break-inside:avoid}
+    .tbl table{break-inside:auto}
+    .tbl tr{break-inside:avoid}
+    .cover{padding:24px 0 32px;break-after:page}
     .cover .emblem-wm{display:none}
     .tbl, .callout, .cover .meta-strip .cell{box-shadow:none;border:1px solid #d8d8d8}
     .chain-num{background:#00704A !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -1275,6 +1285,18 @@ function toggleCmap(el){
     apply(theme);
     try{ localStorage.setItem(KEY, theme); }catch(e){}
   });
+})();
+</script>
+
+<script>
+(function(){
+  function ready(){
+    var imgs = Array.prototype.slice.call(document.images);
+    var imgP = Promise.all(imgs.map(function(im){ if(im.complete) return Promise.resolve(); return new Promise(function(res){ im.addEventListener('load',res); im.addEventListener('error',res); }); }));
+    var fontP = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    Promise.all([imgP, fontP]).then(function(){ setTimeout(function(){ window.print(); }, 500); });
+  }
+  if(document.readyState === 'complete') ready(); else window.addEventListener('load', ready);
 })();
 </script>
 
