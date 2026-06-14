@@ -78,7 +78,7 @@ const lbl=c=>c===0?'0':c>0?`+${c}`:`${c}`;
 const clr=c=>c<0?'#C82014':c>0?'#00754A':'#64748B';
 
 // ★ Google Sheets Apps Script URL ★
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx2oQsXhWJYqwjeuu9Fh9RPb9w5cCno0_OeuTwiDU1b-k81gjKxv_mI0MDRqMj0VZIELw/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw4kqiytVq98JMTUFmgqPCocrsZgu1aBned6ky2wh7CS3QDEuEL29sU6uJhrwyj1M9MpA/exec";
 
 function submitToSheets(pid, P) {
   return new Promise((resolve, reject) => {
@@ -107,13 +107,13 @@ function renderStart(){
   <div style="background:var(--color-background-primary,#fff);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:30px 34px;max-width:400px;width:100%">
     <div style="font-size:10px;font-weight:600;color:#00754A;letter-spacing:2px;margin-bottom:10px">Q-SORT · 36 ITEMS</div>
     <h2 style="font-size:19px;font-weight:500;color:var(--color-text-primary);line-height:1.4;margin-bottom:6px">공무원 시민참여 인식<br>유형화 연구</h2>
-    <p style="font-size:11px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:18px">36개 진술문 카드를 강제분포표에 배치해 주세요.<br>연구자와 Zoom 화면공유로 함께 진행됩니다.</p>
+    <p style="font-size:11px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:18px">36개 진술문 카드를 강제분포표에 배치해 주세요.<br>연구자와 Zoom 화면공유로 함께 진행됩니다.<br><span style="color:#CBA258">동명이인인 경우 성함 뒤에 식별 기호를 추가해 주세요. (예: 홍길동a)</span></p>
     <div style="background:var(--color-background-secondary,#F8FAFC);border-radius:8px;padding:10px 12px;margin-bottom:18px">
       <div style="font-size:10px;font-weight:500;color:var(--color-text-secondary);margin-bottom:7px">강제분포 (-5 ~ +5, 합계 36개)</div>
       <div style="display:flex;gap:3px">${distRow}</div>
     </div>
-    <div style="margin-bottom:6px;font-size:11px;font-weight:500;color:var(--color-text-secondary)">참여자 ID</div>
-    <input id="pid-in" placeholder="예: P01" style="width:100%;padding:9px 12px;border-radius:7px;border:0.5px solid var(--color-border-secondary);font-size:14px;font-weight:500;margin-bottom:12px;background:var(--color-background-primary);color:var(--color-text-primary);outline:none;display:block">
+    <div style="margin-bottom:6px;font-size:11px;font-weight:500;color:var(--color-text-secondary)">성함</div>
+    <input id="pid-in" placeholder="성함을 입력해 주세요" style="width:100%;padding:9px 12px;border-radius:7px;border:0.5px solid var(--color-border-secondary);font-size:14px;font-weight:500;margin-bottom:12px;background:var(--color-background-primary);color:var(--color-text-primary);outline:none;display:block">
     <button id="start-btn" class="btn" style="width:100%;padding:11px;background:#1E3932;color:#fff;font-size:13px">Q-sort 시작하기 →</button>
   </div></div>`;
 }
@@ -195,9 +195,9 @@ function renderResult(){
   const colCells=COLS.map(c=>{
     const cards=inCol(c);
     const inner=cards.length
-      ? cards.map(q=>`<div style="padding:4px 6px;margin-bottom:3px;background:var(--color-background-secondary,#F8FAFC);border-radius:4px;border:0.5px solid var(--color-border-tertiary)">
-          <div style="font-size:10.5px;font-weight:700;color:#1E3932;margin-bottom:2px">${q.id}</div>
-          <div style="font-size:9px;line-height:1.35;color:var(--color-text-primary)">${q.text.slice(0,52)}…</div>
+      ? cards.map(q=>`<div style="padding:6px 8px;margin-bottom:5px;background:var(--color-background-secondary,#F8FAFC);border-radius:4px;border:0.5px solid var(--color-border-tertiary)">
+          <div style="font-size:13px;font-weight:700;color:#1E3932;margin-bottom:3px">${q.id}</div>
+          <div style="font-size:12px;line-height:1.55;color:var(--color-text-primary)">${q.text.slice(0,80)}${q.text.length>80?'…':''}</div>
         </div>`).join('')
       : `<div style="font-size:9px;color:#D1D5DB;text-align:center;padding:6px">—</div>`;
     return `<div style="flex:1;min-width:0">
@@ -273,7 +273,7 @@ function bindSort(){
 }
 
 function bindResult(){
-  document.getElementById('back-btn')?.addEventListener('click',()=>set({screen:'sort'}));
+  document.getElementById('back-btn')?.addEventListener('click',()=>set({screen:'sort',saved:false,saving:false,saveError:null}));
   document.getElementById('save-btn')?.addEventListener('click',async()=>{
     if(S.saving||S.saved) return;
     set({saving:true,saveError:null});
