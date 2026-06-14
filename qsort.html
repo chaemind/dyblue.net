@@ -1,161 +1,247 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Q-Sort · 공무원 시민참여 인식 유형화</title>
+
 <style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+:root{
+  --color-background-primary:#FFFFFF;
+  --color-background-secondary:#F2F0EB;
+  --color-background-tertiary:#EDEBE9;
+  --color-text-primary:rgba(0,0,0,0.87);
+  --color-text-secondary:rgba(0,0,0,0.58);
+  --color-border-secondary:#D8D5CE;
+  --color-border-tertiary:#E7E4DE;
+}
+body,html{font-family:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif}
-.card{cursor:grab;user-select:none;transition:transform .1s,box-shadow .1s;border-radius:6px;padding:8px 10px;background:var(--color-background-primary,#fff);border:0.5px solid var(--color-border-secondary,#E2E8F0)}
-.card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.12)}
-.slot{min-height:90px;border-radius:6px;border:1.5px dashed #D1D5DB;transition:all .12s;background:var(--color-background-primary,#fff)}
-.slot.over{border-color:#378ADD!important;background:#EEF5FD!important}
-.btn{cursor:pointer;border:none;border-radius:7px;padding:8px 16px;font-size:13px;font-weight:500;font-family:inherit;transition:opacity .15s}
+.card{cursor:grab;user-select:none;transition:transform .1s,box-shadow .1s;border-radius:5px;padding:6px 8px;background:var(--color-background-primary,#fff);border:0.5px solid var(--color-border-secondary)}
+.card:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.1)}
+.slot{min-height:80px;border-radius:5px;border:1px dashed #D1D5DB;transition:all .12s;background:var(--color-background-primary,#fff)}
+.slot.over{border-color:#00754A!important;background:#E4ECE9!important}
+.btn{cursor:pointer;border:none;border-radius:6px;padding:6px 12px;font-size:11px;font-weight:500;font-family:inherit;transition:opacity .15s}
 .btn:hover{opacity:.82}
 .pbar{transition:width .3s ease}
 </style>
-</head>
-<body>
+
 <div id="app"></div>
 
 <script>
-// ──────────────────────────────────────────────
-// ★ Google Sheets Apps Script URL 여기에 입력 ★
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx2oQsXhWJYqwjeuu9Fh9RPb9w5cCno0_OeuTwiDU1b-k81gjKxv_mI0MDRqMj0VZIELw/exec";
-// ──────────────────────────────────────────────
-
 const QS=[
-  {id:'Q1',text:'공공서비스디자인에서 시민참여는 문제를 정확히 정의하기 위한 핵심 절차이다.'},
-  {id:'Q2',text:'공공서비스디자인이라고 해서 문제정의 단계부터 시민참여가 반드시 필요한 것은 아니다.'},
-  {id:'Q3',text:'공공서비스디자인의 성과는 시민참여의 정도보다 문제 해결의 전문성과 실행 가능성에 더 크게 좌우될 수 있다.'},
-  {id:'Q4',text:'공공서비스디자인은 실제 서비스를 이용하는 개인의 구체적 경험에서 출발해야 한다.'},
-  {id:'Q5',text:'공공서비스디자인에서는 전체 시민보다 특정 정책대상 집단의 경험을 우선적으로 반영해야 한다.'},
-  {id:'Q6',text:'공공서비스디자인은 특정 이용자뿐 아니라 지역사회 전체의 문제를 함께 다루어야 한다.'},
-  {id:'Q7',text:'참여 시민이 정책대상자나 지역사회를 대표하지 못하면 그 의견을 정책에 반영하기 어렵다.'},
-  {id:'Q8',text:'참여자의 수보다 누가 참여했는지가 더 중요하다.'},
-  {id:'Q9',text:'참여 시민이 특정 집단에 치우치면 설계된 대안도 일부 집단의 이해를 반영할 가능성이 크다.'},
-  {id:'Q10',text:'참여자가 적더라도 실제 문제를 겪는 당사자의 경험이라면 정책 반영 가치가 높다.'},
-  {id:'Q11',text:'늘 참여하는 일부 시민의 의견만으로는 실제 정책대상자의 경험을 충분히 파악하기 어렵다.'},
-  {id:'Q12',text:'시민참여는 일반 주민 의견보다 실제 서비스 이용자의 구체적 경험을 확인할 때 더 효과적이다.'},
-  {id:'Q13',text:'공공서비스디자인에서 담당 공무원은 참여 과정이 사업 목적과 행정 절차를 벗어나지 않도록 관리해야 한다.'},
-  {id:'Q14',text:'시민이 제안한 대안이라도 법령, 예산, 안전 기준에 맞지 않으면 실행하기 어렵다.'},
-  {id:'Q15',text:'서비스디자이너가 참여하더라도 최종 책임과 권한은 행정조직에 남아 있다.'},
-  {id:'Q16',text:'공공서비스디자인 담당 공무원의 핵심 역할은 사업 관리보다 이해관계자 조정에 가깝다.'},
-  {id:'Q17',text:'대안설계 단계에서 담당 공무원의 핵심 역할은 시민·서비스디자이너·관련 부서가 함께 논의할 수 있도록 조정하는 것이다.'},
-  {id:'Q18',text:'부서 간 협업이 확보되지 않으면 좋은 아이디어도 실제 정책이나 서비스로 연결되기 어렵다.'},
-  {id:'Q19',text:'담당 공무원은 시민이 자신의 경험과 요구를 말할 수 있도록 정보와 참여 기회를 제공해야 한다.'},
-  {id:'Q20',text:'시민이 실행 과정에 참여하려면 행정은 시민의 역할과 책임 범위를 명확히 제시해야 한다.'},
-  {id:'Q21',text:'공공서비스디자인은 시민이 행정을 이해하고 참여 역량을 키우는 과정이기도 하다.'},
-  {id:'Q22',text:'문제정의 단계에서 담당 공무원의 역할은 시민 의견과 행정자료를 연결해 의제를 정리하는 것이다.'},
-  {id:'Q23',text:'시민참여 결과를 실제 사업으로 반영하려면 예산·권한·부서 협의 구조가 중요하다.'},
-  {id:'Q24',text:'담당 공무원은 공공서비스디자인 결과를 부서 업무, 예산, 성과관리 체계로 연결하는 역할을 해야 한다.'},
-  {id:'Q25',text:'시민은 자신의 생활경험을 바탕으로 행정이 놓치는 문제를 발견할 수 있다.'},
-  {id:'Q26',text:'시민은 개인 민원만 제기하는 것이 아니라 공공문제 해결에 기여할 수 있다.'},
-  {id:'Q27',text:'시민 의견은 정책문제 파악에 신뢰할 만한 자료가 될 수 있다.'},
-  {id:'Q28',text:'공공서비스디자인에서는 공무원이 일부 의사결정 권한을 시민과 공유할 필요가 있다.'},
-  {id:'Q29',text:'시민참여 결과가 실제 정책이나 서비스 개선으로 이어졌는지를 평가해야 한다.'},
-  {id:'Q30',text:'시민참여를 제도화하더라도 모든 사업에 동일한 참여 절차를 적용하는 것은 적절하지 않다.'},
-  {id:'Q31',text:'시민참여 과정은 중요하지만 행정 일정과 예산 안에서 충분히 운영하기 어렵다.'},
-  {id:'Q32',text:'시민참여는 실행 단계에서 오히려 갈등과 민원을 확대시킬 수 있다.'},
-  {id:'Q33',text:'참여 시민이 늘어날수록 의견 조정과 결과 정리에 필요한 행정 부담도 커진다.'},
-  {id:'Q34',text:'우수사례 선정 중심의 평가는 실제 정책 반영 여부를 충분히 보여주지 못한다.'},
-  {id:'Q35',text:'공공서비스디자인이 지속되려면 담당 공무원 교육과 표준 절차가 정례화되어야 한다.'},
-  {id:'Q36',text:'사업 종료 후에도 시민 의견이 환류될 수 있는 공식 절차가 있어야 공공서비스디자인이 제도화될 수 있다.'},
+  {id:'Q1',text:'공공서비스디자인의 가장 큰 가치는 시민이 실제로 겪는 문제를 행정이 새롭게 인식하게 만드는 데 있다.'},
+  {id:'Q2',text:'공공서비스디자인에서 시민참여는 문제를 정확히 정의하기 위한 핵심 절차이다.'},
+  {id:'Q3',text:'공공서비스디자인의 성과는 시민참여의 정도보다 문제 해결의 전문성과 실행 가능성에 더 크게 좌우된다.'},
+  {id:'Q4',text:'공공서비스디자인은 문제를 발견하는 데 우선순위를 두어야 한다.'},
+  {id:'Q5',text:'공공서비스디자인의 핵심 가치는 결과물이 아니라 문제를 풀어가는 과정에 있다.'},
+  {id:'Q6',text:'공공서비스디자인은 공무원의 일하는 방식을 바꾸는 행정혁신 도구로서 기능할 수 있다.'},
+  {id:'Q7',text:'공공서비스디자인은 단발 우수사례에만 주목하여 오래가기는 어렵다.'},
+  {id:'Q8',text:'공공서비스디자인에서는 시민참여보다 결과물이 더 중요하다.'},
+  {id:'Q9',text:'공공서비스디자인은 우선순위를 두어 적극 추진할 만한 사업이다.'},
+  {id:'Q10',text:'공공서비스디자인이 정책 결정의 정당성을 높인다는 주장은 과장되어 있다.'},
+  {id:'Q11',text:'공공서비스디자인의 결과물은 표준화하여 다른 정책에도 활용할 수 있다.'},
+  {id:'Q12',text:'공공서비스디자인은 정해진 산출물을 만드는 데 초점을 두고 진행해야 한다.'},
+  {id:'Q13',text:'공공서비스디자인은 실제 서비스를 이용하는 개인의 구체적 경험에서 출발해야 한다.'},
+  {id:'Q14',text:'공공서비스디자인에서는 전체 시민보다 특정 정책대상 집단의 경험을 우선적으로 반영해야 한다.'},
+  {id:'Q15',text:'공공서비스디자인은 특정 이용자뿐 아니라 지역사회 전체의 문제를 함께 다루어야 한다.'},
+  {id:'Q16',text:'참여 시민이 정책대상자나 지역사회를 대표하지 못하면 그 의견을 정책에 반영하기 어렵다.'},
+  {id:'Q17',text:'참여자가 적더라도 실제 문제를 겪는 당사자의 경험이라면 정책 반영 가치가 높다.'},
+  {id:'Q18',text:'공공서비스디자인은 모든 사업에 시민참여가 필수라고 생각한다.'},
+  {id:'Q19',text:'사업 목적에 따라 시민의 참여가 제한될 수 있다.'},
+  {id:'Q20',text:'대표성 있는 시민을 선정하는 것이 정당화에 도움이 된다.'},
+  {id:'Q21',text:'문제 당사자의 참여를 우선적으로 고려해야 한다.'},
+  {id:'Q22',text:'이해관계가 첨예하게 대립하는 시민까지 포함해야 현실적인 결과가 나온다.'},
+  {id:'Q23',text:'참여 시민은 일정한 기준에 따라 선발된 역량 있는 시민으로 한정하는 것이 바람직하다.'},
+  {id:'Q24',text:'기존 행정 방식으로 풀기 어려운 문제일수록 시민참여가 효과적이다.'},
+  {id:'Q25',text:'담당 공무원은 참여 과정이 사업 목적과 행정 절차를 벗어나지 않도록 관리해야 한다.'},
+  {id:'Q26',text:'담당 공무원의 핵심 역할은 사업 관리보다 이해관계자 조정에 가깝다.'},
+  {id:'Q27',text:'담당 공무원은 시민이 경험과 요구를 말할 수 있도록 정보와 참여 기회를 제공해야 한다.'},
+  {id:'Q28',text:'문제정의 단계에서 담당 공무원의 역할은 시민 의견과 행정자료를 연결해 의제를 정리하는 것이다.'},
+  {id:'Q29',text:'시민참여 결과를 실제 사업으로 반영하려면 예산·권한·부서 협의 구조가 중요하다.'},
+  {id:'Q30',text:'부서 간 협업이 확보되지 않으면 좋은 아이디어도 실제 정책이나 서비스로 연결되기 어렵다.'},
+  {id:'Q31',text:'공공서비스디자인에서는 공무원이 일부 의사결정 권한을 시민과 공유할 필요가 있다.'},
+  {id:'Q32',text:'시민참여를 제도화하더라도 모든 사업에 동일한 참여 절차를 적용하는 것은 적절하지 않다.'},
+  {id:'Q33',text:'시민참여 과정은 중요하지만 행정 일정과 예산 안에서 충분히 운영하기 어렵다.'},
+  {id:'Q34',text:'시민참여는 실행 단계에서 오히려 갈등과 민원을 확대시킬 수 있다.'},
+  {id:'Q35',text:'시민은 자신의 생활경험을 바탕으로 행정이 놓치는 문제를 발견할 수 있다.'},
+  {id:'Q36',text:'시민은 개인 민원만 제기하는 것이 아니라 공공문제 해결에 기여할 수 있다.'},
 ];
 
 const COLS=[-5,-4,-3,-2,-1,0,1,2,3,4,5];
 const LIM={'-5':1,'-4':2,'-3':3,'-2':4,'-1':5,'0':6,'1':5,'2':4,'3':3,'4':2,'5':1};
 const TOTAL=36;
 
-let S={screen:'start',pid:'',P:{},dragId:null,saved:false,saving:false,saveError:null,copied:false};
+let S={screen:'start',pid:'',P:{},dragId:null,saved:false,copied:false,order:null,saving:false,saveError:null};
 const set=p=>{S={...S,...p};render();};
 const inCol=c=>QS.filter(q=>S.P[q.id]===c);
-const unplaced=()=>QS.filter(q=>S.P[q.id]===undefined);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const unplaced=()=>{if(!S.order)S.order=shuffle(QS.map(q=>q.id));return S.order.map(id=>QS.find(q=>q.id===id)).filter(q=>S.P[q.id]===undefined);};
 const placed=()=>Object.keys(S.P).length;
 const done=()=>placed()===TOTAL;
-const lbl=c=>c===0?'0':c>0?'+'+c:''+c;
-const clr=c=>c<0?'#E24B4A':c>0?'#378ADD':'#64748B';
+const lbl=c=>c===0?'0':c>0?`+${c}`:`${c}`;
+const clr=c=>c<0?'#C82014':c>0?'#00754A':'#64748B';
+
+// ★ Google Sheets Apps Script URL ★
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx2oQsXhWJYqwjeuu9Fh9RPb9w5cCno0_OeuTwiDU1b-k81gjKxv_mI0MDRqMj0VZIELw/exec";
 
 function submitToSheets(pid, P) {
   return new Promise((resolve, reject) => {
     const scores = QS.map(q => P[q.id] ?? '');
     const cbName = 'qs_cb_' + Date.now();
-
     window[cbName] = function(data) {
       delete window[cbName];
-      document.head.removeChild(script);
+      document.head.removeChild(sc);
       if (data.result === 'success') resolve();
       else reject(new Error(data.message));
     };
-
-    const params = new URLSearchParams({
-      pid: pid,
-      scores: JSON.stringify(scores),
-      callback: cbName
-    });
-
-    const script = document.createElement('script');
-    script.src = WEB_APP_URL + '?' + params;
-    script.onerror = () => reject(new Error('네트워크 오류'));
-    document.head.appendChild(script);
+    const params = new URLSearchParams({ pid, scores: JSON.stringify(scores), callback: cbName });
+    const sc = document.createElement('script');
+    sc.src = WEB_APP_URL + '?' + params;
+    sc.onerror = () => reject(new Error('네트워크 오류'));
+    document.head.appendChild(sc);
   });
 }
 
 function renderStart(){
-  const distRow=COLS.map(c=>'<div style="flex:1;min-width:0;text-align:center"><div style="font-size:13px;font-weight:600;color:'+clr(c)+'">'+lbl(c)+'</div><div style="font-size:11px;color:#94A3B8">'+LIM[String(c)]+'</div></div>').join('');
-  return '<div style="display:flex;align-items:center;justify-content:center;padding:28px 18px;min-height:80vh"><div style="background:#fff;border:0.5px solid #E2E8F0;border-radius:14px;padding:34px 38px;max-width:440px;width:100%;box-shadow:0 4px 24px rgba(0,0,0,.07)"><div style="font-size:12px;font-weight:600;color:#378ADD;letter-spacing:2px;margin-bottom:12px">Q-SORT · 36 ITEMS</div><h2 style="font-size:22px;font-weight:600;color:#1B3A6B;line-height:1.4;margin-bottom:8px">공무원 시민참여 인식<br>유형화 연구</h2><p style="font-size:13px;color:#64748B;line-height:1.8;margin-bottom:20px">36개 진술문 카드를 강제분포표에 배치해 주세요.<br>연구자와 Zoom 화면공유로 함께 진행됩니다.</p><div style="background:#F8FAFC;border-radius:10px;padding:12px 14px;margin-bottom:20px"><div style="font-size:12px;font-weight:600;color:#64748B;margin-bottom:9px">강제분포 (-5 ~ +5, 합계 36개)</div><div style="display:flex;gap:3px">'+distRow+'</div></div><div style="margin-bottom:8px;font-size:13px;font-weight:600;color:#334155">참여자 ID</div><input id="pid-in" placeholder="예: P01" style="width:100%;padding:11px 14px;border-radius:8px;border:1.5px solid #E2E8F0;font-size:16px;font-weight:500;margin-bottom:14px;background:#fff;color:#1B3A6B;outline:none;display:block" /><button id="start-btn" class="btn" style="width:100%;padding:13px;background:#1B3A6B;color:#fff;font-size:15px;border-radius:9px">Q-sort 시작하기 →</button></div></div>';
+  const distRow=COLS.map(c=>`<div style="flex:1;min-width:0;text-align:center">
+    <div style="font-size:11px;font-weight:500;color:${clr(c)}">${lbl(c)}</div>
+    <div style="font-size:9px;color:#94A3B8">${LIM[String(c)]}</div>
+  </div>`).join('');
+  return `<div style="display:flex;align-items:center;justify-content:center;padding:28px 18px;min-height:80vh">
+  <div style="background:var(--color-background-primary,#fff);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:30px 34px;max-width:400px;width:100%">
+    <div style="font-size:10px;font-weight:600;color:#00754A;letter-spacing:2px;margin-bottom:10px">Q-SORT · 36 ITEMS</div>
+    <h2 style="font-size:19px;font-weight:500;color:var(--color-text-primary);line-height:1.4;margin-bottom:6px">공무원 시민참여 인식<br>유형화 연구</h2>
+    <p style="font-size:11px;color:var(--color-text-secondary);line-height:1.75;margin-bottom:18px">36개 진술문 카드를 강제분포표에 배치해 주세요.<br>연구자와 Zoom 화면공유로 함께 진행됩니다.</p>
+    <div style="background:var(--color-background-secondary,#F8FAFC);border-radius:8px;padding:10px 12px;margin-bottom:18px">
+      <div style="font-size:10px;font-weight:500;color:var(--color-text-secondary);margin-bottom:7px">강제분포 (-5 ~ +5, 합계 36개)</div>
+      <div style="display:flex;gap:3px">${distRow}</div>
+    </div>
+    <div style="margin-bottom:6px;font-size:11px;font-weight:500;color:var(--color-text-secondary)">참여자 ID</div>
+    <input id="pid-in" placeholder="예: P01" style="width:100%;padding:9px 12px;border-radius:7px;border:0.5px solid var(--color-border-secondary);font-size:14px;font-weight:500;margin-bottom:12px;background:var(--color-background-primary);color:var(--color-text-primary);outline:none;display:block">
+    <button id="start-btn" class="btn" style="width:100%;padding:11px;background:#1E3932;color:#fff;font-size:13px">Q-sort 시작하기 →</button>
+  </div></div>`;
 }
 
 function renderSort(){
   const pc=placed(), up=unplaced();
+
   const colHead=COLS.map(c=>{
     const cnt=inCol(c).length, lim=LIM[String(c)], full=cnt>=lim;
-    return '<div style="flex:1;min-width:72px;text-align:center"><div style="font-size:16px;font-weight:600;color:'+clr(c)+';margin-bottom:3px">'+lbl(c)+'</div><div style="font-size:11px;color:'+(full?'#10B981':'#94A3B8')+'">'+cnt+'/'+lim+'</div></div>';
+    return `<div style="flex:1;min-width:68px;text-align:center">
+      <div style="font-size:14px;font-weight:500;color:${clr(c)};margin-bottom:2px">${lbl(c)}</div>
+      <div style="font-size:9px;color:${full?'#00754A':'#94A3B8'}">${cnt}/${lim}</div>
+    </div>`;
   }).join('');
 
   let slots='';
   for(let r=0;r<6;r++){
-    slots+='<div style="display:flex;gap:4px;margin-bottom:4px">';
+    slots+=`<div style="display:flex;gap:3px;margin-bottom:3px">`;
     slots+=COLS.map(c=>{
       const lim=LIM[String(c)];
-      if(r>=lim) return '<div style="flex:1;min-width:72px;height:90px;border-radius:6px;background:#F1F5F9;opacity:.2"></div>';
+      if(r>=lim) return `<div style="flex:1;min-width:68px;height:80px;border-radius:5px;background:var(--color-background-tertiary,#F1F5F9);opacity:.2"></div>`;
       const card=inCol(c)[r];
-      if(card) return '<div class="slot card" draggable="true" data-sc="'+c+'" data-sid="'+card.id+'" style="flex:1;min-width:72px"><div style="font-size:11px;font-weight:700;color:#1B3A6B;margin-bottom:4px">'+card.id+'</div><div style="font-size:11px;line-height:1.5;color:#334155">'+(card.text.length>60?card.text.slice(0,58)+'…':card.text)+'</div></div>';
-      return '<div class="slot" data-sc="'+c+'" data-sr="'+r+'" style="flex:1;min-width:72px;display:flex;align-items:center;justify-content:center"><span style="font-size:11px;color:#CBD5E1">여기에</span></div>';
+      if(card) return `<div class="slot card" draggable="true" data-sc="${c}" data-sid="${card.id}" style="flex:1;min-width:68px">
+        <div style="font-size:11px;font-weight:700;color:#1E3932;margin-bottom:2px">${card.id}</div>
+        <div style="font-size:10.5px;line-height:1.38;color:var(--color-text-primary)">${card.text.length>62?card.text.slice(0,60)+'…':card.text}</div>
+      </div>`;
+      return `<div class="slot" data-sc="${c}" data-sr="${r}" style="flex:1;min-width:68px;display:flex;align-items:center;justify-content:center">
+        <span style="font-size:9px;color:#D1D5DB">여기에</span>
+      </div>`;
     }).join('');
-    slots+='</div>';
+    slots+=`</div>`;
   }
 
-  const upCards=up.map(q=>'<div class="card" draggable="true" data-card="'+q.id+'" style="width:165px;flex-shrink:0"><div style="font-size:11px;font-weight:700;color:#1B3A6B;margin-bottom:4px">'+q.id+'</div><div style="font-size:12px;line-height:1.55;color:#334155">'+q.text+'</div></div>').join('');
+  const upCards=up.map(q=>`<div class="card" draggable="true" data-card="${q.id}" style="width:175px;flex-shrink:0">
+    <div style="font-size:12px;font-weight:700;color:#1E3932;margin-bottom:4px">${q.id}</div>
+    <div style="font-size:13px;line-height:1.55;color:var(--color-text-primary)">${q.text}</div>
+  </div>`).join('');
 
-  return '<div style="background:#F8FAFC;min-height:100vh;display:flex;flex-direction:column"><div style="background:#1B3A6B;color:#fff;padding:11px 15px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0"><div><div style="font-size:11px;opacity:.55;margin-bottom:2px">공무원 시민참여 인식 유형화 · Q-sort</div><div style="font-size:16px;font-weight:600">참여자 '+S.pid+'</div></div><div style="display:flex;align-items:center;gap:14px"><div style="text-align:right"><div style="font-size:11px;opacity:.55">배치 완료</div><div style="font-size:22px;font-weight:600">'+pc+'<span style="font-size:13px;opacity:.6">/'+TOTAL+'</span></div></div>'+(done()?'<button id="done-btn" class="btn" style="background:#10B981;color:#fff;font-size:14px">완료 확인 →</button>':'')+'</div></div><div style="height:4px;background:rgba(0,0,0,.08)"><div class="pbar" style="height:100%;background:#10B981;width:'+Math.round(pc/TOTAL*100)+'%"></div></div><div style="padding:12px 13px 8px;overflow-x:auto;flex-shrink:0"><div style="min-width:860px"><div style="display:flex;gap:4px;margin-bottom:8px"><div style="width:34px;font-size:11px;color:#E24B4A;font-weight:600;writing-mode:vertical-rl;text-align:center;padding:4px 0">← 비동의</div><div style="flex:1;display:flex;gap:4px">'+colHead+'</div><div style="width:34px;font-size:11px;color:#378ADD;font-weight:600;writing-mode:vertical-rl;text-align:center;padding:4px 0">동의 →</div></div><div id="slot-grid">'+slots+'</div></div></div><div style="flex:1;padding:0 13px 16px"><div id="unp-zone" style="background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:12px 13px"><div style="font-size:13px;font-weight:600;color:#64748B;margin-bottom:10px">미배치 <span style="color:'+(up.length?'#E24B4A':'#10B981')+';font-weight:700">'+up.length+'개</span>'+(up.length===0?'<span style="color:#10B981;margin-left:10px">모두 배치 완료 — 위의 완료 버튼을 누르세요 ✓</span>':'')+'</div><div style="display:flex;flex-wrap:wrap;gap:8px">'+upCards+'</div></div></div></div>';
+  return `<div style="background:var(--color-background-tertiary,#F8FAFC);min-height:100vh;display:flex;flex-direction:column">
+  <div style="background:#1E3932;color:#fff;padding:9px 13px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+    <div>
+      <div style="font-size:9px;opacity:.55;margin-bottom:2px">공무원 시민참여 인식 유형화 · Q-sort</div>
+      <div style="font-size:13px;font-weight:500">참여자 ${S.pid}</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="text-align:right">
+        <div style="font-size:9px;opacity:.55">배치 완료</div>
+        <div style="font-size:17px;font-weight:500">${pc}<span style="font-size:11px;opacity:.6">/${TOTAL}</span></div>
+      </div>
+      ${done()?`<button id="done-btn" class="btn" style="background:#00754A;color:#fff">완료 확인 →</button>`:''}
+    </div>
+  </div>
+  <div style="height:3px;background:rgba(0,0,0,.08)"><div class="pbar" style="height:100%;background:#00754A;width:${Math.round(pc/TOTAL*100)}%"></div></div>
+
+  <div style="padding:10px 11px 6px;overflow-x:auto;flex-shrink:0">
+    <div style="min-width:820px">
+      <div style="display:flex;gap:3px;margin-bottom:6px">
+        <div style="width:30px;font-size:9px;color:#C82014;font-weight:500;writing-mode:vertical-rl;text-align:center;padding:4px 0">← 비동의</div>
+        <div style="flex:1;display:flex;gap:3px">${colHead}</div>
+        <div style="width:30px;font-size:9px;color:#00754A;font-weight:500;writing-mode:vertical-rl;text-align:center;padding:4px 0">동의 →</div>
+      </div>
+      <div id="slot-grid">${slots}</div>
+    </div>
+  </div>
+
+  <div style="flex:1;padding:0 11px 14px">
+    <div id="unp-zone" style="background:var(--color-background-primary,#fff);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 11px">
+      <div style="font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px">
+        미배치 <span style="color:${up.length?'#C82014':'#00754A'};font-weight:600">${up.length}개</span>
+        ${!up.length?'<span style="color:#00754A;margin-left:8px">모두 배치 완료 — 위의 완료 버튼을 누르세요 ✓</span>':''}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:7px">${upCards}</div>
+    </div>
+  </div>
+</div>`;
 }
 
 function renderResult(){
   const colCells=COLS.map(c=>{
     const cards=inCol(c);
     const inner=cards.length
-      ? cards.map(q=>'<div style="padding:6px 8px;margin-bottom:4px;background:#F8FAFC;border-radius:5px;border:0.5px solid #E2E8F0"><div style="font-size:11px;font-weight:700;color:#1B3A6B;margin-bottom:2px">'+q.id+'</div><div style="font-size:11px;line-height:1.45;color:#334155">'+q.text.slice(0,52)+'…</div></div>').join('')
-      : '<div style="font-size:12px;color:#D1D5DB;text-align:center;padding:8px">—</div>';
-    return '<div style="flex:1;min-width:0"><div style="font-size:16px;font-weight:600;color:'+clr(c)+';text-align:center;padding-bottom:6px;border-bottom:1.5px solid #E2E8F0;margin-bottom:8px">'+lbl(c)+'</div>'+inner+'</div>';
+      ? cards.map(q=>`<div style="padding:4px 6px;margin-bottom:3px;background:var(--color-background-secondary,#F8FAFC);border-radius:4px;border:0.5px solid var(--color-border-tertiary)">
+          <div style="font-size:10.5px;font-weight:700;color:#1E3932;margin-bottom:2px">${q.id}</div>
+          <div style="font-size:9px;line-height:1.35;color:var(--color-text-primary)">${q.text.slice(0,52)}…</div>
+        </div>`).join('')
+      : `<div style="font-size:9px;color:#D1D5DB;text-align:center;padding:6px">—</div>`;
+    return `<div style="flex:1;min-width:0">
+      <div style="font-size:14px;font-weight:500;color:${clr(c)};text-align:center;padding-bottom:5px;border-bottom:1px solid var(--color-border-tertiary);margin-bottom:6px">${lbl(c)}</div>
+      ${inner}
+    </div>`;
   }).join('');
 
-  const csv=['번호,진술문,점수',...QS.map(q=>q.id+',"'+q.text+'",'+(S.P[q.id]??''))].join('\n');
-  const saveBtnStyle=S.saving?'background:#94A3B8;color:#fff;cursor:not-allowed':S.saved?'background:#10B981;color:#fff':'background:#fff;color:#1B3A6B';
-  const saveBtnLabel=S.saving?'저장 중…':S.saved?'저장됨 ✓':'시트 저장';
+  const DIM=id=>{const n=+id.slice(1);return n<=12?'사업 인식':n<=24?'시민 인식':'역할·태도';};
+  const csv=['번호,차원,진술문,점수',...QS.map(q=>`${q.id},${DIM(q.id)},"${q.text}",${S.P[q.id]??''}`)].join('\n');
 
-  return '<div style="padding:15px;background:#F8FAFC;min-height:100vh"><div style="background:#1B3A6B;color:#fff;border-radius:12px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px"><div><div style="font-size:12px;opacity:.6">Q-sort 완료</div><div style="font-size:18px;font-weight:600">참여자 '+S.pid+'의 배치 결과</div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="back-btn" class="btn" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);font-size:13px">← 수정</button><button id="save-btn" class="btn" style="'+saveBtnStyle+';font-size:13px" '+(S.saving?'disabled':'')+'>'+saveBtnLabel+'</button><button id="copy-btn" class="btn" style="background:'+(S.copied?'#10B981':'#E8A020')+';color:#fff;font-size:13px">'+(S.copied?'복사됨 ✓':'CSV 복사')+'</button><button id="dl-btn" class="btn" style="background:#475569;color:#fff;font-size:13px">CSV 다운로드</button></div></div>'+(S.saved?'<div style="background:#ECFDF5;border:1px solid #6EE7B7;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-size:13px;color:#065F46;font-weight:500">✅ Google Sheets에 저장되었습니다.</div>':'')+(S.saveError?'<div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-size:13px;color:#991B1B;font-weight:500">⚠️ 저장 실패: '+S.saveError+'</div>':'')+'<div style="background:#fff;border:0.5px solid #E2E8F0;border-radius:12px;padding:15px;overflow-x:auto"><div style="display:flex;gap:6px;min-width:860px">'+colCells+'</div></div><textarea id="csv-ta" style="position:absolute;left:-9999px;opacity:0">'+csv+'</textarea></div>';
+  return `<div style="padding:13px;background:var(--color-background-tertiary,#F8FAFC);min-height:100vh">
+  <div style="background:#1E3932;color:#fff;border-radius:10px;padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:10px;opacity:.6">Q-sort 완료</div>
+      <div style="font-size:15px;font-weight:500">참여자 ${S.pid}의 배치 결과</div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <button id="back-btn" class="btn" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);font-size:13px">← 수정</button>
+      <button id="save-btn" class="btn" style="${S.saving?'background:#94A3B8;color:#fff':S.saved?'background:#00754A;color:#fff':'background:#fff;color:#1E3932'};font-size:13px" ${S.saving?"disabled":""}>${S.saving?'저장 중...':S.saved?'저장됨 ✓':'Google Sheets 저장'}</button>
+      <button id="copy-btn" class="btn" style="background:${S.copied?'#00754A':'#CBA258'};color:#fff;font-size:13px">${S.copied?'복사됨 ✓':'CSV 복사'}</button>
+      <button id="dl-btn" class="btn" style="background:#475569;color:#fff;font-size:13px">CSV 다운로드</button>
+    </div>
+  </div>
+  ${S.saved?'<div style="background:#ECFDF5;border:1px solid #6EE7B7;border-radius:8px;padding:10px 16px;margin-bottom:12px;font-size:13px;color:#065F46;font-weight:500">✅ Google Sheets에 저장되었습니다.</div>':''}
+  ${S.saveError?'<div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:10px 16px;margin-bottom:12px;font-size:13px;color:#991B1B;font-weight:500">⚠️ 저장 실패: '+S.saveError+'</div>':''}
+  <div style="background:var(--color-background-primary,#fff);border:0.5px solid var(--color-border-tertiary);border-radius:10px;padding:13px;overflow-x:auto">
+    <div style="display:flex;gap:5px;min-width:820px">${colCells}</div>
+  </div>
+  <textarea id="csv-ta" style="position:absolute;left:-9999px;opacity:0">${csv}</textarea>
+</div>`;
 }
 
 function bindSort(){
   document.querySelectorAll('.slot[data-sc]').forEach(el=>{
     const col=parseInt(el.dataset.sc);
-    if(el.dataset.sid) el.addEventListener('dragstart',e=>{S.dragId=el.dataset.sid;e.dataTransfer.effectAllowed='move';});
+    if(el.dataset.sid){
+      el.addEventListener('dragstart',e=>{S.dragId=el.dataset.sid;e.dataTransfer.effectAllowed='move';});
+    }
     el.addEventListener('dragover',e=>{
       e.preventDefault();
       const id=S.dragId; if(!id) return;
-      if(inCol(col).length<LIM[String(col)]||S.P[id]===col) el.classList.add('over');
+      const cur=inCol(col).length, lim=LIM[String(col)];
+      if(cur<lim||S.P[id]===col) el.classList.add('over');
     });
     el.addEventListener('dragleave',()=>el.classList.remove('over'));
     el.addEventListener('drop',e=>{
@@ -166,22 +252,24 @@ function bindSort(){
       set({P:{...S.P,[id]:col},dragId:null});
     });
   });
+
   document.querySelectorAll('[data-card]').forEach(el=>{
     el.addEventListener('dragstart',e=>{S.dragId=el.dataset.card;e.dataTransfer.effectAllowed='move';});
     el.addEventListener('dragend',()=>{S.dragId=null;});
   });
+
   const uz=document.getElementById('unp-zone');
   if(uz){
-    uz.addEventListener('dragover',e=>{e.preventDefault();uz.style.borderColor='#E8A020';});
-    uz.addEventListener('dragleave',()=>{uz.style.borderColor='#E2E8F0';});
+    uz.addEventListener('dragover',e=>{e.preventDefault();uz.style.borderColor='#CBA258';});
+    uz.addEventListener('dragleave',()=>{uz.style.borderColor='var(--color-border-tertiary)';});
     uz.addEventListener('drop',e=>{
-      e.preventDefault(); uz.style.borderColor='#E2E8F0';
+      e.preventDefault(); uz.style.borderColor='var(--color-border-tertiary)';
       const id=S.dragId; if(!id) return;
       const p={...S.P}; delete p[id];
       set({P:p,dragId:null});
     });
   }
-  document.getElementById('done-btn')?.addEventListener('click',()=>set({screen:'result',saved:false,saveError:null,copied:false}));
+  document.getElementById('done-btn')?.addEventListener('click',()=>set({screen:'result'}));
 }
 
 function bindResult(){
@@ -189,30 +277,31 @@ function bindResult(){
   document.getElementById('save-btn')?.addEventListener('click',async()=>{
     if(S.saving||S.saved) return;
     set({saving:true,saveError:null});
-    try{
-      await submitToSheets(S.pid,S.P);
-      set({saving:false,saved:true});
-    }catch(err){
-      set({saving:false,saveError:err.message||'알 수 없는 오류'});
-    }
-  });
-  document.getElementById('copy-btn')?.addEventListener('click',()=>{
-    navigator.clipboard.writeText(document.getElementById('csv-ta').value).then(()=>{set({copied:true});setTimeout(()=>set({copied:false}),2000);});
+    try{ await submitToSheets(S.pid,S.P); set({saving:false,saved:true}); }
+    catch(err){ set({saving:false,saveError:err.message||'알 수 없는 오류'}); }
   });
   document.getElementById('dl-btn')?.addEventListener('click',()=>{
     const blob=new Blob([document.getElementById('csv-ta').value],{type:'text/csv;charset=utf-8;'});
     const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url; a.download='qsort_'+S.pid+'_'+new Date().toISOString().slice(0,10)+'.csv';
+    const a=document.createElement('a'); a.href=url;
+    a.download='qsort_'+S.pid+'_'+new Date().toISOString().slice(0,10)+'.csv';
     a.click(); URL.revokeObjectURL(url);
+  });
+  document.getElementById('save-btn')?.addEventListener('click',async()=>{
+    try{await window.storage.set(`qs_${S.pid}`,JSON.stringify({pid:S.pid,P:S.P,ts:Date.now()}),false);}catch(e){}
+    set({saved:true});
+  });
+  document.getElementById('copy-btn')?.addEventListener('click',()=>{
+    const ta=document.getElementById('csv-ta');
+    navigator.clipboard.writeText(ta.value).then(()=>{set({copied:true});setTimeout(()=>set({copied:false}),2000);});
   });
 }
 
 function bindStart(){
   const inp=document.getElementById('pid-in');
   inp?.addEventListener('input',e=>S.pid=e.target.value);
-  inp?.addEventListener('keydown',e=>{if(e.key==='Enter'&&S.pid.trim())set({screen:'sort'});});
-  document.getElementById('start-btn')?.addEventListener('click',()=>{if(S.pid.trim())set({screen:'sort'});});
+  inp?.addEventListener('keydown',e=>{if(e.key==='Enter'&&S.pid.trim())set({screen:'sort',order:null});});
+  document.getElementById('start-btn')?.addEventListener('click',()=>{if(S.pid.trim())set({screen:'sort',order:null});});
   setTimeout(()=>inp?.focus(),50);
 }
 
@@ -224,5 +313,3 @@ function render(){
 }
 render();
 </script>
-</body>
-</html>
