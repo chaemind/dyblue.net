@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>학업계획서 · Research Plan v5 — 임채민 / dyblue.net</title>
-<meta name="description" content="지방의회의 퍼실리테이션 역량 구성요소와 측정도구 개발 — 임채민 학업계획서" />
+<title>학업·연구계획 · Research Plan v6.1 — 임채민 / dyblue.net</title>
+<meta name="description" content="지방의회와 어댑티브 거버넌스 — 탐색·판별·결정형 연구계획 v6.1, 임채민" />
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RK0ZMLP0FR"></script>
@@ -312,6 +312,53 @@
     .cmap-band,.cmap-step .n{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .cmap,.cmap-layer,.cmap-card{box-shadow:none;break-inside:avoid}
   }
+
+  /* ===== v6 helpers — gates · path cards · eval matrix · tree ===== */
+  .gate{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green-house);background:var(--gold);padding:4px 12px;border-radius:999px;line-height:1;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .theme-dark .gate{color:#1A130A}
+  .gate-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:6px 0 18px}
+  .gate-row .lb{font-size:14px;color:var(--text-soft)}
+
+  .pathgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0}
+  @media (max-width:768px){ .pathgrid{grid-template-columns:1fr} }
+  .pathcard{background:var(--bg-card);border:1px solid var(--border);border-radius:13px;box-shadow:var(--shadow-card);padding:22px 24px;display:flex;flex-direction:column}
+  .pathcard .pc-tag{display:inline-flex;align-self:flex-start;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--accent-ink);background:var(--accent-strong);padding:4px 11px;border-radius:999px;margin-bottom:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pathcard.is-c4 .pc-tag{background:var(--gold);color:var(--green-house)}
+  .theme-dark .pathcard.is-c4 .pc-tag{color:#1A130A}
+  .pathcard h4{font-size:18px;font-weight:700;letter-spacing:-.01em;color:var(--text-primary);margin-bottom:10px;line-height:1.3}
+  .pathcard p{font-size:14px;line-height:1.7;color:var(--text-soft);margin-bottom:10px}
+  .pathcard ul{list-style:none;margin:2px 0 12px;padding:0;display:flex;flex-direction:column;gap:6px}
+  .pathcard ul li{position:relative;padding-left:16px;font-size:13.5px;line-height:1.55;color:var(--text-soft)}
+  .pathcard ul li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .pathcard .risk{margin-top:auto;font-size:12.5px;line-height:1.6;color:var(--text-secondary);padding-top:12px;border-top:1px solid var(--border-soft)}
+  .pathcard .risk b{color:#C0563A;font-weight:700}
+  .theme-dark .pathcard .risk b{color:#E89B7E}
+
+  .tree-hero{background:var(--green-house);color:#D4E9E2;border-radius:13px;padding:20px 26px;text-align:center;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .tree-hero .pc-tag{background:var(--gold);color:var(--green-house);display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.05em;padding:4px 11px;border-radius:999px;margin-bottom:10px}
+  .tree-hero h4{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
+  .tree-hero p{font-size:13.5px;line-height:1.65;color:rgba(212,233,226,.82);max-width:680px;margin:0 auto}
+
+  .eval .ev{font-weight:800;font-size:15px;font-variant-numeric:tabular-nums}
+  .eval td:not(:first-child){text-align:center}
+  .eval th:not(:first-child){text-align:center}
+  .ev-a{color:var(--accent)}
+  .ev-b{color:var(--text-primary)}
+  .ev-c{color:var(--gold)}
+  .ev-d{color:#C0563A}
+  .theme-dark .ev-d{color:#E89B7E}
+  .eval-legend{display:flex;flex-wrap:wrap;gap:18px;margin:8px 0 0;font-size:12.5px;color:var(--text-secondary)}
+  .eval-legend span b{font-size:14px;margin-right:5px}
+
+  .closing{margin:26px 0;padding:26px 30px;background:var(--soft-panel);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:12px;font-size:16.5px;line-height:1.85;color:var(--text-primary)}
+  .closing + .closing{margin-top:14px}
+  .closing em{font-style:normal;color:var(--accent);font-weight:700}
+
+  .biglist{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .biglist li{position:relative;padding-left:24px;font-size:15.5px;line-height:1.7;color:var(--text-soft)}
+  .biglist li::before{content:"";position:absolute;left:0;top:11px;width:8px;height:2px;background:var(--accent)}
+  .biglist li strong{color:var(--text-primary);font-weight:700}
+
 </style>
 </head>
 <body>
@@ -329,7 +376,7 @@
         </span>
       </div>
       <div class="rightnav">
-        <span class="meta">Research Plan v5 · 2026.06</span>
+        <span class="meta">Research Plan v6.1 · 2026.06</span>
         <a href="../index.html" class="back-link">← Back to CV</a>
         <button class="print-btn" onclick="window.print()">Print / PDF</button>
       </div>
@@ -342,903 +389,640 @@
   <!-- ========== COVER ========== -->
   <header class="cover" data-screen-label="00 Cover">
     <div class="emblem-wm" aria-hidden="true"></div>
-    <div class="badge">학업계획서 v5 · Research Plan</div>
+    <div class="badge">학업·연구계획 v6.1 · Exploration &amp; Decision-Gated</div>
     <div class="inst">성균관대학교 국정전문대학원 · 행정학 석박사통합과정</div>
-    <h1>지방의회의<br/><em>퍼실리테이션 역량</em><br/>구성요소와 다층적 형성 구조.</h1>
-    <div class="sub-en">A Multi-Level Study on Facilitative Capacity in Local Councils — Components and Formation across Councillors, Support Systems, Institutions, and External Relations, toward an Integrated Assessment</div>
+    <h1>지방의회와<br/><em>어댑티브 거버넌스.</em><br/>탐색·판별·결정형 연구계획.</h1>
+    <div class="sub-en">Local Councils and Adaptive Governance: An Exploratory and Decision-Gated Research Plan — A research design that holds the core axis fixed while deferring the final construct, unit of analysis, measurement form, and the place of AI to theory review and pilot study.</div>
 
     <div class="meta-strip">
       <div class="cell">
         <div class="k">작성자</div>
-        <div class="v">임 채 민<small>LIM, CHAEMIN · chaemin@skku.edu</small></div>
+        <div class="v">임 채 민<small>LIM, CHAEMIN · chaemin@skku.edu · 2026. 6</small></div>
       </div>
       <div class="cell">
         <div class="k">지도교수</div>
         <div class="v">김승현 교수님<small>시민참여 · 정책혁신 · 관료제</small></div>
       </div>
       <div class="cell">
-        <div class="k">학문 분야</div>
-        <div class="v">지방의회 성과 평가<small>Local Council Performance Evaluation</small></div>
+        <div class="k">현재 단계</div>
+        <div class="v">Exploration &amp; Theory Refinement<small>2026–2027 · 방향 확정 2027년 말</small></div>
       </div>
     </div>
+
+    <div class="callout" style="margin-top:36px;border-left-color:var(--gold)"><strong>핵심 원칙</strong> — <em>지방의회와 어댑티브 거버넌스</em>라는 중심축은 유지하되, 최종 구성개념·분석단위·측정형태·AI의 위치는 이론검토와 예비연구를 거쳐 결정한다.</div>
   </header>
 
-  <!-- ============================================================== -->
-  <!-- ═══ Ⅰ. 연구 배경과 전체 구상 ═══ -->
-  <!-- ============================================================== -->
-  <section class="block" data-screen-label="01 연구 배경과 전체 구상">
-    <div class="sec-head">
-      <div class="num">Ⅰ</div>
-      <div class="ttl">연구 배경과 전체 구상</div>
-    </div>
+  <!-- ═══ 0. v6.1 개편의 핵심 ═══ -->
+  <section class="block" data-screen-label="00 개편의 핵심">
+    <div class="sec-head"><div class="num">0</div><div class="ttl">이전 버전과의 차이</div></div>
+    <p class="p">v5는 지방의원 개인의 퍼실리테이팅 역량 척도와 다층적 5논문 구조를 학위논문 경로로 사실상 <strong>확정</strong>한 계획이었다. v6은 이를 <strong>탐색·게이트형 구조</strong>로 전환한다. 핵심 좌표는 유지하되, 어떤 구성개념을 어느 층위에 두고 무엇을 실증할지는 이론검토와 예비연구의 게이트 판정으로 결정한다.</p>
 
-    <div class="subsec">
-      <div class="sub-num">01 · 출발점</div>
-      <h3>UX·서비스디자인에서 <em>거버넌스로.</em></h3>
-      <p class="p">정보대학원에서 사용자경험(UX)과 경영정보시스템(MIS)을 공부하며, 서비스의 품질이 <strong>'내용'보다 '전달과 경험의 설계'</strong>에 의해 결정된다는 점을 실증적으로 확인하였다. 이 관점은 지방의회 정책지원관으로 근무하면서 새로운 의미로 전환되었다. 주민은 정책을 법령 문구로 체감하기보다, 안내문·민원 응대·참여 절차·심의 과정의 소통·집행 이후 피드백을 통해 정책을 '서비스'로 경험한다.</p>
-      <p class="p">같은 정책이라도 문제 정의 방식, 전달 언어, 절차의 명확성에 따라 주민 수용성과 집행 결과가 달라지는 장면을 반복적으로 관찰할 수 있었다. <strong>이 문제의식이 지방의회의 퍼실리테이팅 역량 연구로 이어진 출발점이다.</strong></p>
-    </div>
-
-    <div class="subsec">
-      <div class="sub-num">02 · Adaptive Governance</div>
-      <h3>어댑티브 거버넌스의 정의와 <em>퍼실리테이팅 역량의 필요성.</em></h3>
-      <p class="p"><strong>어댑티브 거버넌스(Adaptive Governance)</strong>는 복잡하고 불확실한 사회문제에 대응하기 위해 다수의 행위자가 지속적인 학습·실험·피드백을 통해 제도와 규칙을 조정하는 집합적 통치 방식이다(Folke et al., 2005; Pahl-Wostl, 2009).</p>
-      <p class="p">지방의회가 다루는 지역소멸·인구구조 변화·기후위기·지역갈등 등의 현안은 정답이 없고, 이해관계자마다 문제 정의가 다르며, 단일 기관이 해결할 수 없는 <strong>Wicked Problem</strong>(Rittel &amp; Webber, 1973)이다. 기존 역량 교육·훈련은 개인의 지식·기술 향상에 초점을 두는 경향이 있고, 협력적 거버넌스 연구는 다중 행위자의 심의와 합의 형성 과정을 설명하는 데 강점이 있다. 다만 지방의회 의정 과정에서 합의 이후의 재의제화, 조례·예산·감시 기능과의 연결, 반복적 환류와 제도화 과정을 측정 가능한 역량으로 포착하기 위해서는 추가 개념화가 필요하다.</p>
-
-      <div class="minor">왜 지방의회인가 — 어댑티브 거버넌스의 적용 조건</div>
-      <p class="p">어댑티브 거버넌스는 특정 기관이 아니라 <strong>감지·조정·학습·환류가 반복되는 제도적 장</strong>에서 작동한다. 지방의회는 다음 다섯 가지 제도적 특질에서 이 조건을 구조적으로 충족하는, 한국 지방자치 맥락에서 어댑티브 거버넌스의 작동 가능성을 검토할 수 있는 주요 제도적 장이다.</p>
-      <div class="tbl">
-        <table>
-          <thead><tr><th>지방의회의 제도적 특질</th><th>어댑티브 거버넌스 기능</th></tr></thead>
-          <tbody>
-            <tr><td><strong>근접성·현장성</strong> — 주민 생활현장에 가장 가까운 대의기구</td><td>복잡한 문제의 현장 신호를 빠르게 포착하는 <em>감지(sensing) 단위</em></td></tr>
-            <tr><td><strong>다중 행위자 접점</strong> — 주민·집행부·이해관계자가 교차하는 공식 심의장</td><td>공청회·상임위·간담회를 통한 <em>다자 조정·숙의</em></td></tr>
-            <tr><td><strong>반복적 환류 루프</strong> — 조례 제·개정, 예산심의, 행정사무감사의 연례 순환</td><td>정책을 점진 수정하는 <em>제도화된 학습 사이클</em></td></tr>
-            <tr><td><strong>견제·학습 구조</strong> — 집행부와의 질의·감시 관계</td><td>단선적 통제가 아닌 <em>양방향 정보교환·재조정</em></td></tr>
-            <tr><td><strong>다중심 실험 단위</strong> — 226개 기초 + 17개 광역의회의 서로 다른 조례·운영 시도</td><td>분권된 <em>다중심(polycentric) 거버넌스 실험장</em>(Ostrom, 2010)</td></tr>
-          </tbody>
-        </table>
+    <div class="pathgrid">
+      <div class="pathcard">
+        <span class="pc-tag">v5 — 확정형</span>
+        <h4>결정된 단일 경로</h4>
+        <ul>
+          <li>지방의원 개인 수준 퍼실리테이팅 역량 척도개발을 1단계로 고정</li>
+          <li>개인·지원체계·제도·외부관계의 5논문 다층구조 확정</li>
+          <li>측정모형(다차원 반영척도)을 사실상 선결정</li>
+        </ul>
+        <div class="risk">강점: 명료함 · 위험: <b>개념 판별·분석수준 입증 전에 측정형태를 고정</b></div>
       </div>
-      <p class="p">즉 지방의회는 단순한 의사결정 기구가 아니라, 현장 요구를 감지하고(감지) · 다자를 조정하며(조정) · 조례·예산·감사로 순환 수정하는(학습·환류) <strong>어댑티브 거버넌스의 축소판</strong>이다. 문제는 이 잠재구조가 자동으로 작동하지 않는다는 데 있다.</p>
-      <div class="callout">그러나 어댑티브 거버넌스는 저절로 작동하지 않는다(Eshuis &amp; Gerrits, 2021). 위기가 지나면 관료제는 위계와 통제로 복귀한다. 이해관계자 간 학습과 조정을 실질적으로 매개하는 행위자의 역량이 없으면, 어댑티브 거버넌스는 제도적 선언에 그친다.</div>
-      <p class="p">이 미시적 작동 역량이 곧 <strong>퍼실리테이팅 역량</strong>이다. 어댑티브 거버넌스가 거시 수준에서 요청하는 학습·환류는, 미시 수준에서 누군가가 의정 과정을 실제로 매개·설계·조정할 때 비로소 작동한다.</p>
-      <div class="callout" style="border-left-color:var(--gold)"><strong>본 연구의 핵심 논리축</strong> — 어댑티브 거버넌스가 실제로 작동하려면 행위자 간 연결·조정·학습·환류를 수행하는 <em>미시적 행동역량</em>이 필요하다. 이 역량은 궁극적으로 <strong>지방의회 전체</strong>(의원·지원체계·제도·외부관계)에 걸쳐 형성되는 다층적 구성물이며, 본 연구는 그 다층 구조의 <strong>1단계</strong>로서 가장 핵심적인 행위 주체이자 주민 대표성과 공식 의정활동을 책임지는 <strong>지방의원 개인 수준의 퍼실리테이팅 행동역량</strong>을 측정 대상으로 삼는다.</div>
-      <p class="p">본 연구의 최종 관심은 <strong>지방의회의 퍼실리테이션 역량</strong>에 있다. 다만 지방의회는 의원·위원회·의회사무기구·지원인력·회의절차 등 복수 요소로 구성된 조직체이므로, 다층 연구의 1단계인 본 연구는 그중 주민 대표성과 공식 의정활동의 책임 주체인 <strong>지방의원</strong>의 퍼실리테이팅 행동역량에 초점을 둔다. 의정지원체계(의회사무국·정책지원 전문인력), 지방의회 제도·절차, 주민·집행부 외부관계는 본 척도를 기준점으로 삼는 <strong>박사논문 후속 논문</strong>으로 이어간다(Ⅰ-04 참조).</p>
-
-      <div class="chain">
-        <div class="chain-row"><span class="chain-num">1</span><span>지방의회는 복잡·불확실한 정책 환경(<strong>Wicked Problem</strong>)에 직면해 있다.</span></div>
-        <div class="chain-arr">↓</div>
-        <div class="chain-row"><span class="chain-num">2</span><span>이 환경은 <strong>학습·환류·적응이 작동하는 거버넌스</strong>(어댑티브 거버넌스)를 요구한다.</span></div>
-        <div class="chain-arr">↓</div>
-        <div class="chain-row"><span class="chain-num">3</span><span>그러나 어댑티브 거버넌스는 저절로 작동하지 않으며, 행위자 간 <strong>연결·조정·학습·환류를 수행하는 미시적 행동역량</strong>을 요구한다.</span></div>
-        <div class="chain-arr">↓</div>
-        <div class="chain-row"><span class="chain-num">4</span><span>이 매개 기능이 <strong>퍼실리테이팅 역량</strong>이며, 주민을 대표하고 공식 의정활동을 책임지는 <strong>지방의원</strong>이 그 핵심 주체다.</span></div>
-        <div class="chain-arr">↓</div>
-        <div class="chain-row"><span class="chain-num">5</span><span>따라서 본 연구는 <strong>지방의원 개인 수준의 퍼실리테이팅 역량</strong>을 측정 대상으로 확정한다.</span></div>
+      <div class="pathcard is-c4">
+        <span class="pc-tag">v6.1 — 탐색·게이트형</span>
+        <h4>판정 후 결정되는 다중 경로</h4>
+        <ul>
+          <li>AG의 이론적 위치를 <strong>G1</strong>으로 먼저 판정</li>
+          <li>행동역량·과정·제도·AI를 후보경로(C1–C4)로 병렬 검토</li>
+          <li>반영·형성·과정·다층모형을 사전 확정하지 않고 비교</li>
+        </ul>
+        <div class="risk">강점: <b>이론적 판별을 측정에 선행</b> · 방향은 2027년 말 G3에서 확정</div>
       </div>
-    </div>
-
-    <div class="subsec">
-      <div class="sub-num">03 · 핵심 개념 · Construct</div>
-      <h3>퍼실리테이팅 역량의 <em>개념화</em>와 측정 대상.</h3>
-      <div class="callout">
-        <strong>지방의회 퍼실리테이션 역량</strong>이란 주민·이해관계자·집행기관의 다양한 요구와 지식을 정책의제로 연결·번역하고, 상호작용 과정의 갈등을 조정하며, 포괄적 참여와 숙의를 위한 절차를 설계하고, 그 결과를 의정활동과 정책 환류로 전환하는 <em>다층적 역량</em>을 의미한다. 다층 연구의 1단계인 본 연구는 이를 <strong>지방의원 개인 수준의 관찰 가능한 퍼실리테이팅 행동역량</strong>으로 조작화한다.
-      </div>
-      <p class="p">이 역량은 의원·지원체계·제도·외부관계에 걸쳐 형성되는 다층적 구성물이지만, 다층 연구의 1단계인 본 연구는 그 핵심 행위 주체인 <strong>지방의원 개인 수준</strong>에서 이를 조작화·측정한다. 기존 의정역량 연구(김영수, 2007; 신원득 외, 2015)가 지방의회의 제도적 조건과 의정활동 성과(조례 발의 건수, 출석률 등)를 평가해 왔다면, 본 연구의 척도는 그 성과가 만들어지는 상호작용을 설계·운영하는 <strong>지방의원의 관찰 가능한 행동역량</strong>을 측정 대상으로 삼는다. 양자는 대립이 아니라 서로 다른 분석 수준을 다루며, 본 연구는 이를 보완하는 과정 차원의 척도를 더한다.</p>
-
-      <div class="minor">자료 해석의 전제 — 행위자별 역할과 논문 단계 구분</div>
-      <div class="tbl">
-        <table>
-          <thead><tr><th style="width:13%">논문</th><th style="width:20%">행위자</th><th>다층 연구에서의 위치</th></tr></thead>
-          <tbody>
-            <tr><td><strong>논문 1</strong></td><td><strong>지방의원</strong></td><td>직접 측정 대상 — 개인 수준의 행동역량 · 주민 대표성과 공식 의정활동의 책임 주체</td></tr>
-            <tr><td><strong>논문 2</strong></td><td><strong>의정지원체계</strong><br/><small>의회사무국·정책지원 전문인력</small></td><td>의원의 퍼실리테이팅을 절차·정보 면에서 뒷받침하는 조직적 지원조건(「지방자치법」 제41조)</td></tr>
-            <tr><td><strong>논문 3</strong></td><td><strong>지방의회 제도·절차</strong></td><td>역량이 작동하는 제도적 맥락 — 공청회·상임위·예산·감사·주민환류체계</td></tr>
-            <tr><td><strong>논문 4</strong></td><td><strong>주민·집행부</strong></td><td>지방의원이 연결·조정하는 외부 경계 — 논문 1~3 역량·지표가 실제 외부관계에서 작동하는지 검증하는 <em>외부 타당화 대상</em>(효과·수용성 인식)</td></tr>
-            <tr><td><strong>논문 5</strong></td><td><strong>종합</strong><br/><small>개인·조직·제도·외부 통합</small></td><td>수준별 척도·지표와 외부효과를 결합한 지방의회 종합 퍼실리테이션 <em>평가체계</em></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="minor">잠정 4차원 — 명칭과 경계는 질적 연구·전문가 검토에서 확정</div>
-      <div class="tbl">
-        <table>
-          <thead><tr><th>하위차원</th><th>의정 과정 단계</th><th>행동 초점</th></tr></thead>
-          <tbody>
-            <tr><td><strong>(가) 요구 연결·의제화</strong></td><td>의제 형성</td><td>주민 요구를 단순 전달에 그치지 않고 정책의제로 전환</td></tr>
-            <tr><td><strong>(나) 관계 형성·갈등 조정</strong></td><td>심의 · 조정</td><td>신뢰 형성을 토대로 이해관계자 간 입장 차이 중재</td></tr>
-            <tr><td><strong>(다) 포괄적 참여절차 설계</strong></td><td>심의 절차</td><td>참여자 구성·정보 제공·발언기회 보장까지 포함</td></tr>
-            <tr><td><strong>(라) 의정 연계·학습 환류</strong></td><td>환류 · 학습</td><td>논의 결과를 조례·예산·감시·후속점검으로 연결</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="p">그 과정의 핵심 행위자는 <strong>지방의원</strong>이다. 지방의원은 주민·이해관계자·집행기관 세 영역의 경계에 동시에 발을 걸친 위치에서 Williams(2002)가 말하는 번역·조정·연결·학습의 <strong>경계확장(Boundary Spanning)</strong> 기능을 공식 의정활동(의안 발의·질의·감사·예산심의)의 권한과 함께 수행하며, 의회사무국·지원체계와 공청회·상임위 등 제도·절차가 이를 정보·절차 면에서 뒷받침·매개한다(논문 2·3). 따라서 <strong>논문 1에서는</strong> 이 행동이 개인 수준에서 관찰·측정 가능하다는 점에 주목하여, 지방의원을 퍼실리테이팅 역량의 <em>직접 측정 단위</em>로 설정한다.</p>
-      <p class="p">본 연구의 문제의식은 협력적 거버넌스가 무용하다는 데 있지 않다. 협력적 거버넌스는 다중 행위자의 심의와 합의 형성 과정을 설명하는 데 강점이 있으나, 지방의회 의정 과정에서 <strong>합의 이후의 재의제화, 조례·예산·감시 기능과의 연결, 반복적 환류와 제도화 과정</strong>을 측정 가능한 역량으로 포착하는 데에는 추가 개념화가 필요하다.</p>
-    </div>
-
-    <div class="subsec">
-      <div class="sub-num">04 · 박사학위논문 구상</div>
-      <h3>박사학위논문 전체 구상 — <em>다섯 편의 다층 연구.</em></h3>
-      <div class="callout" style="border-left-color:var(--gold)">
-        <small style="display:block;color:var(--text-soft);font-weight:600;letter-spacing:.04em;margin-bottom:6px">학위논문 전체 · 다층 연구</small>
-        <strong>「지방의회의 퍼실리테이션 역량 — 구성요소와 다층적 형성 구조」</strong><br/>
-        <em>Facilitative Capacity in Local Councils: A Multi-Level Study of Its Components and Formation</em>
-      </div>
-      <div class="callout">본 연구의 장기적 관심은 지방의회가 주민 요구를 정책의제로 전환하고, 이해관계를 조정하며, 논의 결과를 조례·예산·감시·환류로 연결하는 <strong>지방의회 퍼실리테이션 역량</strong>에 있다. 이 역량은 단일 행위자로 설명되지 않으며, 지방의원·의정지원체계·제도·절차·외부관계가 결합된 <em>다층적 구성물</em>이다. 본 학위논문은 이를 <strong>네 개의 분석 수준에서 척도·지표를 개발(논문 1~3)·검증(논문 4)하고, 이를 하나의 종합 평가체계로 통합(논문 5)하는 다섯 편의 다층 연구</strong>로 나누어 다룬다.</div>
-      <p class="p">이 연구는 “지방의회 퍼실리테이션 역량은 어떤 행위·제도·관계 속에서 형성·작동하는가”라는 상위 질문 아래, 분석 수준을 <strong>개인·조직지원·제도절차·외부관계 네 층위</strong>로 구분하고, 이를 <strong>하나의 종합 평가체계</strong>로 통합한다. 각 층위는 독립된 소논문으로 설계하되, 1단계 척도와 구성개념을 공통 기준점으로 재사용해 하나의 지방의회 퍼실리테이션 역량 모형으로 수렴한다.</p>
-      <div class="tbl">
-        <table>
-          <thead><tr><th>층위</th><th>핵심 대상</th><th>연구 기능</th><th>권고 방법</th></tr></thead>
-          <tbody>
-            <tr><td><strong>1· 개인 행위</strong></td><td><strong>지방의원</strong></td><td>퍼실리테이팅 역량의 구성요소·척도 개발</td><td><strong>양적 · 척도개발</strong>(CIT→CVI→EFA→CFA)</td></tr>
-            <tr><td><strong>2· 조직 지원</strong></td><td><strong>의정지원체계</strong><br/><small>의회사무국 + 정책지원 전문인력</small></td><td>의회사무국의 절차·기록 기반 + 정책지원관의 정보·조사 지원 분석</td><td>질적 · 제도·사례 분석</td></tr>
-            <tr><td><strong>3· 제도·절차</strong></td><td><strong>지방의회</strong></td><td>상임위·공청회·행정사무감사·예산·조례 절차의 작동조건</td><td>질적 · 제도분석 · 비교사례</td></tr>
-            <tr><td><strong>4· 외부 관계</strong></td><td><strong>주민·집행부</strong></td><td>논문 1~3 역량·지표가 주민·집행부에게 인식·수용되는 효과 검증 (외부 타당화)</td><td>양적 · 인식조사 · 회귀/구조방정식 · 집단비교</td></tr>
-            <tr><td><strong>5· 종합</strong></td><td><strong>개인·조직·제도·외부 통합</strong></td><td>수준별 척도·지표와 외부효과를 결합한 종합 퍼실리테이션 역량 평가체계 개발</td><td>지표통합 · 전문가 가중치(AHP) · 시범적용</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="p">의정지원체계(2층위)는 <strong>의회사무국</strong>을 절차·기록·중립적 행정 기반으로 두고, <strong>정책지원 전문인력</strong>을 그 안의 정보·조사 중개 요소로 포함한다. 정책지원관을 독립 주체가 아닌 지원체계의 일부로 두어 권한 논쟁을 피하면서도, 연구자의 실무 경험을 자산으로 살린다.</p>
-      <p class="note">※ 소논문형 학위논문(복수 논문 + 통합 서·결론장) 구성은 지도교수 면담에서 가능한 방향으로 확인되었으며, 세부 요건(게재·투고 상태, 공저 가능 여부, 통합장 형식)은 국정전문대학원 내규에 따라 최종 조정한다. 논문 1~3은 척도·지표 <strong>개발형</strong>, 논문 4는 외부 <strong>효과검증형</strong>, 논문 5는 종합 <strong>평가체계 개발형</strong>으로 성격을 구분한다. 본 연구는 이 다층 구조를 개인·조직지원·제도절차·외부관계 수준으로 확장 분석할 수 있는 <strong>기초연구</strong>로 위치한다.</p>
-    </div>
-
-    <div class="subsec">
-      <div class="sub-num">05 · 개념도 · Concept Map</div>
-      <h3>이론에서 측정까지, <em>한눈에 보는 개념도.</em></h3>
-      <p class="p">거시 당위(WHY) → 작동 주체와 방식(HOW) → 측정 대상(WHAT) → 방법론으로 이어지는 연구의 논리 구조를 한 장으로 압축한 개념도다. 앞선 서술(Ⅰ-01~04)이 어떻게 하나의 핵심 구성개념과 측정 모형(논문 1의 척도개발)으로 수렴하는지를 한 장으로 보여준다.</p>
-
-      <div class="cmap">
-        <div class="cmap-hint">카드를 누르면 상세 설명이 펼쳐집니다 · Click to expand</div>
-
-        <!-- MACRO -->
-        <div class="cmap-layer">
-          <div class="cmap-band band-macro"><span class="ko">거시 · WHY</span><span class="en">Why Facilitation Matters</span></div>
-          <div class="cmap-cards cards-1">
-            <div class="cmap-card" onclick="toggleCmap(this)">
-              <div class="cmap-card-top">
-                <div class="cmap-card-main">
-                  <div class="cmap-card-title">어댑티브 거버넌스</div>
-                  <div class="cmap-card-en">Adaptive Governance</div>
-                  <div class="cmap-card-ref">Folke et al. (2005) · Pahl-Wostl (2009)</div>
-                </div>
-                <span class="cmap-plus" aria-hidden="true"></span>
-              </div>
-              <div class="cmap-body">
-                <p>복잡·불확실 환경에서 다수 행위자가 <strong>지속적 학습·실험·피드백</strong>으로 제도와 규칙을 조정하는 집합적 통치 방식. 지방의회는 그 구조적 조건을 가장 잘 갖춘 기관이지만, 잠재력이 충분히 실현되지 않고 있다.</p>
-                <div class="cmap-kw"><span>복잡계 대응</span><span>다층 학습</span><span>제도 환류</span><span>Wicked Problem</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="cmap-arrow"><span class="ln"></span><span class="lb">지방의회는 어댑티브 거버넌스의 핵심 제도적 장<br/><em>Local council as a key institutional arena</em></span><span class="hd">▼</span></div>
-
-        <!-- MESO -->
-        <div class="cmap-layer">
-          <div class="cmap-band band-meso"><span class="ko">중간 · HOW</span><span class="en">Who Activates It &amp; How</span></div>
-          <div class="cmap-cards cards-3">
-            <div class="cmap-card" onclick="toggleCmap(this)">
-              <div class="cmap-card-top">
-                <div class="cmap-card-main">
-                  <div class="cmap-card-title">Facilitative Leadership</div>
-                  <div class="cmap-card-en">리더십론 · 선출직 의원</div>
-                  <div class="cmap-card-ref">Svara (1994 · 1999 · 2008)</div>
-                </div>
-                <span class="cmap-plus" aria-hidden="true"></span>
-              </div>
-              <div class="cmap-body">
-                <p>선출직 의원은 정치-행정 경계를 지시·통제가 아닌 조정·매개·활성화 방식으로 다룬다. 집행부·주민·이해관계자가 각자의 역할을 잘 수행하도록 조건을 설계하는 것이 필요하다.</p>
-                <div class="cmap-kw"><span>정치-행정 상보성</span><span>선출직 조정</span><span>과정 설계</span></div>
-              </div>
-            </div>
-            <div class="cmap-card" onclick="toggleCmap(this)">
-              <div class="cmap-card-top">
-                <div class="cmap-card-main">
-                  <div class="cmap-card-title">Boundary Spanner</div>
-                  <div class="cmap-card-en">경계 연결자 · 지방의회 전반</div>
-                  <div class="cmap-card-ref">Williams (2002)</div>
-                </div>
-                <span class="cmap-plus" aria-hidden="true"></span>
-              </div>
-              <div class="cmap-body">
-                <p>경계연결은 특정 행위자에 국한되지 않는 <strong>지방의회 전반의 교차층위 연결 기능</strong>이다. 지방의원이 정치적으로 수행하고, 의회사무국·지원체계가 정보·절차로 뒷받침하며(논문 2), 공청회·상임위·감사 등 제도·절차가 그 통로가 된다(논문 3).</p>
-                <div class="cmap-kw"><span>교차층위 연결</span><span>정보·절차 매개</span><span>제도적 통로</span></div>
-              </div>
-            </div>
-            <div class="cmap-card" onclick="toggleCmap(this)">
-              <div class="cmap-card-top">
-                <div class="cmap-card-main">
-                  <div class="cmap-card-title">협력적 거버넌스</div>
-                  <div class="cmap-card-en">집행부 · 시민참여</div>
-                  <div class="cmap-card-ref">Ansell &amp; Gash (2008) · Emerson et al. (2012)</div>
-                </div>
-                <span class="cmap-plus" aria-hidden="true"></span>
-              </div>
-              <div class="cmap-body">
-                <p><strong>집행부·주민(시민참여)</strong>이 공론장에서 <strong>심의·조정·학습</strong>을 통해 협력에 이르는 외부관계의 동학을 설명한다. 퍼실리테이션 역량이 외부에서 작동·수용되는 장이다(→ 논문 4).</p>
-                <div class="cmap-kw"><span>집행부 협력</span><span>주민 참여·숙의</span><span>외부관계 동학</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="cmap-integration">
-            <div class="lbl">이론 접합 논리 · Theory Integration</div>
-            <p><strong>어댑티브 거버넌스</strong>는 <em>왜 필요한가</em>의 거시 당위를, <strong>Svara</strong>는 <em>선출직 의원(논문 1)이 어떻게 facilitative하게 작동하는가</em>를, <strong>Williams</strong>는 <em>지방의회 전반(의원·지원체계·제도, 논문 2·3)이 경계를 어떻게 연결·매개하는가</em>를, <strong>협력적 거버넌스론</strong>은 <em>집행부·주민(논문 4)이 어떻게 숙의·협력하는가</em>를 설명한다. 본 척도(논문 1)는 그중 핵심 앵커인 <strong>지방의원의 행동역량</strong>에 초점을 둔다.</p>
-          </div>
-        </div>
-
-        <div class="cmap-arrow"><span class="ln"></span><span class="lb">세 이론 렌즈의 접합 → 앵커(지방의원) 역량 개념화<br/><em>Theoretical integration → Facilitative capacity conceptualization</em></span><span class="hd">▼</span></div>
-
-        <!-- MICRO -->
-        <div class="cmap-layer">
-          <div class="cmap-band band-micro"><span class="ko">미시 · WHAT</span><span class="en">지방의원의 행동역량 · 4 Dimensions</span></div>
-          <div class="cmap-cards cards-4">
-            <div class="cmap-card" onclick="toggleCmap(this)">
-              <div class="cmap-card-top">
-                <span class="cmap-badge">가</span>
-                <div class="cmap-card-main">
-                  <div class="cmap-card-title">요구 연결·의제화</div>
-                  <div class="cmap-card-en">Demand Linking</div>
-                </div>
-                <span class="cmap-plus" aria-hidden="true"></span>
-              </div>
-              <div class="cmap-body"><p>주민 요구를 단순 전달에 그치지 않고 정책 의제로 연결·번역하는 행동이다. 의제 형성 단계에서 작동한다.</p></div>
-            </div>
-            <div class="cmap-card" onclick="toggleCmap(this)">
-              <div class="cmap-card-top">
-                <span class="cmap-badge">나</span>
-                <div class="cmap-card-main">
-                  <div class="cmap-card-title">관계 형성·갈등 조정</div>
-                  <div class="cmap-card-en">Conflict Mediation</div>
-                </div>
-                <span class="cmap-plus" aria-hidden="true"></span>
-              </div>
-              <div class="cmap-body"><p>신뢰 형성을 토대로 이해관계자 간 입장 차이를 중재하는 행동이다. 심의·조정 단계에서 작동한다.</p></div>
-            </div>
-            <div class="cmap-card" onclick="toggleCmap(this)">
-              <div class="cmap-card-top">
-                <span class="cmap-badge">다</span>
-                <div class="cmap-card-main">
-                  <div class="cmap-card-title">포괄적 참여절차 설계</div>
-                  <div class="cmap-card-en">Inclusive Process Design</div>
-                </div>
-                <span class="cmap-plus" aria-hidden="true"></span>
-              </div>
-              <div class="cmap-body"><p>참여자 구성·정보 제공·발언기회 보장을 포함해 회의·공론 과정을 설계하는 행동이다. 심의 절차 단계에서 작동한다.</p></div>
-            </div>
-            <div class="cmap-card" onclick="toggleCmap(this)">
-              <div class="cmap-card-top">
-                <span class="cmap-badge">라</span>
-                <div class="cmap-card-main">
-                  <div class="cmap-card-title">의정 연계·학습 환류</div>
-                  <div class="cmap-card-en">Learning Feedback</div>
-                </div>
-                <span class="cmap-plus" aria-hidden="true"></span>
-              </div>
-              <div class="cmap-body"><p>논의 결과를 조례·예산·감시·후속점검으로 연결하는 행동이다. 환류·학습 단계에서 작동한다.</p></div>
-            </div>
-          </div>
-          <p class="note" style="margin:0 14px 14px">※ 잠정 4차원 — 1단계 질적 연구(CIT·FGI)에서 수정·보완 예정 · Provisional dimensions subject to revision</p>
-        </div>
-
-        <div class="cmap-arrow"><span class="ln"></span><span class="lb">척도 개발 프로토콜 · Hinkin (1998) · MacKenzie et al. (2011)</span><span class="hd">▼</span></div>
-
-        <!-- METHOD -->
-        <div class="cmap-layer">
-          <div class="cmap-band band-method"><span class="ko">연구 방법론</span><span class="en">Research Methodology</span></div>
-          <div class="cmap-method-flow">
-            <div class="cmap-step"><span class="n">1</span><div><div class="t">문헌검토 · CIT 인터뷰</div><div class="s">구성개념 및 문항 후보 도출</div></div></div>
-            <span class="cmap-step-arr">→</span>
-            <div class="cmap-step"><span class="n">2</span><div><div class="t">전문가 CVI</div><div class="s">내용타당도(I-CVI·S-CVI) · 문항 정제</div></div></div>
-            <span class="cmap-step-arr">→</span>
-            <div class="cmap-step"><span class="n">3</span><div><div class="t">인지면접 · 파일럿</div><div class="s">문항 의미 해석 일관성 확인</div></div></div>
-            <span class="cmap-step-arr">→</span>
-            <div class="cmap-step"><span class="n">4</span><div><div class="t">예비조사 · EFA</div><div class="s">요인구조 탐색</div></div></div>
-            <span class="cmap-step-arr">→</span>
-            <div class="cmap-step"><span class="n">5</span><div><div class="t">본조사 · CFA</div><div class="s">측정모형 검증</div></div></div>
-            <span class="cmap-step-arr">→</span>
-            <div class="cmap-step hl"><span class="n">6</span><div><div class="t">수렴·판별·준거타당도</div><div class="s">최종 척도 확정</div></div></div>
-          </div>
-          <p class="note" style="margin:0 14px 14px">본 연구는 지방의원에게 요구되는 퍼실리테이팅 행동역량의 구성요소를 도출하기 위해 문헌검토와 CIT 인터뷰를 실시한다. 도출된 문항 후보에 대해서는 전문가 내용타당도 검토를 실시하되, 개별 문항의 I-CVI와 전체 척도의 S-CVI/Ave를 구분하여 문항의 적절성·명확성·중복성을 판단한다. 이어 EFA로 바로 진입하지 않고 인지면접·파일럿을 거쳐 문항 의미가 응답자에게 동일하게 이해되는지 확인한 뒤, 탐색적 요인분석(EFA)과 별도 표본의 확인적 요인분석(CFA), 그리고 수렴·판별·준거타당도 검증을 순차적으로 수행한다.</p>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ============================================================== -->
-  <!-- ═══ Ⅱ. 논문 1 ═══ -->
-  <!-- ============================================================== -->
-  <section class="block" data-screen-label="02 논문 1 · 척도개발">
-    <div class="sec-head">
-      <div class="num">Ⅱ</div>
-      <div class="ttl">논문 1 · 지방의원 퍼실리테이팅 역량 척도개발</div>
-    </div>
-    <p class="p">박사학위논문의 <strong>1단계</strong>로, 핵심 행위 주체인 <strong>지방의원 개인 수준</strong>에서 퍼실리테이팅 역량을 개념화하고 측정도구를 개발·검증한다. 아래 연구질문·의의·연구방법은 본 논문 1의 연구설계이며, 이론적 토대·개념도·학위논문 전체 구상은 앞서 Ⅰ장에서 다루었다.</p>
-    <div class="subsec">
-      <div class="sub-num">01 · 연구질문</div>
-      <h3>논문 1 <em>연구질문.</em></h3>
-      <div class="tbl">
-        <table>
-          <thead><tr><th>단계</th><th>연구질문</th><th>방법론적 응답</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Q1 · 개념화</strong></td><td>지방의원의 퍼실리테이팅 역량은 어떤 구성요소와 행동지표로 구성되는가?</td><td>1단계 질적 연구(문헌 검토 + CIT 인터뷰 + FGI) → 하위차원 도출 + 초기 문항 풀</td></tr>
-            <tr><td><strong>Q2 · 측정 · 타당화</strong></td><td>지방의원의 퍼실리테이팅 역량 측정도구는 신뢰도와 타당도를 확보하는가?</td><td>2단계 양적 연구(내용타당도 → 인지면접·파일럿 → EFA → CFA) → 측정모형 타당화</td></tr>
-            <tr><td><strong>Q3 · 후속 연구</strong></td><td>개발된 척도는 후속 연구에서 의정 성과·주민 응답성·의정지원체계와의 관계를 검증하는 데 활용될 수 있는가?</td><td>척도 개발 이후의 적용연구 — 박사 후속 SEM 기반 매개·조절 연구로 예고</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="note">연구 범위는 Q1·Q2로 한정 — Hinkin(1998)의 척도개발 지침과 MacKenzie et al.(2011)의 10단계 구성개념 측정·타당화 절차를 연구목적에 맞게 통합·적용하여 EFA·CFA 타당화까지 수행한다. Q3 SEM 검증은 박사 후속 연구.</p>
-    </div>
-
-    <div class="subsec">
-      <div class="sub-num">02 · 의의</div>
-      <h3>학문적 의의.</h3>
-      <div class="tbl">
-        <table>
-          <thead><tr><th>차원</th><th>내용</th></tr></thead>
-          <tbody>
-            <tr><td><strong>이론적 의의</strong></td><td>어댑티브 거버넌스·퍼실리테이팅 역량 이론을 한국 지방의회 맥락에 체계 적용</td></tr>
-            <tr><td><strong>방법론적 의의</strong></td><td>표준 척도 개발 프로토콜(Hinkin, MacKenzie et al.)에 따라 퍼실리테이팅 역량을 측정 가능한 도구로 조작화</td></tr>
-            <tr><td><strong>실천적 의의</strong></td><td>의정 품질 평가를 '내용(what)' 중심에서 '과정(how)' 중심으로 전환 — 역량 진단·교육·연수 프로그램 설계 근거 제공</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="subsec">
-      <div class="sub-num">03 · 연구방법 · 표본</div>
-      <h3>논문 1 <em>연구방법과 표본.</em></h3>
-      <div class="callout">
-        <small style="display:block;color:var(--accent);font-weight:600;letter-spacing:.04em;margin-bottom:6px">논문 1 (본 척도개발 연구)</small>
-        <strong>「지방의원의 퍼실리테이팅 역량 구성요소와 측정도구 개발」</strong><br/>
-        <em>Development and Validation of a Facilitative Competency Scale for Local Councillors</em>
-      </div>
-      <p class="note">※ 학위논문 전체는 지방의회 퍼실리테이션 역량을 개인(의원)·조직지원·제도·외부관계 네 층위에서 개발·검증하고 이를 하나의 종합 평가체계로 통합하는 다섯 편의 다층 연구로 구성되며(Ⅰ-04 참조), 본 논문 1은 그 중 핵심 행위 주체인 지방의원 개인 수준의 척도를 개발한다. ‘주민 정책 여정(Citizen Policy Journey)’ 관점은 본 논문 1의 제목·핵심 구성개념에서는 제외하되, 별도의 투고용 소논문으로 발전시켜 다룬다.</p>
-
-      <div class="minor">Stage 1 · 질적 연구 — 개념화 및 문항 생성</div>
-      <div class="tbl">
-        <table>
-          <tbody>
-            <tr><td style="width:22%"><strong>연구 참여자</strong></td><td>전·현직 지방의원 12~15명, 주민·이해관계자 및 집행부 실무자 6~8명, 시민사회 활동가 4~6명</td></tr>
-            <tr><td><strong>자료 수집</strong></td><td>심층 반구조화 인터뷰(60~90분) + FGI 2~3회(회당 5~7명)</td></tr>
-            <tr><td><strong>표집 전략</strong></td><td>광역·기초의회 균형, 도시·농어촌 균형, 의정경력 균형 고려한 목적표집 + 이론적 표집</td></tr>
-            <tr><td><strong>분석 방법</strong></td><td>Braun &amp; Clarke(2006) 주제분석 절차 — 감사추적 방식으로 해석 과정 기록</td></tr>
-            <tr><td><strong>산출물</strong></td><td>지방의원의 퍼실리테이팅 행동역량 하위차원 도출 + 초기 측정 문항 50~80개 생성</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="minor">Stage 2 · 양적 연구 — 척도 타당화</div>
-      <div class="tbl">
-        <table>
-          <tbody>
-            <tr><td style="width:22%"><strong>응답 방식</strong></td><td>지방의원 <strong>자기평가형</strong>을 1차 척도로 개발 — 모든 문항의 주어를 <strong>‘지방의원’으로 고정</strong>하고, 인식·태도가 아닌 <strong>관찰 가능한 행동빈도·실행수준</strong>으로 서술(예: “의안 검토 전에 직접 영향받는 주민집단을 확인한다”) — 사회적 바람직성 편향 대응</td></tr>
-            <tr><td><strong>목표 표본</strong></td><td>예비조사·본조사 분리 원칙; 응답률에 따라 EFA·CFA 표본 운용 방식을 지도교수와 협의</td></tr>
-            <tr><td><strong>내용 타당도</strong></td><td>학계·실무계 전문가 패널 8~10명 — 개별 문항 <strong>I-CVI ≥ .78</strong>, 전체 척도 <strong>S-CVI/Ave ≥ .90</strong> 기준으로 문항 채택·수정·삭제 판단</td></tr>
-            <tr><td><strong>타당도 검증</strong></td><td>인지면접·파일럿 → EFA(주축분해, promax 회전) → CFA → 수렴타당도(AVE ≥ .50, CR ≥ .70) → 판별타당도(Fornell-Larcker, HTMT) → 준거타당도 · (필요 시) 측정 동일성 검증</td></tr>
-            <tr><td><strong>분석 도구</strong></td><td>SPSS, R(lavaan, semTools) 중심 — Mplus는 필요 시 선택 활용</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="note">지원인력(정책지원관·전문위원·의회사무기구) 등 의정활동 지원체계가 지방의회 퍼실리테이션 역량에 미치는 영향은 논문 2(의정지원체계)에서 다루며, SEM 기반 매개·조절 관계 검증은 박사 후속 연구 프로그램으로 남긴다.</p>
-    </div>
-
-  </section>
-
-  <!-- ============================================================== -->
-  <!-- ═══ Ⅲ. 논문 2 ═══ -->
-  <!-- ============================================================== -->
-  <section class="block" data-screen-label="03 논문 2 · 의정지원체계">
-    <div class="sec-head">
-      <div class="num">Ⅲ</div>
-      <div class="ttl">논문 2 · 의정지원체계 퍼실리테이션 지원역량 지표개발</div>
-    </div>
-    <div class="subsec">
-      <div class="callout">
-        <small style="display:block;color:var(--accent);font-weight:600;letter-spacing:.04em;margin-bottom:6px">논문 2 · 제목(가제)</small>
-        <strong>「의정지원체계의 퍼실리테이션 지원역량 지표 개발」</strong><br/>
-        <em>Developing Indicators of Facilitative Support Capacity in Local Council Support Systems</em>
-      </div>
-
-      <div class="sub-num">01 · 대상 · 분석수준</div>
-      <h3>조직 지원 수준 — <em>지원역량 구성요소 도출과 지표 개발.</em></h3>
-      <div class="callout"><strong>의정지원체계의 퍼실리테이션 지원역량</strong>은 지방의원의 퍼실리테이팅 행동이 의정과정에서 실현되도록 <strong>절차·정보·기록·환류</strong> 측면에서 뒷받침하는 조직적 지원조건을 의미한다. 본 논문은 정통 심리측정 척도개발이 아니라, 의회사무국·정책지원 전문인력의 지원조건을 진단하기 위한 <strong>질적 기반 측정지표 개발</strong> 연구로 설계한다.</div>
-
-      <div class="minor">연구질문 <span style="color:var(--text-soft);font-weight:400">· 잠정</span></div>
-      <div class="tbl">
-        <table>
-          <tbody>
-            <tr><td style="width:9%"><strong>Q1</strong></td><td>의정지원체계는 지방의원의 퍼실리테이션을 어떤 절차·정보·기록·환류 기능으로 지원하는가?</td></tr>
-            <tr><td style="width:9%"><strong>Q2</strong></td><td>의정지원체계의 퍼실리테이션 지원역량을 진단할 수 있는 측정지표는 무엇인가?</td></tr>
-            <tr><td style="width:9%"><strong>Q3</strong></td><td>도출된 지표는 전문가 검토에서 적합성·명확성·측정가능성·현장적합성을 확보하는가?</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="minor">연구방법 <span style="color:var(--gold);font-weight:600">※ 연구 상황에 따라 수정 가능</span></div>
-      <div class="tbl">
-        <table>
-          <tbody>
-            <tr><td style="width:22%"><strong>접근</strong></td><td>지표개발 — 문헌분석 + 법규·조례·업무분장 분석 + 의회사무국·정책지원 전문인력·의원 인터뷰로 후보지표 도출 → 전문가 델파이로 적합성·명확성·측정가능성·현장적합성 검토. 연구자의 정책지원관 실무경험을 지표 생성에 활용</td></tr>
-            <tr><td><strong>자료 · 대상</strong></td><td>의정지원, 의회사무국, 입법지원, 조직지원·지식중개 문헌 + 지방자치법·사무기구 조례·회의규칙·업무분장 + 의회사무국·전문위원·정책지원 전문인력·의원 인터뷰</td></tr>
-            <tr><td><strong>분석</strong></td><td>문헌·법규·사례 분석으로 후보지표 도출 → 전문가 델파이로 지표체계 확정 (시범적용·가중치는 논문 5에서 처리)</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="minor">기대 기여</div>
-      <p class="p">의정지원체계의 퍼실리테이션 지원역량을 측정 가능한 지표로 조작화하여, 정책지원 전문인력·의회사무국 제도의 기능을 진단·개선할 근거를 제공한다.</p>
-      <p class="note">※ 본 장의 연구설계는 잠정적이며, 논문 1(척도개발)의 결과와 연구 진행 상황에 따라 구체화·조정된다. 연구질문·방법·표본은 지도교수 면담을 거쳐 확정한다.</p>
     </div>
   </section>
 
-  <!-- ============================================================== -->
-  <!-- ═══ Ⅳ. 논문 3 ═══ -->
-  <!-- ============================================================== -->
-  <section class="block" data-screen-label="04 논문 3 · 제도·절차">
-    <div class="sec-head">
-      <div class="num">Ⅳ</div>
-      <div class="ttl">논문 3 · 지방의회 퍼실리테이션 제도역량 지표개발</div>
-    </div>
+  <!-- ═══ Ⅰ. 연구자의 출발점 ═══ -->
+  <section class="block" data-screen-label="01 연구자의 출발점">
+    <div class="sec-head"><div class="num">Ⅰ</div><div class="ttl">연구자의 출발점</div></div>
+
     <div class="subsec">
-      <div class="callout">
-        <small style="display:block;color:var(--accent);font-weight:600;letter-spacing:.04em;margin-bottom:6px">논문 3 · 제목(가제)</small>
-        <strong>「지방의회 퍼실리테이션 제도역량의 구성요소와 측정지표 개발」</strong><br/>
-        <em>Developing Indicators of Institutional Facilitative Capacity in Local Councils</em>
-      </div>
+      <div class="sub-num">01 · 관심의 이동</div>
+      <h3>정책이 주민에게 <em>도달하는 과정.</em></h3>
+      <p class="p">연구의 출발점은 사용자 경험과 서비스 디자인이 행정과 연계되는 부분이었다. 공공서비스와 정책에서 사용자가 실제로 어떻게 경험하는지, 시민의 삶에 정책과 제도가 도달하는 과정에서 어떠한 부담과 단절이 있는지 살펴보는 데에 있었다.</p>
+      <p class="p">지방의회 정책지원관으로 근무하면서 관심은 서비스의 설계 자체보다 다음의 <strong>제도적 과정</strong>으로 이동하였다.</p>
+      <ul class="biglist">
+        <li>주민의 요구와 현장정보가 어떻게 <strong>의제로 번역</strong>되는가</li>
+        <li>상충하는 이해관계와 지식이 <strong>어디에서 조정</strong>되는가</li>
+        <li>주민참여와 숙의의 결과가 <strong>조례·예산·행정사무감사</strong>로 연결되는가</li>
+        <li>집행 이후의 결과와 부작용이 다시 <strong>제도수정으로 환류</strong>되는가</li>
+        <li>의원·정책지원관·의회사무기구·집행부는 이 과정에서 어떤 역할을 수행하는가</li>
+      </ul>
+      <div class="callout">따라서 서비스디자인은 학위논문의 상위 이론이 아니라 <strong>연구문제가 형성된 배경이자 실천방법의 하나</strong>로 위치시킨다.</div>
+    </div>
 
-      <div class="sub-num">01 · 대상 · 분석수준</div>
-      <h3>제도 수준 — <em>절차의 역량을 지표로.</em></h3>
-      <div class="callout"><strong>지방의회 퍼실리테이션 제도역량</strong>이란 공청회·상임위원회·예산심의·행정사무감사·조례심사·주민환류체계가 주민 요구를 의정과정으로 연결하고, 이해관계자 의견을 구조화하며, 논의 결과를 조례·예산·감시·후속점검으로 환류할 수 있도록 설계·운영되는 정도를 의미한다. 사람의 행동역량이 아니라 <strong>절차·기록·연결경로로 확인되는 제도역량</strong>을 측정 대상으로 삼는다.</div>
+    <div class="subsec">
+      <div class="sub-num">02 · 실무적 위치</div>
+      <h3>내부자 연구자의 <em>접근성과 책임.</em></h3>
+      <p class="p">지방의회 정책지원 업무는 조례 제·개정, 예산·결산 심사, 행정사무감사와 자료요구, 민원·청원·건의의 의제화, 의원·주민·집행부 간 정보와 요구의 이동, 의정활동 이후의 후속조치와 제도개선 과정에 대한 <strong>직접적인 관찰기회</strong>를 제공한다.</p>
+      <p class="p">이 실무경험은 연구대상에 대한 접근성을 높이지만, 동시에 내부자 연구자의 편향과 연구윤리 문제를 발생시킬 수 있다. 따라서 <strong>공개자료·비식별 자료·연구참여 동의·IRB 검토·연구자 성찰기록</strong>을 구분하여 활용한다.</p>
+    </div>
+  </section>
 
-      <div class="minor">제도역량 지표영역 <span style="color:var(--text-soft);font-weight:400">· 잠정 6영역</span></div>
+  <!-- ═══ Ⅱ. 변하지 않는 연구축 ═══ -->
+  <section class="block" data-screen-label="02 변하지 않는 연구축">
+    <div class="sec-head"><div class="num">Ⅱ</div><div class="ttl">변하지 않는 연구축</div></div>
+    <p class="p">다음 다섯 가지는 탐색단계에서도 변경하지 않는 <strong>고정 좌표</strong>다.</p>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:24%">고정 항목</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr><td><strong>연구대상</strong></td><td>지방의회 — 집행기관이 아닌 <em>주민대표기관</em></td></tr>
+        <tr><td><strong>문제상황</strong></td><td>복잡성·불확실성·상호의존성을 가진 지역문제</td></tr>
+        <tr><td><strong>핵심과정</strong></td><td>감지 → 지식통합 → 숙의 → 제도화 → 재점검·환류</td></tr>
+        <tr><td><strong>규범적 조건</strong></td><td>대표성 · 책임성 · 투명성 · 검토가능성</td></tr>
+        <tr><td><strong>주요 행위자</strong></td><td>의원 · 의회사무기구 · 정책지원관 · 주민 · 집행부</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="minor">상위 연구문제</div>
+    <div class="callout" style="border-left-color:var(--gold)">복잡하고 불확실한 지역문제에서 지방의회는 주민·이해관계자·집행부에 분산된 요구와 지식을 어떻게 <strong>감지·통합·숙의</strong>하고, 이를 <strong>조례·예산·행정사무감사와 후속 제도수정</strong>으로 전환하는가?</div>
+    <ul class="biglist">
+      <li>전환과정을 가능하게 하는 <strong>개인적·조직적·제도적 조건</strong>은 무엇인가?</li>
+      <li>지방의원과 정책지원관은 각각 어떤 역할을 수행하는가?</li>
+      <li>퍼실리테이션과 정치적 경계확장은 어떤 <strong>작동 메커니즘</strong>인가?</li>
+      <li>서비스디자인·코디자인·공론장은 어떤 상황에서 사용되는 실천방법인가?</li>
+      <li>AI는 지식통합·숙의·검증을 지원하는가, 소수의견·갈등·책임소재를 약화하는가?</li>
+      <li>지방의회의 대표성·책임성·공식 권한은 일반 협력적 거버넌스 네트워크와 무엇이 다른가?</li>
+    </ul>
+  </section>
+
+  <!-- ═══ Ⅲ. 왜 지방의회인가 ═══ -->
+  <section class="block" data-screen-label="03 왜 지방의회인가">
+    <div class="sec-head"><div class="num">Ⅲ</div><div class="ttl">왜 지방의회인가</div></div>
+    <p class="p">지방의회가 어댑티브 거버넌스를 <strong>자동으로 수행한다고 전제하지 않는다.</strong> 지방의회는 다음 특성으로 인해 어댑티브 거버넌스의 작동 가능성과 실패조건을 함께 관찰할 수 있는 <strong>대표제적 제도 장</strong>이다.</p>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:38%">지방의회의 제도적 특질</th><th>검토할 거버넌스 기능</th></tr></thead>
+      <tbody>
+        <tr><td><strong>근접성·현장성</strong></td><td>주민 요구와 정책결과의 변화 <em>감지</em></td></tr>
+        <tr><td><strong>다중 행위자 접점</strong></td><td>주민·집행부·전문가·이해관계자 간 <em>지식 연결</em></td></tr>
+        <tr><td><strong>대표성과 정치적 경쟁</strong></td><td>다원적 관점의 표출과 <em>갈등의 제도화</em></td></tr>
+        <tr><td><strong>조례·예산·감사권한</strong></td><td>숙의결과를 <em>공식 정책수단</em>으로 전환</td></tr>
+        <tr><td><strong>반복적 의정과정</strong></td><td>정책결과의 점검과 <em>재의제화</em></td></tr>
+        <tr><td><strong>다중심적 지방제도</strong></td><td>지역별 정책실험과 <em>상호학습</em> 가능성</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><strong>핵심 단서</strong> — 이러한 구조는 잠재적 조건일 뿐이며 실제 작동은 검증대상이다. 본 연구의 질문은 지방의회가 어댑티브한가가 아니라, <em>어떤 조건에서 감지·학습·제도수정이 발생하거나 중단되는가</em>이다.</div>
+  </section>
+
+  <!-- ═══ Ⅳ. 이론적 출발점과 불확실성 ═══ -->
+  <section class="block" data-screen-label="04 이론적 출발점 · G1">
+    <div class="sec-head"><div class="num">Ⅳ</div><div class="ttl">이론적 출발점과 현재의 불확실성</div></div>
+
+    <div class="subsec">
+      <div class="sub-num">01 · 작업정의</div>
+      <h3>어댑티브 거버넌스 <em>작업정의.</em></h3>
+      <p class="p"><strong>어댑티브 거버넌스(adaptive governance, AG)</strong>란 복잡성과 불확실성으로 정책결과를 완전히 예측하기 어려운 상황에서, 다양한 행위자와 지식을 연결하고 정책과 제도의 결과를 관찰·학습하여 <strong>규칙·역할·권한·책임을 수정</strong>하는 거버넌스 과정과 제도적 역량을 의미한다.</p>
       <div class="tbl"><table>
-        <thead><tr><th style="width:18%">지표영역</th><th>의미</th><th style="width:36%">제도적 형태 예시</th></tr></thead>
+        <thead><tr><th style="width:20%">요소</th><th>내용</th></tr></thead>
         <tbody>
-          <tr><td><strong>참여접근성</strong></td><td>주민·이해관계자가 의정절차에 접근할 수 있는가</td><td>공청회 개최 기준·사전안내·자료접근성·온라인 참여</td></tr>
-          <tr><td><strong>의제연결성</strong></td><td>주민 요구가 공식 안건으로 전환되는 경로가 있는가</td><td>청원·민원 처리절차, 상임위 보고, 조례·건의안 연계</td></tr>
-          <tr><td><strong>숙의·조정성</strong></td><td>쟁점과 이해관계가 공개적으로 구조화되는가</td><td>이해관계자 의견청취, 쟁점표, 전문가 의견, 부서 답변</td></tr>
-          <tr><td><strong>의정연계성</strong></td><td>논의 결과가 조례·예산·감사로 연결되는가</td><td>조례 반영, 예산심의 반영, 행정사무감사 지적 연계</td></tr>
-          <tr><td><strong>환류성</strong></td><td>결정 이후 후속조치가 관리되는가</td><td>처리결과 보고, 후속점검, 이행상황 공개, 재논의</td></tr>
-          <tr><td><strong>투명성·기록성</strong></td><td>과정과 결과가 기록·공개되는가</td><td>회의록·심사보고서·공청회 결과보고서·처리결과 공개</td></tr>
+          <tr><td><strong>문제조건</strong></td><td>복잡성 · 불확실성 · 변화 · 상호의존성</td></tr>
+          <tr><td><strong>행위구조</strong></td><td>다층적 행위자 · 분산된 지식 · 상충하는 이해관계</td></tr>
+          <tr><td><strong>작동과정</strong></td><td>감지 · 해석 · 숙의 · 학습 · 실험 · 피드백</td></tr>
+          <tr><td><strong>제도적 결과</strong></td><td>정책수단 · 규칙 · 역할 · 권한 · 책임의 수정</td></tr>
         </tbody>
       </table></div>
+      <p class="note">AG는 단순한 신속성·유연성·참여확대와 동일하지 않다. 새로운 정보와 정책결과가 실제 <strong>제도수정으로 연결되는지</strong>가 핵심이다.</p>
+    </div>
 
-      <div class="minor">연구질문 <span style="color:var(--text-soft);font-weight:400">· 잠정</span></div>
-      <div class="tbl">
-        <table>
-          <tbody>
-            <tr><td style="width:9%"><strong>Q1</strong></td><td>지방의회의 공식 의정절차는 주민 요구를 의제로 연결하고, 이해관계를 조정하며, 논의 결과를 환류시키는 기능을 어떻게 수행하는가?</td></tr>
-            <tr><td style="width:9%"><strong>Q2</strong></td><td>지방의회 퍼실리테이션 제도역량은 어떤 지표영역과 세부지표로 구성될 수 있는가?</td></tr>
-            <tr><td style="width:9%"><strong>Q3</strong></td><td>공청회·상임위·예산심의·행정사무감사·조례심사·주민환류체계는 지방의회별로 어떤 차이를 보이는가?</td></tr>
-            <tr><td style="width:9%"><strong>Q4</strong></td><td>도출된 지표는 전문가 검토에서 적합성·명확성·측정가능성·현장적합성을 확보하는가?</td></tr>
-          </tbody>
-        </table>
+    <div class="subsec">
+      <div class="sub-num">02 · 게이트 G1</div>
+      <h3>AG의 <em>이론적 위치</em> 판정.</h3>
+      <p class="p">AG를 학위논문의 확정된 상위이론으로 전제하지 않는다. 2026∼2027년 이론검토와 예비사례 분석을 통해 다음 세 위치 중 하나로 판정한다.</p>
+      <div class="gate-row"><span class="gate">Gate G1</span><span class="lb">AG는 핵심 설명이론인가 · 중범위 분석틀인가 · 문제설정 프레임인가</span></div>
+      <div class="tbl"><table>
+        <thead><tr><th style="width:20%">판정</th><th style="width:30%">위치</th><th>판단기준</th></tr></thead>
+        <tbody>
+          <tr><td><strong>G1-A</strong><br/><small>핵심 설명이론</small></td><td>지방의회의 행위와 결과를 독자적으로 설명</td><td>작동 메커니즘, 경쟁이론 대비 추가 설명력, 실패조건이 확인됨</td></tr>
+          <tr><td><strong>G1-B</strong><br/><small>중범위 분석틀</small></td><td>사례와 정책과정을 구조화하는 분석범주</td><td>감지·학습·환류가 유용하나 독자적인 인과명제는 제한됨</td></tr>
+          <tr><td><strong>G1-C</strong><br/><small>문제설정 프레임</small></td><td>복잡성과 불확실성을 제시하는 배경</td><td>현상을 정당화·동기화하지만 직접적인 관찰·설명모형으로 연결되지 않음</td></tr>
+        </tbody>
+      </table></div>
+      <div class="chain">
+        <div class="chain-row"><span class="chain-num">1</span><span>어떤 조건에서 <strong>감지·학습·제도수정</strong>이 발생하는가?</span></div>
+        <div class="chain-arr">↓</div>
+        <div class="chain-row"><span class="chain-num">2</span><span>정책역량·협력적 거버넌스·정치적 경계확장보다 <strong>무엇을 더 설명</strong>하는가?</span></div>
+        <div class="chain-arr">↓</div>
+        <div class="chain-row"><span class="chain-num">3</span><span>AG가 작동하지 않았다고 판단할 수 있는 <strong>실패조건</strong>은 무엇인가?</span></div>
       </div>
-
-      <div class="minor">연구방법 <span style="color:var(--gold);font-weight:600">※ 연구 상황에 따라 수정 가능</span></div>
-      <div class="tbl">
-        <table>
-          <tbody>
-            <tr><td style="width:22%"><strong>접근</strong></td><td>제도역량 지표개발 — 이론문헌 검토 → 법규·조례·회의규칙 분석 → 회의록·공청회·감사자료 내용분석 → 비교사례 → 전문가 델파이 → 시범적용으로 지표 작동성 점검</td></tr>
-            <tr><td><strong>자료 · 대상</strong></td><td>법규·조례·회의규칙, 회의록·검토보고서·공청회/감사 결과보고서 등 문서자료 + 광역·기초의회 비교사례</td></tr>
-            <tr><td><strong>분석</strong></td><td>제도·문서 내용분석으로 6개 지표영역 도출 → 전문가 델파이로 적합성·명확성·측정가능성·현장적합성 검토 → 의회 간 비교로 지표 변별력 확인 (가중치는 논문 5에서 처리)</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="minor">기대 기여</div>
-      <p class="p">지방의회의 공식 제도·절차가 주민 요구를 의제로 연결·조정·환류하는 구조를 갖추었는지를 측정하는 제도역량 지표를 개발하여, 지방의회 제도 설계·운영을 진단·개선할 기준을 제공한다.</p>
-      <p class="note">※ 본 장의 연구설계는 잠정적이며, 논문 1(척도개발)의 결과와 연구 진행 상황에 따라 구체화·조정된다. 연구질문·방법·표본은 지도교수 면담을 거쳐 확정한다.</p>
     </div>
   </section>
 
-  <!-- ============================================================== -->
-  <!-- ═══ Ⅴ. 논문 4 ═══ -->
-  <!-- ============================================================== -->
-  <section class="block" data-screen-label="05 논문 4 · 외부효과·수용성">
-    <div class="sec-head">
-      <div class="num">Ⅴ</div>
-      <div class="ttl">논문 4 · 주민·집행부 관점의 외부효과·수용성 검증</div>
+  <!-- ═══ Ⅴ. 후보 연구경로와 층위 배치 ═══ -->
+  <section class="block" data-screen-label="05 후보 연구경로 C1–C4">
+    <div class="sec-head"><div class="num">Ⅴ</div><div class="ttl">후보 연구경로와 층위 배치</div></div>
+    <p class="p">학위논문은 후보 중 하나를 즉시 선택하는 문제가 아니라, <strong>각 개념을 어느 층위에 배치하고 무엇을 실증할 것인지</strong> 결정하는 문제이다.</p>
+
+    <div class="tree-hero">
+      <span class="pc-tag">장기 연구프로그램 · C4</span>
+      <h4>지방의회의 적응적 거버넌스가 인간적·제도적·기술적 조건에서 어떻게 작동하는가</h4>
+      <p>G1 판정(AG의 위치)을 정점으로, 아래 세 경로가 분기한다 — C1 행동역량 · C2 과정·제도 · C3 AI 매개.</p>
     </div>
-    <div class="subsec">
-      <div class="callout">
-        <small style="display:block;color:var(--accent);font-weight:600;letter-spacing:.04em;margin-bottom:6px">논문 4 · 제목(가제)</small>
-        <strong>「주민·집행부 관점에서 본 지방의회 퍼실리테이션 역량의 외부효과와 수용성」</strong><br/>
-        <em>External Effects and Acceptability of Local Council Facilitative Capacity: Citizen and Executive Perspectives</em>
+    <div class="cmap-arrow" style="padding:14px 0 4px"><span class="ln"></span><span class="hd">▼</span></div>
+
+    <div class="pathgrid">
+      <div class="pathcard">
+        <span class="pc-tag">C1 · 행동역량</span>
+        <h4>퍼실리테이팅 행동역량</h4>
+        <p>지방의원 또는 의원–정책지원인력의 다음 행동이 독립적 구성개념을 형성하는지 검토한다.</p>
+        <ul>
+          <li>현장정보와 주민요구의 의제 번역</li>
+          <li>상충하는 지식과 이해관계의 연결 · 갈등조정</li>
+          <li>참여·숙의 절차의 구조화</li>
+          <li>조례·예산·감사로의 공식화 · 재점검</li>
+        </ul>
+        <div class="risk"><b>핵심 위험</b> — 퍼실리테이브 리더십·네트워크 거버넌스 리더십·정치적 경계확장·transversal leadership과의 중복</div>
       </div>
-
-      <div class="sub-num">01 · 대상 · 분석수준</div>
-      <h3>외부관계 수준 — <em>새로운 척도개발이 아닌, 앞선 역량의 외부 타당화.</em></h3>
-      <div class="callout">논문 4는 <strong>또 하나의 역량척도 개발이 아니다.</strong> 주민·집행부는 지방의회 퍼실리테이션 역량을 <em>보유하는 주체</em>가 아니라, 지방의회가 연결·조정하는 <strong>외부 경계의 대상이자 효과가 나타나는 관계 영역</strong>이다. 따라서 논문 4는 논문 1~3에서 개발한 <strong>개인·조직지원·제도 역량이 실제로 주민과 집행부에게 의미 있게 인식·수용되는지</strong>를 검증하는 외부 타당화 연구로 둔다.</div>
-
-      <div class="minor">연구질문 <span style="color:var(--text-soft);font-weight:400">· 잠정</span></div>
-      <div class="tbl">
-        <table>
-          <tbody>
-            <tr><td style="width:9%"><strong>Q1</strong></td><td>주민과 집행부는 지방의회의 퍼실리테이팅 역할(의제화·조정·감시·환류)을 어떻게 인식하는가?</td></tr>
-            <tr><td style="width:9%"><strong>Q2</strong></td><td>지방의원·의정지원체계·제도·절차 역량은 주민의 대표성·신뢰·반응성·참여효능감 인식과 관련되는가?</td></tr>
-            <tr><td style="width:9%"><strong>Q3</strong></td><td>지방의회 퍼실리테이션 역량은 집행부의 협력가능성·정책수용성·이행가능성 인식과 관련되는가?</td></tr>
-            <tr><td style="width:9%"><strong>Q4</strong></td><td>주민과 집행부의 인식 차이는 어떤 영역에서 발생하며, 이를 완화하기 위한 교육·프로그램 수요는 무엇인가?</td></tr>
-          </tbody>
-        </table>
+      <div class="pathcard">
+        <span class="pc-tag">C2 · 과정·제도</span>
+        <h4>지방의회 과정·제도 경로</h4>
+        <p>AG를 단일 심리척도로 측정하지 않고, 정책신호가 제도변화로 연결되는 과정을 분석한다.</p>
+        <ul>
+          <li>감지 → 해석·의제번역 → 지식통합</li>
+          <li>숙의·갈등조정 → 공식 의정활동</li>
+          <li>집행결과 점검 → 재의제화·제도수정</li>
+        </ul>
+        <div class="risk">현재 가장 유력한 과정연구 후보이나 <b>G1 판정 전까지 확정하지 않음</b></div>
       </div>
-
-      <div class="minor">변수 구조 <span style="color:var(--text-soft);font-weight:400">· 잠정</span></div>
-      <div class="tbl">
-        <table>
-          <thead><tr><th style="width:20%">구분</th><th>내용</th></tr></thead>
-          <tbody>
-            <tr><td><strong>독립변수</strong></td><td>논문 1에서 개발한 지방의원 퍼실리테이팅 역량(주민·집행부 인식 측정)을 중심으로, 논문 2·3의 지원역량·제도역량은 보조 설명변수 또는 사례 맥락으로 활용</td></tr>
-            <tr><td><strong>종속변수</strong></td><td>주민 — 대표성 인식·신뢰·반응성·참여효능감 / 집행부 — 협력가능성·정책협의 수용성·실행가능성 인식</td></tr>
-            <tr><td><strong>매개·조절</strong></td><td>절차적 공정성·정보공유·상호이해·갈등완화(매개) / 사안의 갈등수준·주민참여 경험·의회 규모·정당구성(조절)</td></tr>
-            <tr><td><strong>처방</strong></td><td>주민·집행부 인식 차이에서 도출되는 교육·프로그램 필요 영역</td></tr>
-          </tbody>
-        </table>
+      <div class="pathcard">
+        <span class="pc-tag">C3 · AI 매개</span>
+        <h4>AI 매개 지방의회</h4>
+        <p>AI를 기술수용·업무효율이 아니라 다음 민주적·인식론적 결과와 연결한다.</p>
+        <ul>
+          <li>근거연계성·출처투명성 · 소수의견 보존</li>
+          <li>의견요약과 갈등의 평탄화</li>
+          <li>검증행동과 자동화 의존 · 인간의 판단재량</li>
+          <li>책임귀속과 기록가능성</li>
+        </ul>
+        <div class="risk">도전학기·소논문 B 결과로 <b>2027년 말 학위논문 편입 여부 결정</b></div>
       </div>
-
-      <div class="minor">연구방법 <span style="color:var(--gold);font-weight:600">※ 연구 상황에 따라 수정 가능</span></div>
-      <div class="tbl">
-        <table>
-          <tbody>
-            <tr><td style="width:22%"><strong>접근</strong></td><td>효과검증·외부 타당화 — 주민·집행부 인식조사 → 집단 간 비교 → 회귀분석·구조방정식·다집단 분석</td></tr>
-            <tr><td><strong>자료 · 대상</strong></td><td>주민 설문, 집행부 공무원 설문, 필요 시 사례지역 인터뷰</td></tr>
-            <tr><td><strong>분석</strong></td><td>집단 간 평균비교 → 역량 인식과 외부효과의 관계 검증 → 인식구조 차이 분석</td></tr>
-          </tbody>
-        </table>
+      <div class="pathcard is-c4">
+        <span class="pc-tag">C4 · 통합</span>
+        <h4>장기 통합 연구프로그램</h4>
+        <p>C4는 학위논문의 단일 실증모형이 아니라 장기 연구정체성이다.</p>
+        <ul>
+          <li>AG: 이론적·분석적 기반</li>
+          <li>퍼실리테이션: 인간적 작동 메커니즘</li>
+          <li>서비스디자인·코디자인·공론장: 실천방법</li>
+          <li>AI: 사회기술적 조건 · 제도·외부관계: 후속 층위</li>
+        </ul>
+        <div class="risk">학위논문의 단일 실증경로로는 <b>범위 과부하</b> — 장기 후속으로 배치</div>
       </div>
-
-      <div class="minor">기대 기여</div>
-      <p class="p">논문 1~3의 척도·지표가 실제 외부관계에서 작동하는지를 검증해 <strong>외적 타당도</strong>를 확보하고, 주민·집행부의 인식 차이와 그로부터 도출되는 교육·프로그램 필요 영역을 제시한다. 논문 4의 산출물은 새로운 척도가 아니라 <strong>외부효과 검증모형</strong>이다.</p>
-      <p class="note">※ 본 장의 연구설계는 잠정적이며, 논문 1~3의 결과와 연구 진행 상황에 따라 구체화·조정된다. 교육·프로그램 필요성은 논문 4의 종속적 산출물 또는 논문 5의 정책제언으로 처리한다. 연구질문·방법·표본은 지도교수 면담을 거쳐 확정한다.</p>
     </div>
   </section>
 
-  <!-- ============================================================== -->
-  <!-- ═══ Ⅵ. 논문 5 ═══ -->
-  <!-- ============================================================== -->
-  <section class="block" data-screen-label="06 논문 5 · 종합 평가">
-    <div class="sec-head">
-      <div class="num">Ⅵ</div>
-      <div class="ttl">논문 5 · 지방의회 종합 퍼실리테이션 역량 평가체계</div>
+  <!-- ═══ Ⅵ. 후보경로 비교 ═══ -->
+  <section class="block" data-screen-label="06 후보경로 비교">
+    <div class="sec-head"><div class="num">Ⅵ</div><div class="ttl">후보경로 비교</div></div>
+    <div class="eval-legend">
+      <span><b class="ev-a">◎</b>강함</span><span><b class="ev-b">○</b>보통</span><span><b class="ev-c">△</b>약함</span><span><b class="ev-d">✕</b>취약</span>
     </div>
+    <div class="tbl eval"><table>
+      <thead><tr><th style="width:28%">기준</th><th>C1 행동역량</th><th>C2 과정·제도</th><th>C3 AI 매개</th><th>C4 통합형</th></tr></thead>
+      <tbody>
+          <tr><td><strong>연구대상 명확성</strong></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-c">△</span></td></tr>
+          <tr><td><strong>핵심개념 명확성</strong></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-c">△</span></td></tr>
+          <tr><td><strong>AG 연결성</strong></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-a">◎</span></td></tr>
+          <tr><td><strong>지방의회 고유성</strong></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-a">◎</span></td></tr>
+          <tr><td><strong>행정학·정책학 기여</strong></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-a">◎</span></td></tr>
+          <tr><td><strong>측정·조작화</strong></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-d">✕</span></td></tr>
+          <tr><td><strong>질적자료 확보</strong></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-c">△</span></td><td><span class="ev ev-d">✕</span></td></tr>
+          <tr><td><strong>양적자료 확보</strong></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-c">△</span></td><td><span class="ev ev-c">△</span></td><td><span class="ev ev-d">✕</span></td></tr>
+          <tr><td><strong>완수 가능성</strong></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-c">△</span></td><td><span class="ev ev-d">✕</span></td></tr>
+          <tr><td><strong>3-paper 적용</strong></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-c">△</span></td></tr>
+          <tr><td><strong>후속 확장성</strong></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-a">◎</span></td></tr>
+          <tr><td><strong>독창성</strong></td><td><span class="ev ev-c">△</span></td><td><span class="ev ev-b">○</span></td><td><span class="ev ev-a">◎</span></td><td><span class="ev ev-b">○</span></td></tr>
+        <tr><td><strong>핵심 위험</strong></td><td><small>기존 리더십 개념과 중복</small></td><td><small>추상적 과정의 과잉확장</small></td><td><small>기술변화와 재현성</small></td><td><small>범위 과부하</small></td></tr>
+      </tbody>
+    </table></div>
+    <div class="minor">현재 판단</div>
+    <ul class="biglist">
+      <li><strong>C1</strong>은 측정 가능성이 높지만 독창성과 분석수준을 입증해야 한다.</li>
+      <li><strong>C2</strong>는 지방의회 고유성을 설명할 가능성이 높지만 단일 척도로 측정해서는 안 된다.</li>
+      <li><strong>C3</strong>는 독창성과 확장성이 높지만 기술변화·윤리·자료 접근 위험이 크다.</li>
+      <li><strong>C4</strong>는 장기 연구정체성으로는 적합하나 학위논문의 단일 실증경로로는 부적합하다.</li>
+    </ul>
+  </section>
+
+  <!-- ═══ Ⅶ. 구성개념과 연구설계 쟁점 ═══ -->
+  <section class="block" data-screen-label="07 구성개념 · 설계 쟁점">
+    <div class="sec-head"><div class="num">Ⅶ</div><div class="ttl">구성개념과 연구설계의 핵심쟁점</div></div>
+
     <div class="subsec">
-      <div class="callout">
-        <small style="display:block;color:var(--accent);font-weight:600;letter-spacing:.04em;margin-bottom:6px">논문 5 · 제목(가제)</small>
-        <strong>「지방의회 종합 퍼실리테이션 역량 평가체계 개발 — 다층 통합 모형」</strong><br/>
-        <em>An Integrated Multi-Level Assessment System of Facilitative Capacity in Local Councils</em>
+      <div class="sub-num">01 · 판별타당도</div>
+      <h3>판별타당도는 통계 이전에 <em>이론에서 시작한다.</em></h3>
+      <div class="tbl"><table>
+        <thead><tr><th style="width:22%">판별영역</th><th>확인할 질문</th></tr></thead>
+        <tbody>
+          <tr><td><strong>개념</strong></td><td>기존 경계확장·리더십보다 무엇을 추가하는가</td></tr>
+          <tr><td><strong>행위주체</strong></td><td>공공관리자가 아닌 선출직 의원을 연구해야 하는 이유는 무엇인가</td></tr>
+          <tr><td><strong>제도맥락</strong></td><td>대표권·조례·예산·감사권한이 어떤 차이를 만드는가</td></tr>
+          <tr><td><strong>핵심행동</strong></td><td>협업 촉진을 넘어 공식 의제화와 제도환류가 확인되는가</td></tr>
+          <tr><td><strong>결과변수</strong></td><td>협력·신뢰 외에 정책수정·재의제화·책임성을 설명하는가</td></tr>
+          <tr><td><strong>분석수준</strong></td><td>개인역량·집합역량·조직조건·제도조건을 구분할 수 있는가</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">HTMT, Fornell–Larcker, 증분타당도는 <strong>이론적 판별 이후</strong>의 검증수단이다.</p>
+    </div>
+
+    <div class="subsec">
+      <div class="sub-num">02 · 측정모형</div>
+      <h3>반영·형성·과정·<em>다층모형.</em></h3>
+      <p class="p">의제화·지식연결·갈등조정·절차설계·제도환류를 <strong>다차원 반영척도로 미리 확정하지 않는다.</strong></p>
+      <div class="tbl"><table>
+        <thead><tr><th style="width:20%">모형</th><th>의미</th></tr></thead>
+        <tbody>
+          <tr><td><strong>반영모형</strong></td><td>하나의 잠재적 역량이 여러 행동에 공통으로 반영됨</td></tr>
+          <tr><td><strong>형성모형</strong></td><td>서로 다른 기능들이 결합하여 상위 역량을 형성함</td></tr>
+          <tr><td><strong>과정모형</strong></td><td>감지부터 제도환류까지 시간적·인과적으로 연결됨</td></tr>
+          <tr><td><strong>다층모형</strong></td><td>개인·지원체계·제도·외부관계가 서로 다른 수준에서 작용함</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout">Grøn과 Jacobsen의 transversal leadership 척도는 세 차원으로 이론화되었으나 차원 간 판별타당도가 확보되지 않아 실질적인 <strong>1차원 구성개념</strong>으로 처리되었다. 이는 본 연구의 잠정 차원이 붕괴한다는 직접 증거가 아니라, <em>측정구조를 사전에 확정하지 말아야 한다는 경고</em>로 활용한다.</div>
+    </div>
+
+    <div class="subsec">
+      <div class="sub-num">03 · 판정체계</div>
+      <h3>C1 <em>유지·수정·중단</em> 판정.</h3>
+      <div class="pathgrid">
+        <div class="pathcard">
+          <span class="pc-tag">유지</span>
+          <h4>독립 구성개념 유지</h4>
+          <p>다음 중 <strong>세 가지 이상</strong> 충족 시 독립적 구성개념 또는 구성개념 확장 가능성을 유지한다.</p>
+          <ul>
+            <li>기존 경쟁개념에 없는 지방의회 특유 행동이 반복 확인됨</li>
+            <li>주민·현장정보의 공식 의제화 행동이 확인됨</li>
+            <li>조례·예산·감사와 후속점검을 연결하는 행동이 확인됨</li>
+            <li>성격·리더십이 아니라 역할수행 능력으로 구별됨</li>
+          </ul>
+        </div>
+        <div class="pathcard">
+          <span class="pc-tag">수정 A</span>
+          <h4>맥락 확장</h4>
+          <p>기존 정치적 경계확장·transversal leadership과 행동은 유사하지만, <strong>선출직 대표성·공식 권한·지방의회 맥락</strong>이 추가되는 경우.</p>
+          <ul>
+            <li>정치적 경계확장의 지방의회 적용</li>
+            <li>지방의회형 퍼실리테이브 리더십</li>
+            <li>기존 척도의 지방의원 적용·측정동일성 검토</li>
+          </ul>
+        </div>
+        <div class="pathcard">
+          <span class="pc-tag">수정 B</span>
+          <h4>측정모형 전환</h4>
+          <p>다음 결과는 중단이 아니라 <strong>모형전환 사유</strong>로 처리한다.</p>
+          <ul>
+            <li>잠정 하위차원이 하나의 요인으로 수렴</li>
+            <li>요소들이 상위 역량을 형성하거나 시간적 과정단계로 나타남</li>
+            <li>개인보다 의원–지원관–사무기구의 집합적 역할이 중요함</li>
+            <li>개인·조직·제도 수준의 다층구조가 요구됨</li>
+          </ul>
+        </div>
+        <div class="pathcard">
+          <span class="pc-tag">중단</span>
+          <h4>척도개발 중단</h4>
+          <p>다음 <strong>두 조건을 모두</strong> 충족할 경우 독립적인 지방의원 퍼실리테이팅 역량 척도개발을 중단한다.</p>
+          <ul>
+            <li>관찰행동·결과가 기존 경쟁개념으로 충분히 설명됨</li>
+            <li>지방의회 맥락에서 추가할 고유 행동영역·결과변수·분석수준이 확인되지 않음</li>
+          </ul>
+          <div class="risk">자료·표본 확보의 어려움은 이론적 중단이 아니라 <b>연구설계 변경사유</b>로 별도 관리</div>
+        </div>
       </div>
-
-      <div class="sub-num">01 · 대상 · 분석수준</div>
-      <h3>종합 · 다층 통합 — <em>네 수준의 척도·지표를 하나의 평가체계로.</em></h3>
-      <div class="callout">논문 1의 <strong>개인역량 척도</strong>, 논문 2의 <strong>의정지원체계 지표</strong>, 논문 3의 <strong>제도역량 지표</strong>, 논문 4의 <strong>외부효과 검증 결과</strong>를 통합하여 지방의회 종합 퍼실리테이션 역량 평가체계를 개발한다. 개인역량·조직지원·제도절차·외부효과 네 영역을 아우르는 진단표와 개선방향을 산출한다.</div>
-
-      <div class="minor">연구질문 <span style="color:var(--text-soft);font-weight:400">· 잠정</span></div>
-      <div class="tbl">
-        <table>
-          <tbody>
-            <tr><td style="width:9%"><strong>Q1</strong></td><td>지방의회 퍼실리테이션 역량은 어떤 평가영역과 지표로 통합될 수 있는가?</td></tr>
-            <tr><td style="width:9%"><strong>Q2</strong></td><td>개인역량·조직지원·제도절차·외부효과의 상대적 중요도(가중치)는 어떻게 설정할 수 있는가?</td></tr>
-            <tr><td style="width:9%"><strong>Q3</strong></td><td>종합 평가체계는 실제 지방의회에 적용 가능하며, 의회 간 역량 차이를 진단·개선하는 데 활용될 수 있는가?</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="minor">연구방법 <span style="color:var(--gold);font-weight:600">※ 연구 상황에 따라 수정 가능</span></div>
-      <div class="tbl">
-        <table>
-          <tbody>
-            <tr><td style="width:22%"><strong>접근</strong></td><td>역량 평가체계 개발 — 지표통합 + 전문가 검토로 평가영역의 상대적 중요도 검토(필요 시 AHP 가중치 설정) + 시범적용 범위의 사례비교</td></tr>
-            <tr><td><strong>자료 · 대상</strong></td><td>논문 1~4 산출물, 전문가 의견, 지방의회 사례자료</td></tr>
-            <tr><td><strong>분석</strong></td><td>평가영역·지표 통합 → 상대적 중요도 검토(필요 시 가중치 설정) → 시범적용을 통한 진단표·개선방향 도출(종합지수 산출은 선택)</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="minor">기대 기여</div>
-      <p class="p">개인·조직·제도·외부효과를 아우르는 지방의회 종합 퍼실리테이션 역량 평가체계를 제시하여, 학술적 통합 모형과 실천적 진단 도구를 동시에 제공한다.</p>
-      <p class="note">※ 논문 5는 독립 실증논문이라기보다 <strong>통합모형·평가체계 개발 논문</strong>이다. 소논문형 체제가 허용되지 않을 경우 학위논문의 <strong>통합 결론장</strong>으로 전환할 수 있다. 연구질문·방법·표본은 지도교수 면담을 거쳐 확정한다.</p>
     </div>
   </section>
 
-  <!-- ============================================================== -->
-  <!-- ═══ Ⅶ. 종합 연구 로드맵 (수강·학술논문·로드맵 통합) ═══ -->
-  <!-- ============================================================== -->
-  <section class="block" data-screen-label="07 종합 연구 로드맵">
-    <div class="sec-head">
-      <div class="num">Ⅶ</div>
-      <div class="ttl">종합 연구 로드맵</div>
-    </div>
-    <p class="p">학기별 수강 계획과 학술논문 투고 계획을 하나의 종합 연구 로드맵으로 통합한다. 아래에 <strong>① 학기별 수강 계획 → ② 학기별 학술논문 투고 계획 → ③ 코스워크·학술논문·마일스톤을 학기 단위로 맞물린 통합 타임라인</strong>을 순서대로 제시한다.</p>
+  <!-- ═══ Ⅷ. 경험적 연구설계 후보 ═══ -->
+  <section class="block" data-screen-label="08 경험적 연구설계 후보">
+    <div class="sec-head"><div class="num">Ⅷ</div><div class="ttl">경험적 연구설계 후보</div></div>
 
     <div class="subsec">
-      <div class="sub-num">01 · 학기별 수강 계획</div>
-      <h3>코스워크 <em>이수 계획.</em></h3>
-    <p class="p">석박사통합과정 이수학점: 전공과목 42학점 이상 + 선택과목 18학점 이하 = <strong>총 60학점 이상</strong>. 2026-1·2학기에 12학점 수강 가능 학기를 활용하여 이후 학위논문 연구에 투입할 시간을 확보한다.</p>
-
-    <div class="minor">2026 봄학기 (1기, 진행 중) · 12학점</div>
-    <div class="tbl"><table>
-      <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th style="width:10%">학점</th><th style="width:18%">비고</th></tr></thead>
-      <tbody>
-        <tr><td><span class="mono">GSP5048-01</span></td><td>조사연구방법론</td><td>3</td><td><span class="badge-m">필수</span></td></tr>
-        <tr><td><span class="mono">GSP5260-01</span></td><td>시민참여와 거버넌스</td><td>3</td><td></td></tr>
-        <tr><td><span class="mono">GSP5004-01</span></td><td>조직학이론</td><td>3</td><td></td></tr>
-        <tr><td><span class="mono">GSP5024-01</span></td><td>정부-기업관계론</td><td>3</td><td></td></tr>
-      </tbody>
-    </table></div>
-
-    <div class="minor">2026 가을학기 (2기) · 이론 심화 · 12학점</div>
-    <div class="tbl"><table>
-      <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th style="width:10%">학점</th><th style="width:18%">비고</th></tr></thead>
-      <tbody>
-        <tr><td><span class="mono">CHS7007-I1</span></td><td>AI기반전략적의사결정</td><td>3</td><td><button type="button" class="btn-challenge" aria-expanded="false" aria-controls="note-challenge" onclick="(function(b){var n=document.getElementById('note-challenge');var on=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!on));n.classList.toggle('is-active',!on);})(this)">도전학기</button></td></tr>
-        <tr><td><span class="mono">GSP5109-01</span></td><td>행정학이론세미나</td><td>3</td><td></td></tr>
-        <tr><td><span class="mono">GSP5107-01</span></td><td>정책학이론세미나</td><td>3</td><td></td></tr>
-        <tr><td><span class="mono">GSP5216-01</span></td><td>행정계량분석</td><td>3</td><td><span class="badge-m">필수</span></td></tr>
-        <tr><td><span class="mono">COV7003-I7</span></td><td>논문작성법및연구윤리1</td><td>선수</td><td><span class="badge-m">필수</span></td></tr>
-      </tbody>
-    </table></div>
-    <p class="note" id="note-challenge">도전학기: 신인류AI사피엔스경험디자인(CHS7006) 청강</p>
-
-    <div class="minor">2027 봄학기 (3기) · 질적 연구 진입 · 9학점</div>
-    <div class="tbl"><table>
-      <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th style="width:10%">학점</th><th style="width:22%">비고</th></tr></thead>
-      <tbody>
-        <tr><td><span class="mono">GSP5235-01</span></td><td>의회와 국정관리</td><td>3</td><td>월요일</td></tr>
-        <tr><td><span class="mono">PSY5136-01</span></td><td>구조방정식이론</td><td>3</td><td>수요일</td></tr>
-        <tr><td><span class="mono">GSP5204-01</span></td><td>사회혁신플랫폼과 정책설계</td><td>3</td><td>수요일</td></tr>
-      </tbody>
-    </table></div>
-    <p class="note">2027년 2월 충주시의회 정책지원관 재계약 시기</p>
-
-    <div class="minor">2027 가을학기 (4기) · 논문제출자격시험 대비 · 9학점</div>
-    <div class="tbl"><table>
-      <thead><tr><th style="width:20%">학수번호</th><th>과목명</th><th style="width:10%">학점</th><th style="width:24%">비고</th></tr></thead>
-      <tbody>
-        <tr><td><span class="mono">GSP5271-01</span></td><td>사회과학연구방법론</td><td>3</td><td><span class="badge-m">★ 논자시</span></td></tr>
-        <tr><td><span class="mono">GSP5006-01</span></td><td>지방정부와 행정</td><td>3</td><td><span class="badge-m">★ 논자시</span></td></tr>
-        <tr><td><span class="mono">GSP5040-01</span></td><td>갈등관리</td><td>3</td><td></td></tr>
-      </tbody>
-    </table></div>
-
-    <div class="minor">2028 봄·가을학기 (5–6기) · 본연구 및 학위논문 작성 · 9+9학점</div>
-    <div class="tbl"><table>
-      <thead><tr><th style="width:14%">학기</th><th>과목 구성</th><th style="width:10%">학점</th><th style="width:22%">비고</th></tr></thead>
-      <tbody>
-        <tr><td><strong>2028-1</strong></td><td>전공필수 + 토요일 개설 선택과목 (시간표 확인 후 결정)</td><td>9</td><td><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="btn-challenge">논자시 응시</span><span class="btn-challenge">예심 준비</span></div></td></tr>
-        <tr><td><strong>2028-2</strong></td><td>전공필수 + 토요일 개설 선택과목 (혼합연구방법론 개설 시 우선)</td><td>9</td><td><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="badge-m">학위논문 작성</span><span class="badge-m">+연구학기</span></div></td></tr>
-      </tbody>
-    </table></div>
-    <p class="p">✦ 논자시 응시(사회과학연구방법론 + 지방정부와 행정) / 선택과목 2개는 KCI 논문게재 실적으로 면제 신청<br/>✦ 본조사 설문 실시 → EFA → CFA → 학위논문 예심·본심</p>
-
-    <div class="minor">2028년 수업 선택과목 후보 · 전공 4 + 타전공 2<br/>타 대학원·타 전공 포함 (인터랙션사이언스/융합정보디자인/소셜이노베이션융합전공/미래정책대학원/미디어커뮤니케이션전공 등)</div>
-    <div class="tbl"><table>
-      <thead><tr><th style="width:18%">학수번호</th><th>과목명</th><th style="width:22%">소속</th><th style="width:20%">비고</th></tr></thead>
-      <tbody>
-        <tr><td><span class="mono">GSP5049-01</span></td><td>질적연구방법론</td><td>국정전문대학원</td><td><span class="badge-m">2028년 1학기 수강</span></td></tr>
-        <tr><td><span class="mono">GSP5233-01</span></td><td>거버넌스특강</td><td>국정전문대학원</td><td><span class="badge-m">2028년 2학기 수강</span></td></tr>
-        <tr><td><span class="mono">GSP5261-01</span></td><td>혼합연구방법론</td><td>국정전문대학원</td><td><span class="badge-m">2028년 2학기 수강</span></td></tr>
-        <tr><td><span class="mono">GSP5165-01</span></td><td>혁신발전론</td><td>국정전문대학원</td><td></td></tr>
-        <tr><td><span class="mono">GSP5222-01</span></td><td>지방재정의이해</td><td>국정전문대학원</td><td></td></tr>
-        <tr><td><span class="mono">GSP5243-01</span></td><td>살기좋은도시를위한정책</td><td>국정전문대학원</td><td></td></tr>
-        <tr><td><span class="mono">GSP5230-01</span></td><td>과학기술정책과 거버넌스</td><td>국정전문대학원</td><td></td></tr>
-        <tr><td><span class="mono">SIC5026-01</span></td><td>사회혁신이론및사례연구</td><td>소셜이노베이션융합</td><td></td></tr>
-        <tr><td><span class="mono">GFP5030-01</span></td><td>미래정책기반연구</td><td>미래정책대학원</td><td></td></tr>
-        <tr><td><span class="mono">GFP5036-01</span></td><td>디지털기술과미래정책연구</td><td>미래정책대학원</td><td></td></tr>
-      </tbody>
-    </table></div>
+      <div class="sub-num">01 · C2 경로</div>
+      <h3>내재적 <em>단일사례설계.</em></h3>
+      <p class="p">C2 경로를 추진하는 경우 하나의 지방의회를 주 사례로 설정하고, 복수의 정책과정을 하위 분석단위로 설정하는 <strong>내재적 단일사례설계(single embedded case study design)</strong>를 우선 검토한다.</p>
+      <div class="minor">예비 단계</div>
+      <div class="chain">
+        <div class="chain-row"><span class="chain-num">1</span><span><strong>2026년 여름</strong> — 비식별 사례 스케치 3건</span></div>
+        <div class="chain-arr">↓</div>
+        <div class="chain-row"><span class="chain-num">2</span><span><strong>2026년 하반기</strong> — 공개자료 기반 사례 후보 3∼6건 목록화</span></div>
+        <div class="chain-arr">↓</div>
+        <div class="chain-row"><span class="chain-num">3</span><span><strong>IRB·자료접근성 확인 후</strong> — 정식 사례와 인터뷰 범위 확정</span></div>
+      </div>
+      <div class="minor">사례유형</div>
+      <ul class="biglist">
+        <li>주민 요구가 <strong>제도수정으로 연결</strong>된 사례</li>
+        <li>의정활동은 있었으나 <strong>후속 환류가 중단</strong>된 사례</li>
+        <li>갈등·정보가 존재했으나 <strong>공식 의제가 되지 못한</strong> 사례</li>
+        <li>행정사무감사 후 제도개선이 이루어진 사례</li>
+        <li>정책결과가 재검토되어 조례·예산이 변경된 사례</li>
+      </ul>
     </div>
 
     <div class="subsec">
-      <div class="sub-num">02 · 학기별 학술논문 투고 계획</div>
-      <h3>학술논문 <em>투고 계획.</em></h3>
-    <p class="p">학술지 투고 논문은 박사학위논문의 이론적·방법론적 준비 과정으로 추진하며, 투고 여부와 순서는 지도교수 면담·자료 확보 가능성·학술지 심사 일정에 따라 조정한다. 진행 중인 <strong>①②③</strong>은 기술변화·지역 맥락·정책여정의 예비연구이며, <strong>④~⑥</strong>은 퍼실리테이팅 역량의 측정 기반(행정부담 개념화 → AHP 우선순위 → 질적 개념화)을 직접 생산하는 박사논문 직접 연계 연구로, 시기와 목표 저널은 자료 확보·진행 상황에 따라 별도 확정한다.</p>
-
-    <div class="minor">진행 중 학술논문 ①②③ — 박사논문 2장 예비연구</div>
-    <div class="tbl"><table>
-      <thead><tr><th style="width:10%">구분</th><th style="width:13%">시기</th><th>논문 제목(안)</th><th style="width:15%">방법론</th><th style="width:19%">목표 저널 · 상태</th></tr></thead>
-      <tbody>
-        <tr><td><strong>진행 ①</strong></td><td>2026-1 → 방학</td><td>자치입법 과정에서 생성형 AI 활용 의향의 결정 요인</td><td>UTAUT · 구조방정식</td><td>의정논총<small>진행 중</small></td></tr>
-        <tr><td><strong>진행 ②</strong></td><td>2026-1 → 학회</td><td>창업가의 출신지역에 따른 지역활성화 사업 인식의 차이</td><td>집단 비교 · 설문</td><td>한국지방자치학회 발표<small>진행 중</small></td></tr>
-        <tr><td><strong>진행 ③</strong></td><td>2026-1 → 2026-2</td><td>공공서비스디자인에 대한 공무원의 인식: Q방법론 연구</td><td>Q방법론</td><td>Archives / 한국행정연구
-기말 → 투고</td></tr>
-      </tbody>
-    </table></div>
-
-    <div class="minor">박사논문 직접 연계 학술논문 ④~⑥ <span style="color:var(--text-soft);font-weight:400">· 시기·목표 저널 별도 미기재</span></div>
-    <div class="tbl"><table>
-      <thead><tr><th style="width:10%">구분</th><th>논문 제목(안)</th><th style="width:22%">방법론</th></tr></thead>
-      <tbody>
-        <tr><td><strong>④</strong></td><td>지방의회 과정의 행정부담 유형 분류 및 개념화<small>퍼실리테이팅 필요성의 이론적 근거 — 박사논문 2장 흡수 가능성 검토</small></td><td>문헌 · 개념 분석</td></tr>
-        <tr><td><strong>⑤</strong></td><td>지방의회 퍼실리테이팅 역량 잠정 구성요소의 탐색적 우선순위 분석<small>잠정 4차원 간 상대적 중요도 → 질적 예비연구 및 문항 배분의 보조 근거</small></td><td>AHP · 전문가 패널</td></tr>
-        <tr><td><strong>⑥</strong></td><td>지방의회 퍼실리테이팅 역량의 개념화: 질적 예비연구<small>AHP 결과 + 질적 탐색 → 초기 문항 풀 → 박사논문 3장 직접 연결</small></td><td>심층인터뷰 · FGI</td></tr>
-      </tbody>
-    </table></div>
-    <p class="note">※ 우수등재지(한국행정학보 등)는 박사 수료 이후 지도교수와의 공저 투고 경로로 병행 추진</p>
-
-    <div class="minor">학술논문과 학위논문의 연계 구조</div>
-    <div class="tbl"><table>
-      <thead><tr><th style="width:32%">학술논문</th><th>학위논문·소논문 연계</th></tr></thead>
-      <tbody>
-        <tr><td><strong>① AI 활용 의향</strong></td><td>박사논문 이론적 배경 — 기술변화 맥락(어댑티브 거버넌스 필요성 근거)</td></tr>
-        <tr><td><strong>② 창업가 출신지역</strong></td><td>박사논문 이론적 배경 — 지역 맥락 이론적 근거</td></tr>
-        <tr><td><strong>③ 공공서비스디자인 Q</strong></td><td>주민 정책 여정 투고 소논문 · Q방법론 예비 연습</td></tr>
-        <tr><td><strong>④ 행정부담 개념연구</strong></td><td>박사논문 이론적 배경 — 퍼실리테이팅 필요성 실증 근거(교수님 상의 후 결정)</td></tr>
-        <tr><td><strong>⑤ AHP 탐색적 우선순위 분석</strong></td><td>논문 1 — 잠정 역량 차원 간 우선순위 → 문항 배분의 보조 근거</td></tr>
-        <tr><td><strong>⑥ 퍼실리테이팅 예비연구</strong></td><td>논문 1 — 역량 개념화 + 초기 문항 풀 → EFA·CFA 직접 연결</td></tr>
-      </tbody>
-    </table></div>
-    </div>
-
-    <div class="subsec">
-      <div class="sub-num">03 · 통합 타임라인</div>
-      <h3>코스워크·학술논문·마일스톤 <em>통합 로드맵.</em></h3>
-    <div class="tbl"><table>
-      <thead><tr><th style="width:14%">시기</th><th>코스워크</th><th>학술논문 · 연구 활동</th><th>핵심 마일스톤</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>2026-1</strong><small>12학점</small></td>
-          <td>조사연구방법론<br/>시민참여와거버넌스<br/>조직학이론<br/>정부-기업관계론</td>
-          <td>① AI 활용 의향 초안<br/>② 창업가 출신지역 프리테스팅<br/>③ 공공서비스디자인 컨셉페이퍼</td>
-          <td>거버넌스·퍼실리테이팅 이론 
-지도교수 Contact</td>
-        </tr>
-        <tr>
-          <td><strong>2026 summer</strong></td>
-          <td>AI기반전략적의사결정<br/>(도전학기)</td>
-          <td>– <a class="ref-link" href="adaptive-governance-syllabus.html">어댑티브 거버넌스 독립연구(방학 자체학습)</a><br/>– 도전학기 청강 "신인류AI사피엔스경험디자인"<br/>– Coursera 코스 수강 (AI &amp; UX)</td>
-          <td>어댑티브 거버넌스 개념페이퍼<br/>자체 연구 Syllabus</td>
-        </tr>
-        <tr>
-          <td><strong>2026-2</strong><small>12학점</small></td>
-          <td>행정학이론세미나<br/>정책학이론세미나<br/>행정계량분석<br/>[도전학기 포함]</td>
-          <td>① AI 수용성 투고<br/>② 창업가 학회발표<br/>③ Q방법론 논문 보완 투고</td>
-          <td>KCI 실적 확보<br/>행정계량분석 이수</td>
-        </tr>
-        <tr>
-          <td><strong>2027 winter</strong></td>
-          <td>(방학)</td>
-          <td>– 기초통계·회귀분석 워크숍 참여<br/>– 학술논문 데이터 분석 보완</td>
-          <td>계량분석 역량 강화<br/>본조사 설계 준비</td>
-        </tr>
-        <tr>
-          <td><strong>2027-1</strong><small>9학점</small></td>
-          <td>의회와국정관리<br/>구조방정식이론<br/>사회혁신플랫폼과정책설계</td>
-          <td>④ 행정부담 개념연구<br/>⑤ AHP 전문가 패널 구성·쌍대비교 설문 (역량 우선순위)</td>
-          <td>질적 연구 설계 완료<br/>정책지원관 재계약</td>
-        </tr>
-        <tr>
-          <td><strong>2027 summer</strong></td>
-          <td>(방학)</td>
-          <td>– 구조방정식·척도개발 워크숍 참여<br/>– 척도 문항 풀 정교화</td>
-          <td>척도개발 방법론 숙련<br/>예비조사 도구 확정</td>
-        </tr>
-        <tr>
-          <td><strong>2027-2</strong><small>9학점</small></td>
-          <td>사회과학연구방법론<br/>지방정부와행정<br/>갈등관리</td>
-          <td>⑥ 심층인터뷰(CIT)+FGI → 역량 개념화·문항 풀<br/>– 논자시 준비 집중</td>
-          <td>선택과목 면제 신청</td>
-        </tr>
-        <tr>
-          <td><strong>2028-1</strong><small>9학점</small></td>
-          <td>토요일 과목<br/>(시간표 확인 후)</td>
-          <td>– 본조사 실시 → EFA 분석<br/>– 학위논문 1~3장 초안 작성</td>
-          <td><span class="badge-m">★ 논자시 통과</span><br/>게재 실적 1편 이상</td>
-        </tr>
-        <tr>
-          <td><strong>2028-2~</strong><small>9학점</small></td>
-          <td>토요일 과목<br/>(혼합연구방법론 우선)</td>
-          <td>– CFA → 척도 타당화<br/>– Prospectus 작성<br/>– 예심·본심 준비</td>
-          <td><span class="badge-m">★ 예심 → 본심</span></td>
-        </tr>
-      </tbody>
-    </table></div>
-    </div>
-
-    <div class="subsec">
-      <div class="sub-num">04 · 연구역량 보완</div>
-      <h3>어댑티브 거버넌스 <em>이론 심화 · 지방의회 적용.</em></h3>
-      <p class="p">2026년 여름방학에는 어댑티브 거버넌스의 이론적 기원과 핵심 구성요소를 체계적으로 검토하는 <strong>9주 독립연구</strong>를 수행한다. 어댑티브 거버넌스는 사회생태체계·복잡적응체계 연구에서 출발하였으나 최근 공공행정의 위기대응·정책학습·제도적 유연성·AI 거버넌스로 범위가 확장되고 있다. 이에 어댑티브 거버넌스를 단순한 교육·훈련이나 정책의 유연성이 아니라, <strong>복잡성·불확실성 속에서 정책 결과와 현장정보를 학습하여 규칙·역할·권한·책임을 수정하는 제도적 역량</strong>으로 구체화한다.</p>
-      <p class="p">먼저 회복력·적응적 관리·사회적 학습과의 관계를 검토하고 협력적·다중심·애자일·강건한 거버넌스와의 개념적 차이를 정리한다. 다음으로 지방의회의 행정사무감사·조례 개정·예산심사·민원 및 현장정보 수집이 정책피드백과 제도개선으로 전환되는 과정을 분석하며, 이 과정에서 지방의원·정책지원관의 퍼실리테이션 역량이 분산된 지식과 이해관계를 정책의제·제도변화로 연결하는 <strong>매개역량</strong>으로 작동하는지를 검토한다. 시민참여·공동생산의 심리적 비용·권력불균형·공공가치 공동오염 문제는 모니터링–학습–피드백–제도수정의 순환으로 교정 가능한지 분석하며, AI는 출발점이 아니라 이론적 확장영역으로 둔다.</p>
-      <div class="callout" style="border-left-color:var(--gold)">최종 결과물로 <strong>「지방의회의 어댑티브 거버넌스 역량: 개념적 경계와 연구과제」</strong> 개념 리포트를 작성하고, 지방의회 어댑티브 거버넌스 과정모형·관련 역량지표·후속 연구명제를 도출하여 학위논문과 학술지 연구의 이론적 기반으로 활용한다. &nbsp;→&nbsp; <a class="ref-link" href="adaptive-governance-syllabus.html">독립연구 Syllabus 전문 보기</a></div>
-      <p class="note">※ 본 독립연구의 상세 9주 계획·문헌·결과물은 별도 Syllabus 문서로 연결하며, 지도교수 면담을 거쳐 범위를 확정한다.</p>
+      <div class="sub-num">02 · 조건부</div>
+      <h3>조건부 <em>척도개발 · AI 실험.</em></h3>
+      <div class="pathgrid">
+        <div class="pathcard">
+          <span class="pc-tag">G2·G3에서 C1 유지/수정 A</span>
+          <h4>조건부 척도개발</h4>
+          <ul>
+            <li>질적 문항생성 · 내용타당도 · 인지면접</li>
+            <li>EFA → 독립 표본 CFA</li>
+            <li>기존 경쟁척도와 판별·증분타당도</li>
+            <li>외부 준거변수와의 관계</li>
+          </ul>
+        </div>
+        <div class="pathcard">
+          <span class="pc-tag">C3가 유력해지는 경우</span>
+          <h4>조건부 AI 실험</h4>
+          <p>제품명이 아닌 <strong>시스템 기능</strong>을 조작한다.</p>
+          <ul>
+            <li>일반 생성형 AI vs 공식 근거자료 연계형 시스템</li>
+            <li>출처투명성 · 반대·소수의견 보존 · 검증가능성 · 책임귀속</li>
+          </ul>
+          <div class="risk">종속변수는 활용의향·만족도에 한정하지 않고 <b>인식론적 품질·검증행동·재량·책임성</b>으로 확장</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================================== -->
-  <!-- ═══ Ⅷ. 지도 체계 ═══ -->
-  <!-- ============================================================== -->
-  <section class="block" data-screen-label="08 지도 체계">
-    <div class="sec-head">
-      <div class="num">Ⅷ</div>
-      <div class="ttl">지도 체계 구상</div>
-    </div>
-    <p class="p">연구는 시민참여 · 의정혁신 · 협력적 거버넌스의 접점에 위치하므로, 주지도교수님의 조언을 바탕으로 관련 전공 교수진의 자문을 병행한다. 최종 지도교수와 심사위원 구성은 향후 면담 및 연구 진행 상황에 따라 확정한다.</p>
+  <!-- ═══ Ⅸ. 탐색 로드맵과 게이트 ═══ -->
+  <section class="block" data-screen-label="09 탐색 로드맵 · 게이트">
+    <div class="sec-head"><div class="num">Ⅸ</div><div class="ttl">2026∼2027 탐색 로드맵과 게이트</div></div>
     <div class="tbl"><table>
-      <thead><tr><th style="width:32%">자문 영역</th><th>연구 단계별 활용</th><th style="width:22%">교수진</th></tr></thead>
+      <thead><tr><th style="width:13%">시기</th><th style="width:26%">핵심 과업</th><th>현실적 산출물</th><th style="width:16%">게이트</th></tr></thead>
       <tbody>
-        <tr><td><strong>주지도 · 시민참여 · 정책혁신 · 관료제</strong></td><td>연구 전체 방향, 박사논문 지도, 심사위원 구성</td><td>김승현 교수님</td></tr>
-        <tr><td>지방자치 · 지역거버넌스</td><td>지방의회 맥락 해석, 한국 지방자치 실천 함의</td><td>정문기 교수님</td></tr>
-        <tr><td>공공관리 · 시민참여 · 혼합연구</td><td>공동생산 이론, 시민참여 메커니즘, 혼합연구방법론</td><td>이슬기 교수님</td></tr>
+        <tr><td><strong>2026. 6∼8</strong></td><td>AG 적용논리·경쟁개념·측정구조 검토</td><td>핵심문헌 10∼13편, 개념경쟁표, 6∼8쪽 독립연구 메모, 예비 사례 스케치 3건</td><td><span class="badge-m">G1 예비판정</span> <span class="badge-m">C1 예비판정</span></td></tr>
+        <tr><td><strong>2026. 9∼12</strong></td><td>공개자료 목록화, 탐색인터뷰 6∼8명, 사례 후보 3건 이상 정리</td><td>의정과정 사례목록, 역할별 행동·제약표, 자료접근성·윤리 점검</td><td>—</td></tr>
+        <tr><td><strong>2027. 1∼3</strong></td><td>인터뷰 누적 12∼15명, 사례 후보 확대, 후보별 프로스펙터스 작성</td><td>C1·C2·C3 프로스펙터스 3종, 개념메모 누적 20쪽 내외</td><td><span class="badge-m">G2 · 모형 판정</span></td></tr>
+        <tr><td><strong>2027. 4∼6</strong></td><td>소규모 파일럿</td><td>C2 사례과정 분석 / C1 인지면접 / C3 비네팅 파일럿 중 가능한 범위 수행</td><td>경로별 증거력 비교</td></tr>
+        <tr><td><strong>2027. 7∼10</strong></td><td>지도·자문, 후보평가, 예비결정</td><td>후보평가표, 학위논문 구성안</td><td>예비결정</td></tr>
+        <tr><td><strong>2027. 11∼12</strong></td><td>최종 프로스펙터스 확정</td><td>학위논문 연구질문·자료·방법·논문구성 확정</td><td><span class="badge-m">G3 · 최종 확정</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="minor">G1과 C1의 결합 가능성</div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:24%">G1 결과</th><th style="width:18%">C1 결과</th><th>연구방향</th></tr></thead>
+      <tbody>
+        <tr><td><strong>핵심 설명이론</strong></td><td>유지</td><td>AG 기반 퍼실리테이팅 역량 개발</td></tr>
+        <tr><td><strong>핵심 설명이론</strong></td><td>수정 A/B</td><td>AG 과정모형 + 기존 개념 수정 또는 모형전환</td></tr>
+        <tr><td><strong>핵심 설명이론</strong></td><td>중단</td><td>개인척도 없이 과정·제도 연구</td></tr>
+        <tr><td><strong>중범위 분석틀</strong></td><td>유지</td><td>AG 분석틀 + 다른 리더십 이론에 근거한 C1</td></tr>
+        <tr><td><strong>중범위 분석틀</strong></td><td>수정 A/B</td><td>정치적 경계확장·집합역량·과정모형</td></tr>
+        <tr><td><strong>중범위 분석틀</strong></td><td>중단</td><td>AG를 사례분석틀로 활용</td></tr>
+        <tr><td><strong>문제설정 프레임</strong></td><td>유지</td><td>다른 이론에 근거한 C1 개발</td></tr>
+        <tr><td><strong>문제설정 프레임</strong></td><td>수정 A/B</td><td>기존 개념의 지방의회 적용</td></tr>
+        <tr><td><strong>문제설정 프레임</strong></td><td>중단</td><td>AG는 배경으로 두고 다른 경로 선택</td></tr>
       </tbody>
     </table></div>
   </section>
 
-  <!-- ============================================================== -->
-  <!-- ═══ Ⅸ. 맺음말 ═══ -->
-  <!-- ============================================================== -->
-  <section class="block" data-screen-label="09 맺음말">
-    <div class="sec-head">
-      <div class="num">Ⅸ</div>
-      <div class="ttl">맺음말</div>
+  <!-- ═══ Ⅹ. 학업·방법론 역량개발 ═══ -->
+  <section class="block" data-screen-label="10 역량개발 · 학기계획">
+    <div class="sec-head"><div class="num">Ⅹ</div><div class="ttl">학업·방법론 역량개발 계획</div></div>
+
+    <div class="subsec">
+      <div class="sub-num">01 · 역량 버킷</div>
+      <h3>아홉 개의 <em>역량 영역.</em></h3>
+      <div class="tbl"><table>
+        <thead><tr><th style="width:20%">역량영역</th><th>주요 과목·학습분야</th><th style="width:26%">형성되는 역량</th></tr></thead>
+        <tbody>
+          <tr><td><strong>공통 이론·방법</strong></td><td>조사연구방법론, 행정계량분석, 행정학·정책학이론세미나, 논문작성법및연구윤리</td><td>연구설계·이론비교·계량기초</td></tr>
+          <tr><td><strong>지방의회·지방정부</strong></td><td>의회와 국정관리, 지방정부와 행정</td><td>대표기관·의정과정·지방제도 분석</td></tr>
+          <tr><td><strong>퍼실리테이션·시민참여</strong></td><td>시민참여와 거버넌스, 갈등관리, 질적연구방법론</td><td>숙의·갈등·상호작용의 질적 개념화</td></tr>
+          <tr><td><strong>AG·제도·복잡성</strong></td><td>거버넌스특강, 사회혁신·정책설계, 과학기술정책과 거버넌스, 외부 복잡계 강좌</td><td>피드백·학습·제도변화 분석</td></tr>
+          <tr><td><strong>척도·SEM</strong></td><td>구조방정식, 회귀분석, 심리측정, 측정동일성</td><td>EFA·CFA·판별타당도·측정모형</td></tr>
+          <tr><td><strong>질적·혼합방법</strong></td><td>사례연구, 과정추적, 질적연구, 혼합연구</td><td>메커니즘 추적·삼각검증·통합</td></tr>
+          <tr><td><strong>실험·인과추론</strong></td><td>비네팅·요인설계·검정력·사전등록</td><td>시스템 속성의 인과효과 검증</td></tr>
+          <tr><td><strong>AI·디지털 거버넌스</strong></td><td>AI기반전략적의사결정, 디지털정부, AI윤리·데이터거버넌스</td><td>AI를 제도·규범·책임성 관점에서 분석</td></tr>
+          <tr><td><strong>외부 보완</strong></td><td>네트워크분석, 텍스트분석, R/Python, 다층모형</td><td>학교 내 과목의 방법론적 공백 보완</td></tr>
+        </tbody>
+      </table></div>
     </div>
-    <p class="p">본 학업계획의 핵심은 지방의회 의정 과정을 단순한 의사결정 절차가 아니라, 주민 요구가 정책 언어로 번역되고 이해관계자 간 조정과 학습을 거쳐 제도 개선으로 이어지는 과정으로 분석하는 데 있다. UX·서비스디자인 석사 과정에서 형성한 사용자 관점, 그리고 지방의회 정책지원관으로 근무하며 경험한 의정 과정의 실제 문제를 행정학 연구로 연결하고자 한다.</p>
-    <p class="p">석박통합과정에서는 어댑티브 거버넌스 + 퍼실리테이팅 역량 + 지방의회라는 삼원 구조 위에서, 퍼실리테이팅 역량의 개념과 하위차원을 정교화하고, 문항 개발과 타당화 절차를 통해 측정도구를 개발한다. 이 연구가 완성될 때, 한국 지방의회는 주민이 체감할 수 있는 어댑티브 거버넌스 플랫폼으로 기능하기 위한 측정 도구를 갖추게 될 것이다.</p>
-    <p class="p">이 학위논문은 다층 연구의 <strong>1단계</strong>로, 주민 대표성과 공식 의정활동의 책임 주체인 <strong>지방의원의 퍼실리테이팅 역량</strong>을 다차원 행동역량으로 개념화하고 측정도구를 개발·검증한다. 이 척도를 공통 기준점으로 의정지원체계(논문 2)·지방의회 제도·절차(논문 3)·주민·집행부 외부효과 검증(논문 4)을 후속 논문으로 이어, 최종적으로 지방의회 퍼실리테이션 역량의 종합 평가체계(논문 5)로 통합하는 것이 본 연구의 장기 구상이다.</p>
+
+    <div class="subsec">
+      <div class="sub-num">02 · 학기별 계획</div>
+      <h3>학기별 <em>이수 구상.</em></h3>
+      <div class="tbl"><table>
+        <thead><tr><th style="width:16%">학기</th><th>핵심 과목·과업</th></tr></thead>
+        <tbody>
+          <tr><td><strong>2026 여름</strong></td><td>AI기반전략적의사결정(CHS7008) · <a class="ref-link" href="adaptive-governance-syllabus.html">어댑티브 독립연구 v3.1<span class="ext" aria-hidden="true"></span></a><small>도전학기 AI기반전략적의사결정(CHS7008) 수강, 신인류AI사피엔스경험디자인(CHS7006) 청강</small></td></tr>
+          <tr><td><strong>2026 2학기</strong></td><td>행정학이론세미나(GSP5109) · 정책학이론세미나(GSP5107) · 행정계량분석(GSP5216) · 논문작성법및연구윤리(COV7003) <small>학기과제 1개 이상을 지방의회·AG 개념경계와 연결</small></td></tr>
+          <tr><td><strong>2027 1학기</strong></td><td>의회와 국정관리(GSP5235) · 질적연구방법론(GSP5049) · 사회혁신플랫폼과 정책설계(GSP5204) · 후보별 선택 — C1: 구조방정식이론 / C2: 거버넌스·제도·복잡계 / C3: 과학기술정책·AI 거버넌스 관련 과목</td></tr>
+          <tr><td><strong>2027 2학기</strong></td><td>사회과학연구방법론(GSP5271) · 지방정부와 행정(GSP5006) · 갈등관리(GSP5040) · 혼합방법·과정추적 외부 워크숍 · G3 프로스펙터스 작성</td></tr>
+          <tr><td><strong>2028 이후</strong></td><td>최종 경로에 따라 선택 — C1: 심리측정·SEM·측정동일성·다층모형 / C2: 비교사례·과정추적·네트워크·혼합방법 / C3: 실험·인과추론·컴퓨테이셔널 텍스트분석</td></tr>
+        </tbody>
+      </table></div>
+    </div>
   </section>
 
+  <!-- ═══ Ⅺ. 학술논문 포트폴리오 ═══ -->
+  <section class="block" data-screen-label="11 학술논문 포트폴리오">
+    <div class="sec-head"><div class="num">Ⅺ</div><div class="ttl">학술논문 포트폴리오</div></div>
+    <p class="p">소논문은 학위논문에 자동 편입하지 않고 <strong>관계를 구분</strong>한다.</p>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:22%">연구</th><th style="width:16%">현재 위치</th><th>학위논문 관계</th><th style="width:22%">다음 마일스톤</th></tr></thead>
+      <tbody>
+        <tr><td><strong>생성형 AI 수용성·UTAUT</strong></td><td>인접 연구</td><td>기술도입 맥락과 계량연구 경험</td><td>연구모형 정교화·설문·투고</td></tr>
+        <tr><td><strong>AI 시스템 비네팅 실험</strong></td><td>C3 조건부 연결</td><td>AI 매개 의회의 파일럿 후보</td><td>조작·종속변수·윤리 설계</td></tr>
+        <tr><td><strong>공공서비스디자인 Q 연구</strong></td><td>독립·인접 연구</td><td>시민참여 인식과 질적 연구훈련</td><td>인터뷰 보완·학술대회·투고</td></tr>
+        <tr><td><strong>AG 독립연구</strong></td><td>직접 기반</td><td>G1·C1·측정구조 판정</td><td>9주 메모 완료</td></tr>
+        <tr><td><strong>퍼실리테이팅 질적 예비연구</strong></td><td>핵심 선행</td><td>C1과 C2를 판별</td><td>IRB·인터뷰·사례파일럿</td></tr>
+        <tr><td><strong>행정부담 관련 연구</strong></td><td>조건부 인접</td><td>지방의회가 처리하는 문제조건 설명</td><td>개념·자료 가능성 검토</td></tr>
+        <tr><td><strong>AHP 우선순위 연구</strong></td><td>보류</td><td>차원 확정 이후 진단도구 단계</td><td>현재 미추진</td></tr>
+        <tr><td><strong>지역 창업가 연구</strong></td><td>독립 연구</td><td>방법론 경험 외 직접 연결하지 않음</td><td>별도 학술대회·투고</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><strong>직접연계</strong> AG 독립연구·퍼실리테이팅 질적 예비연구 &nbsp;·&nbsp; <strong>조건부 연계</strong> AI 비네팅 &nbsp;·&nbsp; <strong>인접연계</strong> AI 수용성·공공서비스디자인 Q &nbsp;·&nbsp; <strong>독립연구</strong> 지역 창업가 연구</div>
+  </section>
 
-  <!-- ============================================================== -->
-  <!-- ═══ Ⅹ. 참고문헌 ═══ -->
-  <!-- ============================================================== -->
-  <section class="block" data-screen-label="10 참고문헌" style="border-bottom:0">
-    <div class="sec-head">
-      <div class="num">❖</div>
-      <div class="ttl">참고문헌</div>
-    </div>
+  <!-- ═══ Ⅻ. 지도·자문·연구윤리 ═══ -->
+  <section class="block" data-screen-label="12 지도 · 자문 · 윤리">
+    <div class="sec-head"><div class="num">Ⅻ</div><div class="ttl">지도·자문·연구윤리</div></div>
+
     <div class="subsec">
-      <div class="sub-num">01 · References</div>
-      <h3>주요 참고문헌.</h3>
-
-      <p class="note" style="margin-bottom:4px">각 문헌이 연구 논리의 어느 층위를 지지하는지 태그로 표시 — [A] 왜 필요한가 · [B] 누가·어떻게 · [C] 경계 연결·제도화 · [D] 척도개발 방법론 · [E] 국내·정책 맥락</p>
-
-      <div class="ref-group">
-        <div class="head">[A] 왜 필요한가 · 복잡성과 적응적 거버넌스</div>
-        <div class="ref-item"><span class="ref-num">[1]</span><div><a class="ref-link" href="https://www.annualreviews.org/content/journals/10.1146/annurev.energy.30.050504.144511" target="_blank" rel="noopener noreferrer">Folke, C. et al. (2005). Adaptive governance of social-ecological systems. <em>Annual Review of Environment and Resources, 30</em>, 441–473.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">적응적 거버넌스의 당위</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[2]</span><div><a class="ref-link" href="https://www.sciencedirect.com/science/article/pii/S0959378009000429" target="_blank" rel="noopener noreferrer">Pahl-Wostl, C. (2009). A conceptual framework for analysing adaptive capacity and multi-level learning processes. <em>Global Environmental Change, 19</em>(3), 354–365.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">단일·이중·삼중고리 학습 환류</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[3]</span><div><a class="ref-link" href="https://www.jstor.org/stable/26269646" target="_blank" rel="noopener noreferrer">Chaffin, B. C. et al. (2014). A decade of adaptive governance scholarship. <em>Ecology and Society, 19</em>(3), 56.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">적응적 거버넌스 연구 종합</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[4]</span><div><a class="ref-link" href="https://doi.org/10.1080/14719037.2019.1679232" target="_blank" rel="noopener noreferrer">Eshuis, J., &amp; Gerrits, L. (2021). The limited transformational power of adaptive governance: A study of institutionalization and materialization of adaptive governance. <em>Public Management Review, 23</em>(2), 276–296.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">적응적 거버넌스의 제도화 한계</span></div></div></div>
-      </div>
-
-      <div class="ref-group">
-        <div class="head">[B] 누가·어떻게 · 촉진적·협력적 정치리더십</div>
-        <div class="ref-item"><span class="ref-num">[5]</span><div><a class="ref-link" href="https://journals.sagepub.com/doi/abs/10.1177/00953999922019049" target="_blank" rel="noopener noreferrer">Svara, J. H. (1999). Complementarity of politics and administration. <em>Administration &amp; Society, 30</em>(6), 676–705.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">정치-행정 상보성</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[6]</span><div><a class="ref-link" href="https://www.routledge.com/The-Facilitative-Leader-in-City-Hall-Reexamining-the-Scope-and-Contributions/Svara/p/book/9781420068313" target="_blank" rel="noopener noreferrer">Svara, J. H. (Ed.). (2009). <em>The facilitative leader in city hall: Reexamining the scope and contributions</em>. CRC Press / Routledge.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">선출직의 촉진적 리더십</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[7]</span><div><a class="ref-link" href="https://academic.oup.com/jpart/article-abstract/18/4/543/1090370" target="_blank" rel="noopener noreferrer">Ansell, C., &amp; Gash, A. (2008). Collaborative governance in theory and practice. <em>Journal of Public Administration Research and Theory (JPART), 18</em>(4), 543–571.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">협력적 거버넌스 모형</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[8]</span><div><a class="ref-link" href="https://innovation.cc/wp-content/uploads/2012_17_1_7_ansell_gash_innovate-leadrship.pdf" target="_blank" rel="noopener noreferrer">Ansell, C., &amp; Gash, A. (2012). Stewards, mediators, and catalysts: Toward a model of collaborative leadership. <em>The Innovation Journal: The Public Sector Innovation Journal, 17</em>(1), Article 7.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">갈등 중재·촉진 리더십 역할</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[9]</span><div><a class="ref-link" href="https://doi.org/10.1080/14494035.2018.1414355" target="_blank" rel="noopener noreferrer">Bussu, S., &amp; Galanti, M. T. (2018). Facilitating coproduction: The role of leadership in coproduction initiatives in the UK. <em>Policy and Society, 37</em>(3), 347–367.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">지방정치인과 시민참여·공동생산</span></div></div></div>
-      </div>
-
-      <div class="ref-group">
-        <div class="head">[C] 경계를 어떻게 연결·제도화하는가 · 경계확장</div>
-        <div class="ref-item"><span class="ref-num">[10]</span><div><a class="ref-link" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1467-9299.00296" target="_blank" rel="noopener noreferrer">Williams, P. (2002). The competent boundary spanner. <em>Public Administration, 80</em>(1), 103–124.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">요구 연결·번역·경계확장</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[11]</span><div><a class="ref-link" href="https://doi.org/10.1007/s11077-013-9181-2" target="_blank" rel="noopener noreferrer">van Meerkerk, I., &amp; Edelenbos, J. (2014). The effects of boundary spanners on trust and performance of urban governance networks. <em>Policy Sciences, 47</em>(1), 3–24.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">경계확장 행동의 실증 측정</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[12]</span><div><a class="ref-link" href="https://doi.org/10.1093/jopart/mur011" target="_blank" rel="noopener noreferrer">Emerson, K., Nabatchi, T., &amp; Balogh, S. (2012). An integrative framework for collaborative governance. <em>Journal of Public Administration Research and Theory (JPART), 22</em>(1), 1–29.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">협력 동학·공동행동·적응</span></div></div></div>
-      </div>
-
-      <div class="ref-group">
-        <div class="head">[D] 척도개발 방법론</div>
-        <div class="ref-item"><span class="ref-num">[13]</span><div><a class="ref-link" href="https://journals.sagepub.com/doi/abs/10.1177/109442819800100106" target="_blank" rel="noopener noreferrer">Hinkin, T. R. (1998). A brief tutorial on the development of measures for use in survey questionnaires. <em>Organizational Research Methods, 1</em>(1), 104–121.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">문항 생성·척도 정제</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[14]</span><div><a class="ref-link" href="https://misq.umn.edu/misq/article/35/2/293/1457" target="_blank" rel="noopener noreferrer">MacKenzie, S. B., Podsakoff, P. M., &amp; Podsakoff, N. P. (2011). Construct measurement and validation procedures in MIS and behavioral research: Integrating new and existing techniques. <em>MIS Quarterly, 35</em>(2), 293–334.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">구성개념 정의·측정모형</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[15]</span><div><a class="ref-link" href="https://doi.org/10.1111/padm.12224" target="_blank" rel="noopener noreferrer">Tummers, L., &amp; Knies, E. (2016). Measuring public leadership: Developing scales for four key public leadership roles. <em>Public Administration, 94</em>(2), 433–451.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">공공리더십 척도개발 사례</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[16]</span><div><a class="ref-link" href="https://doi.org/10.1002/nur.20147" target="_blank" rel="noopener noreferrer">Polit, D. F., &amp; Beck, C. T. (2006). The content validity index: Are you sure you know what's being reported? Critique and recommendations. <em>Research in Nursing &amp; Health, 29</em>(5), 489–497.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">I-CVI · S-CVI 기준</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[17]</span><div><a class="ref-link" href="https://doi.org/10.1177/0011000006288127" target="_blank" rel="noopener noreferrer">Worthington, R. L., &amp; Whittaker, T. A. (2006). Scale development research: A content analysis and recommendations for best practices. <em>The Counseling Psychologist, 34</em>(6), 806–838.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">EFA·CFA 수행·보고 기준</span></div></div></div>
-      </div>
-
-      <div class="ref-group">
-        <div class="head">[E] 국내 의정역량 · 정책 맥락 (보조)</div>
-        <div class="ref-item"><span class="ref-num">[18]</span><div><a class="ref-link" href="https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE07011189" target="_blank" rel="noopener noreferrer">신원득, 문현미, 백현식. (2015). 지방의정 전문성 측정지표 개발에 관한 연구. <em>정책연구</em>, 1–119.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">국내 의정역량 측정 선행</span></div></div></div>
-        <div class="ref-item"><span class="ref-num">[19]</span><div><a class="ref-link" href="https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE01756199" target="_blank" rel="noopener noreferrer">김영수. (2007). 지방의회의 의정활동 성과평가에 관한 연구. <em>지방정부연구, 11</em>(1), 185–207.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">의정활동 성과평가</span> <a class="ref-link" style="font-size:inherit" href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001071500" target="_blank" rel="noopener noreferrer">KCI<span class="ext" aria-hidden="true"></span></a></div></div></div>
-        <div class="ref-item"><span class="ref-num">[20]</span><div><a class="ref-link" href="https://pubs.aeaweb.org/doi/abs/10.1257/aer.100.3.641" target="_blank" rel="noopener noreferrer">Ostrom, E. (2010). Beyond markets and states: Polycentric governance of complex economic systems. <em>American Economic Review, 100</em>(3), 641–672.<span class="ext" aria-hidden="true"></span></a><div><span class="ref-tag">다중심 거버넌스 (보조)</span></div></div></div>
-      </div>
+      <div class="sub-num">01 · 자문 구조</div>
+      <h3>영역별 <em>지도·자문.</em></h3>
+      <div class="tbl"><table>
+        <thead><tr><th style="width:24%">영역</th><th>활용</th><th style="width:22%">자문대상</th></tr></thead>
+        <tbody>
+          <tr><td><strong>전체 연구방향</strong></td><td>학위논문 구조·심사·이론통합</td><td>주지도교수</td></tr>
+          <tr><td><strong>지방자치·지역거버넌스</strong></td><td>지방의회 제도·대표성</td><td>지방자치 연구자</td></tr>
+          <tr><td><strong>시민참여·협력적 거버넌스</strong></td><td>숙의·퍼실리테이션·공동생산</td><td>시민참여 연구자</td></tr>
+          <tr><td><strong>측정·혼합방법</strong></td><td>척도·과정추적·혼합연구</td><td>방법론 연구자</td></tr>
+          <tr><td><strong>디지털정부·AI</strong></td><td>C3 검토 시 기술·윤리·제도</td><td>AI 거버넌스 연구자</td></tr>
+        </tbody>
+      </table></div>
     </div>
 
+    <div class="subsec">
+      <div class="sub-num">02 · 자문 핵심질문</div>
+      <h3>열 개의 <em>핵심 질문.</em></h3>
+      <ul class="biglist">
+        <li>지방의회를 AG의 제도적 장으로 보는 논리는 충분한가?</li>
+        <li>AG는 핵심 설명이론·중범위 분석틀·문제설정 프레임 중 어디에 가까운가?</li>
+        <li>가장 적절한 분석단위는 의원 개인·위원회·의회 조직·정책과정 사례 중 무엇인가?</li>
+        <li>퍼실리테이팅 역량은 기존 리더십·정치적 경계확장과 실질적으로 구분되는가?</li>
+        <li>지방의회의 대표성·공식권한·책임성이 제공하는 독자적 기여는 무엇인가?</li>
+        <li>의원·정책지원관·사무기구는 행위역량·지원조건·제도조건으로 분리해야 하는가?</li>
+        <li>감지·통합·숙의·환류는 반영·형성·과정·다층모형 중 무엇인가?</li>
+        <li>내재적 단일사례설계와 조건부 척도개발을 결합한 3-paper 구조가 가능한가?</li>
+        <li>소논문형 학위논문의 게재상태·공저·통합장 요건은 무엇인가? <small>[세부 내규 확인 필요]</small></li>
+        <li>AI는 중심변수·사회기술적 조건·후속연구 중 어디에 두어야 하는가?</li>
+      </ul>
+    </div>
+
+    <div class="subsec">
+      <div class="sub-num">03 · 연구윤리</div>
+      <h3>연구윤리 <em>원칙.</em></h3>
+      <ul class="biglist">
+        <li>게재용 인터뷰·실험은 자료수집 전에 <strong>IRB 심의 또는 면제 대상 여부</strong>를 확인한다.</li>
+        <li>직무상 비공개자료를 연구자료로 자동 전환하지 않는다.</li>
+        <li>연구참여 거부가 업무관계에 영향을 주지 않도록 <strong>모집·동의 절차를 분리</strong>한다.</li>
+        <li>기관·의원·담당자·정책사례를 비식별화한다.</li>
+        <li>연구자의 직접 관여와 이해관계를 <strong>성찰메모</strong>에 기록한다.</li>
+        <li>공개자료·인터뷰·문서자료를 <strong>삼각검증</strong>한다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ ⅩⅢ. 기대기여 ═══ -->
+  <section class="block" data-screen-label="13 기대기여">
+    <div class="sec-head"><div class="num">ⅩⅢ</div><div class="ttl">기대기여</div></div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:22%">영역</th><th>기여</th></tr></thead>
+      <tbody>
+        <tr><td><strong>지방의회 연구</strong></td><td>의정활동 건수·출석률을 넘어 <em>주민요구가 공식 제도로 전환되는 과정</em>을 분석하고, 의원·정책지원관·의회사무기구의 역할을 구분하며, 지방의회를 감지·숙의·제도환류가 발생하는 대표기관으로 분석한다.</td></tr>
+        <tr><td><strong>거버넌스 이론</strong></td><td>사회생태계·집행기관 중심 AG 연구를 대표기관인 지방의회로 확장할 가능성을 검토하고, 대표성·책임성·공식 권한을 AG의 조건과 한계에 포함하며, 협력적 거버넌스와 대의민주주의의 접점을 분석한다.</td></tr>
+        <tr><td><strong>구성개념·방법론</strong></td><td>퍼실리테이팅 역량과 기존 리더십·경계확장 개념의 경계를 검토하고, 반영·형성·과정·다층모형을 경쟁적으로 비교하며, 구성개념 개발 이전에 이론적 판별과 분석수준을 확인하는 연구절차를 제시한다.</td></tr>
+        <tr><td><strong>실무적 기여</strong></td><td>주민요구가 의정활동·제도수정으로 연결되는 과정의 단절지점을 진단하고, 의원·정책지원관·사무기구의 역할과 지원조건을 구체화하며, 향후 역량개발·교육·진단도구의 근거를 마련한다.</td></tr>
+        <tr><td><strong>AI와 의회 민주주의</strong></td><td>AI 활용의향을 넘어 지식통합·소수의견·검증·책임성 문제를 연구하고, 인간–AI 협업형 의정지원의 제도조건을 검토한다.</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="closing">나는 AG를 단순한 유연성이나 시민참여 확대가 아니라, 복잡성과 불확실성 속에서 새로운 정보와 정책결과를 <em>감지·학습</em>하고 이를 규칙·권한·책임의 수정으로 연결하는 거버넌스 과정으로 이해한다.</div>
+    <div class="closing">지방의회는 이러한 과정을 자동으로 수행하는 기관이 아니라, 대표성·조례·예산·감사라는 공식 권한을 통해 분산된 요구와 지식을 제도변화로 전환할 <em>가능성과 한계를 동시에</em> 가진 대표제적 제도 장이다.</div>
+    <div class="closing">퍼실리테이션은 AG의 상위 개념이 아니라 이를 <em>작동시키는 메커니즘 후보</em>이며, 지방의원 퍼실리테이팅 역량의 독립성은 기존 리더십·경계확장 개념과의 이론적 판별을 거쳐야 한다.</div>
+  </section>
+
+  <!-- ═══ 부록 A. 장기 5논문 연구프로그램 ═══ -->
+  <section class="block" data-screen-label="A 부록 · 5논문 프로그램">
+    <div class="sec-head"><div class="num" style="font-size:clamp(34px,4vw,48px)">부록 A</div><div class="ttl">장기 5논문 연구프로그램</div></div>
+    <p class="p">기존 v5의 다층구조는 학위논문의 확정계획이 아니라 <strong>장기 연구프로그램</strong>으로 이동한다. 각 층위는 본 탐색이 G3에서 경로를 확정한 뒤 후속 논문으로 전개된다.</p>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:14%">층위</th><th style="width:18%">연구대상</th><th>가능한 연구</th><th style="width:16%">권고 시기</th></tr></thead>
+      <tbody>
+        <tr><td><strong>개인</strong></td><td>지방의원</td><td>행동역량·리더십·경계확장</td><td>학위논문 후보</td></tr>
+        <tr><td><strong>역할·지원</strong></td><td>정책지원관·전문위원</td><td>경계확장·의정지원체계</td><td>후속</td></tr>
+        <tr><td><strong>조직·제도</strong></td><td>위원회·의회사무기구</td><td>규칙·기록·조직기억</td><td>후속</td></tr>
+        <tr><td><strong>외부관계</strong></td><td>주민·집행부·전문가</td><td>대표성·협력·정책환류</td><td>후속</td></tr>
+        <tr><td><strong>종합</strong></td><td>지방의회 역량체계</td><td>진단지표·AHP·평가모형</td><td>장기 후속</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ═══ 부록 B. 독립연구 연결 ═══ -->
+  <section class="block" data-screen-label="B 부록 · 독립연구 연결">
+    <div class="sec-head"><div class="num" style="font-size:clamp(34px,4vw,48px)">부록 B</div><div class="ttl">2026 여름 독립연구와의 연결</div></div>
+    <div class="tbl"><table>
+      <thead><tr><th style="width:16%">트랙</th><th style="width:38%">과업</th><th>결과</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Track A</strong></td><td>AG의 지방의회 적용논리</td><td>G1 예비판정</td></tr>
+        <tr><td><strong>Track B</strong></td><td>퍼실리테이팅 역량의 경쟁개념 판별</td><td>C1 예비판정</td></tr>
+      </tbody>
+    </table></div>
+    <p class="p"><strong>주요 산출물</strong> — AG 작업정의 · 인접개념 비교표 · 경쟁 구성개념표 · 예비 사례 스케치 3건 · 반영·형성·과정·다층모형 판정메모 · 6∼8쪽 최종 개념메모.</p>
+    <div class="callout" style="border-left-color:var(--gold)">독립연구 실라버스 전문은 별도 문서로 제공된다. → <a class="ref-link" href="adaptive-governance-syllabus.html">2026 여름방학 독립연구 Syllabus — 어댑티브 거버넌스<span class="ext" aria-hidden="true"></span></a></div>
+  </section>
+
+  <!-- ═══ 부록 C. 핵심 참고문헌 ═══ -->
+  <section class="block" data-screen-label="C 부록 · 참고문헌" style="border-bottom:0">
+    <div class="sec-head"><div class="num">❖</div><div class="ttl">핵심 참고문헌</div></div>
+    <p class="note" style="margin-bottom:18px">참고문헌은 최종 인용 전 학술지 원문·RISS·KCI·출판사 정보를 기준으로 재대조한다.</p>
+
+    <div class="ref-group">
+      <div class="head">AG · 정책역량</div>
+      <div class="ref-item"><span class="ref-num">[1]</span><div><a class="ref-link" href="https://www.annualreviews.org/content/journals/10.1146/annurev.energy.30.050504.144511" target="_blank" rel="noopener noreferrer">Folke, C., Hahn, T., Olsson, P., &amp; Norberg, J. (2005). Adaptive governance of social-ecological systems. <em>Annual Review of Environment and Resources, 30</em>, 441–473.<span class="ext" aria-hidden="true"></span></a></div></div>
+      <div class="ref-item"><span class="ref-num">[2]</span><div><a class="ref-link" href="https://doi.org/10.5751/ES-06824-190356" target="_blank" rel="noopener noreferrer">Chaffin, B. C., Gosnell, H., &amp; Cosens, B. A. (2014). A decade of adaptive governance scholarship. <em>Ecology and Society, 19</em>(3), 56.<span class="ext" aria-hidden="true"></span></a></div></div>
+      <div class="ref-item"><span class="ref-num">[3]</span><div><a class="ref-link" href="https://doi.org/10.1016/j.gloenvcha.2009.06.001" target="_blank" rel="noopener noreferrer">Pahl-Wostl, C. (2009). A conceptual framework for analysing adaptive capacity and multi-level learning processes. <em>Global Environmental Change, 19</em>(3), 354–365.<span class="ext" aria-hidden="true"></span></a></div></div>
+      <div class="ref-item"><span class="ref-num">[4]</span><div><a class="ref-link" href="https://doi.org/10.1080/14494035.2015.1023053" target="_blank" rel="noopener noreferrer">Wu, X., Ramesh, M., &amp; Howlett, M. (2015). Policy capacity: A conceptual framework for understanding policy competences and capabilities. <em>Policy and Society, 34</em>(3–4), 165–171.<span class="ext" aria-hidden="true"></span></a></div></div>
+      <div class="ref-item"><span class="ref-num">[5]</span><div><a class="ref-link" href="https://doi.org/10.1080/14719037.2019.1679232" target="_blank" rel="noopener noreferrer">Eshuis, J., &amp; Gerrits, L. (2021). The limited transformational power of adaptive governance. <em>Public Management Review, 23</em>(2), 276–296.<span class="ext" aria-hidden="true"></span></a></div></div>
+    </div>
+
+    <div class="ref-group">
+      <div class="head">리더십 · 경계확장 · 측정</div>
+      <div class="ref-item"><span class="ref-num">[6]</span><div><span>Svara, J. H. (1994). <em>Facilitative Leadership in Local Government</em>. Jossey-Bass.</span></div></div>
+      <div class="ref-item"><span class="ref-num">[7]</span><div><a class="ref-link" href="https://doi.org/10.1177/000271620359200205" target="_blank" rel="noopener noreferrer">Svara, J. H. (2003). Effective mayoral leadership in council-manager cities. <em>National Civic Review, 92</em>(2), 157–172.<span class="ext" aria-hidden="true"></span></a></div></div>
+      <div class="ref-item"><span class="ref-num">[8]</span><div><a class="ref-link" href="https://doi.org/10.1111/padm.12224" target="_blank" rel="noopener noreferrer">Tummers, L., &amp; Knies, E. (2016). Measuring public leadership: Developing scales for four key public leadership roles. <em>Public Administration, 94</em>(2), 433–451.<span class="ext" aria-hidden="true"></span></a></div></div>
+      <div class="ref-item"><span class="ref-num">[9]</span><div><a class="ref-link" href="https://doi.org/10.1080/14494035.2020.1743526" target="_blank" rel="noopener noreferrer">Sørensen, E., Hendriks, C. M., Hertting, N., &amp; Edelenbos, J. (2020). Political boundary spanning. <em>Policy and Society, 39</em>(4), 530–569.<span class="ext" aria-hidden="true"></span></a></div></div>
+      <div class="ref-item"><span class="ref-num">[10]</span><div><a class="ref-link" href="https://doi.org/10.1080/14719037.2024.2342439" target="_blank" rel="noopener noreferrer">Grøn, A. B., &amp; Jacobsen, C. B. (2025). Understanding transversal leadership in public organizations. <em>Public Management Review, 27</em>(5), 1417–1443.<span class="ext" aria-hidden="true"></span></a></div></div>
+      <div class="ref-item"><span class="ref-num">[11]</span><div><a class="ref-link" href="https://doi.org/10.1177/109442819800100106" target="_blank" rel="noopener noreferrer">Hinkin, T. R. (1998). A brief tutorial on the development of measures for use in survey questionnaires. <em>Organizational Research Methods, 1</em>(1), 104–121.<span class="ext" aria-hidden="true"></span></a></div></div>
+    </div>
+
+    <div class="ref-group">
+      <div class="head">AI · 숙의</div>
+      <div class="ref-item"><span class="ref-num">[12]</span><div><a class="ref-link" href="https://doi.org/10.1126/science.adq2852" target="_blank" rel="noopener noreferrer">Tessler, M. H., et al. (2024). AI can help humans find common ground in democratic deliberation. <em>Science, 386</em>, eadq2852.<span class="ext" aria-hidden="true"></span></a></div></div>
+    </div>
+
+    <div class="ref-group">
+      <div class="head">국내 지방의회 연구</div>
+      <div class="ref-item"><span class="ref-num">[13]</span><div><span>김인숙·서윤기. (2022). 지방의회 의원 역할 및 역량 탐색 연구: 서울시의회를 중심으로. <em>한국지방행정학보, 19</em>(1), 49–80.</span></div></div>
+      <div class="ref-item"><span class="ref-num">[14]</span><div><span>송현호·김경화·김민한. (2023). 지방의회 정책지원관 역할의 우선순위 설정에 관한 연구. <em>지방정부연구, 27</em>(3), 109–134.</span></div></div>
+      <div class="ref-item"><span class="ref-num">[15]</span><div><span>이용재·박경. (2022). 지방의회와 집행부의 정보비대칭에 대한 검토. <em>지역과 정치, 5</em>(1), 179–221.</span></div></div>
+    </div>
   </section>
 
   <footer>
     <div class="left">© 2026 Chaemin Lim · dyblue.net</div>
-    <div class="right">Research Plan v5 · In Progress</div>
+    <div class="right">Research Plan v6.1 · Exploration & Decision-Gated</div>
   </footer>
 
 </div>
@@ -1287,7 +1071,7 @@ function toggleCmap(el){
       <path d="M-78 40 L-20 90 L88 -46" stroke-width="22"/>
     </g>
     <text x="600" y="600" fill="#D4E9E2" font-family="sans-serif" font-size="58" font-weight="700" text-anchor="middle" letter-spacing="2">학업계획서</text>
-    <text x="600" y="668" fill="#CBA258" font-family="sans-serif" font-size="30" font-weight="500" text-anchor="middle" letter-spacing="6">RESEARCH PLAN · v5</text>
+    <text x="600" y="668" fill="#CBA258" font-family="sans-serif" font-size="30" font-weight="500" text-anchor="middle" letter-spacing="6">RESEARCH PLAN · v6.1</text>
   </svg>
 </template>
 
