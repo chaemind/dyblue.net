@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAC 코칭 프로세스 타이머</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* ── Design Tokens (Starbucks) ── */
+:root {
+  --green-accent: #00754A;
+  --house-green:  #1E3932;
+  --canvas:       #f2f0eb;
+  --card:         #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #444;
+  --text-muted:   #777;
+  --border:       #d8d3cb;
+  --border-light: #e8e4dc;
+  --tint-green:   #f0f7f4;
+  --tint-warm:    #f7f5f2;
+  --status-good:  #00754A;
+  --status-warn:  #b98a00;
+  --status-over:  #b3261e;
+  --shadow-sm: 0 1px 3px rgba(30,57,50,.06), 0 1px 2px rgba(30,57,50,.04);
+  --shadow-md: 0 4px 12px rgba(30,57,50,.08), 0 2px 4px rgba(30,57,50,.05);
+  --radius: 12px;
+  --font: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  background: var(--canvas);
+  color: var(--text-primary);
+  font-family: var(--font);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 상단 바 ── */
+.topbar {
+  background: var(--house-green);
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .6rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo-mark {
+  width: 28px; height: 28px;
+  background: var(--green-accent);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .6rem; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.topbar-title { font-size: .78rem; font-weight: 500; color: rgba(255,255,255,.75); }
+.topbar-title span { color: rgba(255,255,255,.4); margin: 0 .4rem; }
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem 4rem; display: flex; flex-direction: column; gap: 14px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+}
+h3 { font-size: .95rem; font-weight: 700; color: var(--house-green); margin-bottom: 12px; }
+
+button {
+  font-family: var(--font);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  transition: transform .15s, opacity .15s;
+}
+button:hover { opacity: .92; }
+button:active { transform: scale(.97); }
+
+/* ── 전체 세션 타이머 ── */
+.session-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.session-label { font-size: .8rem; font-weight: 600; color: var(--text-muted); }
+.session-timer {
+  font-size: 56px; font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+  color: var(--house-green);
+  line-height: 1.15;
+}
+.session-timer.over { color: var(--status-over); }
+.controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.btn-main { font-size: 17px; padding: 14px 30px; }
+.btn-start { background: var(--green-accent); color: #fff; }
+.btn-pause { background: var(--house-green); color: #fff; }
+.btn-reset { background: var(--tint-warm); color: var(--text-secondary); border: 1px solid var(--border); font-size: 15px; padding: 14px 22px; }
+.target-toggle { display: flex; border: 1.5px solid var(--green-accent); border-radius: 50px; overflow: hidden; }
+.target-toggle button {
+  border-radius: 0; padding: 12px 20px; font-size: 15px;
+  background: #fff; color: var(--green-accent);
+}
+.target-toggle button.active { background: var(--green-accent); color: #fff; }
+
+/* ── 메인 그리드 ── */
+.main-grid { display: grid; grid-template-columns: 1fr 320px; gap: 14px; }
+@media (max-width: 860px) { .main-grid { grid-template-columns: 1fr; } }
+
+/* ── 현재 단계 ── */
+.step-card { display: flex; flex-direction: column; gap: 14px; }
+.step-header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.step-num {
+  background: var(--house-green); color: #fff;
+  font-weight: 700; border-radius: 50px;
+  padding: 4px 16px; font-size: 18px;
+}
+.step-name { font-size: 28px; font-weight: 800; color: var(--text-primary); }
+.step-rec { font-size: .85rem; color: var(--text-muted); font-weight: 600; }
+.step-question {
+  font-size: 28px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--house-green);
+  background: var(--tint-green);
+  border-left: 5px solid var(--green-accent);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  min-height: 130px;
+  display: flex;
+  align-items: center;
+}
+.step-timer-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.step-timer { font-size: 38px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--text-primary); }
+.overtime-warn { font-size: 17px; font-weight: 800; color: var(--status-over); display: none; }
+.overtime-warn.show { display: inline; }
+.progress-track {
+  flex: 1; min-width: 160px; height: 14px;
+  background: var(--border-light); border-radius: 7px; overflow: hidden;
+}
+.progress-fill { height: 100%; width: 0%; background: var(--status-good); border-radius: 7px; }
+.step-nav { display: flex; gap: 10px; }
+.btn-prev { background: var(--tint-warm); color: var(--text-secondary); border: 1px solid var(--border); font-size: 16px; padding: 16px 24px; }
+.btn-next { background: var(--green-accent); color: #fff; font-size: 18px; padding: 16px 30px; flex: 1; }
+
+/* ── 사이드 ── */
+.side { display: flex; flex-direction: column; gap: 14px; }
+.talk-btn {
+  width: 100%; font-size: 20px; padding: 22px 10px;
+  background: var(--tint-warm); color: var(--text-secondary);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+}
+.talk-btn.on { background: var(--house-green); color: #fff; border-color: var(--house-green); }
+.talk-stats { margin-top: 12px; font-size: .95rem; display: flex; flex-direction: column; gap: 6px; color: var(--text-secondary); }
+.talk-pct { font-size: 28px; font-weight: 800; }
+.talk-pct.good { color: var(--status-good); }
+.talk-pct.bad { color: var(--status-over); }
+.talk-note { font-size: .78rem; color: var(--text-muted); }
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.check-list label {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: .9rem; font-weight: 600; cursor: pointer; line-height: 1.45;
+  color: var(--text-secondary);
+}
+.check-list input { width: 19px; height: 19px; margin-top: 2px; flex-shrink: 0; accent-color: var(--green-accent); }
+
+/* ── 단계 칩 ── */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: var(--tint-warm); color: var(--text-secondary);
+  border: 1.5px solid var(--border-light);
+  border-radius: 50px; padding: 8px 15px;
+  font-size: .82rem; font-weight: 600;
+}
+.chip.done { background: var(--tint-green); color: var(--green-accent); border-color: var(--tint-green); }
+.chip.current { border-color: var(--green-accent); background: #fff; color: var(--house-green); font-weight: 700; }
+
+/* ── 메모 ── */
+textarea {
+  width: 100%; min-height: 110px;
+  font-family: var(--font); font-size: .95rem; line-height: 1.6;
+  border: 1.5px solid var(--border); border-radius: var(--radius); padding: 12px 14px;
+  resize: vertical;
+  background: #fff; color: var(--text-primary);
+}
+textarea:focus { outline: none; border-color: var(--green-accent); }
+
+/* ── 종료 / 리포트 ── */
+.btn-end { background: var(--house-green); color: #fff; font-size: 18px; padding: 18px; width: 100%; border-radius: var(--radius); }
+.report { display: none; }
+.report.show { display: block; }
+.report h2 { color: var(--house-green); margin-bottom: 16px; font-size: 1.3rem; font-weight: 800; }
+.report-summary { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 20px; }
+.report-summary .item { display: flex; flex-direction: column; gap: 4px; }
+.report-summary .item .k { font-size: .75rem; color: var(--text-muted); font-weight: 700; }
+.report-summary .item .v { font-size: 22px; font-weight: 800; color: var(--text-primary); }
+table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: .88rem; }
+th, td { padding: 9px 10px; text-align: left; border-bottom: 1px solid var(--border-light); }
+th { color: var(--text-muted); font-size: .75rem; font-weight: 700; }
+.j-ok { color: var(--status-good); font-weight: 700; }
+.j-over { color: var(--status-over); font-weight: 700; }
+.j-under { color: var(--status-warn); font-weight: 700; }
+.j-none { color: var(--text-muted); }
+.report-checks { margin-bottom: 20px; font-size: .9rem; line-height: 1.9; color: var(--text-secondary); }
+.report-checks .ok { color: var(--status-good); font-weight: 700; }
+.report-checks .miss { color: var(--status-over); font-weight: 700; }
+.report-memo { background: var(--tint-warm); border-radius: var(--radius); padding: 14px 16px; font-size: .9rem; white-space: pre-wrap; margin-bottom: 20px; color: var(--text-secondary); }
+.btn-copy { background: var(--green-accent); color: #fff; font-size: 16px; padding: 14px 28px; }
+.copy-done { margin-left: 12px; color: var(--status-good); font-weight: 700; font-size: .88rem; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo-mark">KAC</div>
+  <div class="topbar-title">코칭 프로세스 타이머 <span>|</span> 실기시험 대비 세션 도구</div>
+</div>
+
+<div class="wrap">
+
+  <!-- 1. 전체 세션 타이머 -->
+  <div class="card session-bar">
+    <div>
+      <div class="session-label">전체 세션 시간</div>
+      <div class="session-timer" id="sessionTimer">00:00</div>
+    </div>
+    <div class="controls">
+      <div class="target-toggle" title="목표 세션 시간">
+        <button id="target15" class="active" onclick="setTarget(15)">15분</button>
+        <button id="target20" onclick="setTarget(20)">20분</button>
+      </div>
+      <button class="btn-main btn-start" id="startBtn" onclick="toggleRun()">시작</button>
+      <button class="btn-reset" onclick="resetAll()">초기화</button>
+    </div>
+  </div>
+
+  <div class="main-grid">
+    <!-- 2. 현재 단계 -->
+    <div class="card step-card">
+      <div class="step-header">
+        <span class="step-num" id="stepNum">1</span>
+        <span class="step-name" id="stepName"></span>
+        <span class="step-rec" id="stepRec"></span>
+      </div>
+      <div class="step-question" id="stepQuestion"></div>
+      <div class="step-timer-row">
+        <span class="step-timer" id="stepTimer">00:00</span>
+        <span class="overtime-warn" id="overtimeWarn">시간 초과</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-prev" onclick="prevStep()">← 이전 단계</button>
+        <button class="btn-next" onclick="nextStep()">다음 단계 →</button>
+      </div>
+    </div>
+
+    <!-- 사이드: 발화 트래커 + 체크리스트 -->
+    <div class="side">
+      <div class="card">
+        <h3>코치 발화 트래커</h3>
+        <button class="talk-btn" id="talkBtn" onclick="toggleTalk()">코치 발화 시작</button>
+        <div class="talk-stats">
+          <div>코치 발화 누적: <strong id="talkTime">00:00</strong></div>
+          <div class="talk-pct good" id="talkPct">0.0% · 목표 내</div>
+          <div class="talk-note">KAC 목표: 코치 발화 20% 이하</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>절대 누락 금지 체크리스트</h3>
+        <ul class="check-list" id="checkList">
+          <li><label><input type="checkbox" data-check="0"> 시작 동의 받음 ("코칭 시작해도 될까요?")</label></li>
+          <li><label><input type="checkbox" data-check="1"> 목표 합의함 (주제→목표 한 문장 합의)</label></li>
+          <li><label><input type="checkbox" data-check="2"> 자원탐색 심화 질문함 ("그 힘은 어디에서?")</label></li>
+          <li><label><input type="checkbox" data-check="3"> 성과 확인 + 축하함</label></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 단계 칩 -->
+  <div class="card">
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <!-- 7. 세션 메모 -->
+  <div class="card">
+    <h3>세션 메모</h3>
+    <textarea id="memo" placeholder="세션 중 관찰한 점, 고객의 핵심 표현, 다음에 개선할 점 등을 메모하세요."></textarea>
+  </div>
+
+  <!-- 8. 세션 종료 -->
+  <div class="card" id="endCard" style="padding:0;border:none;box-shadow:none;background:transparent;">
+    <button class="btn-end" onclick="endSession()">세션 종료</button>
+  </div>
+
+  <!-- 리포트 -->
+  <div class="card report" id="report">
+    <h2>세션 리포트</h2>
+    <div class="report-summary">
+      <div class="item"><span class="k">총 세션 시간</span><span class="v" id="rTotal">-</span></div>
+      <div class="item"><span class="k">완료 단계</span><span class="v" id="rSteps">-</span></div>
+      <div class="item"><span class="k">코치 발화</span><span class="v" id="rTalk">-</span></div>
+    </div>
+    <table>
+      <thead><tr><th>단계</th><th>실제 소요</th><th>권장 시간</th><th>판정</th></tr></thead>
+      <tbody id="rTable"></tbody>
+    </table>
+    <div class="report-checks" id="rChecks"></div>
+    <div class="report-memo" id="rMemo"></div>
+    <button class="btn-copy" onclick="copyReport()">리포트 복사</button>
+    <span class="copy-done" id="copyDone"></span>
+  </div>
+
+</div>
+
+<script>
+// ── 12단계 데이터 (분 단위 권장 min~max) ──
+const STEPS = [
+  { name: "호칭정리",                   min: 0.5, max: 1,   q: "호칭을 어떻게 불러드리는 게 편안하실까요?" },
+  { name: "비밀보장 언급",              min: 0.5, max: 1,   q: "한국코치협회 윤리규정을 준수해서 반드시 비밀보장해 드리겠습니다. 편하게 말씀해주셔도 됩니다. 괜찮으실까요?" },
+  { name: "코칭시작동의",               min: 1,   max: 2,   q: "오늘 어떤 이야기를 나누면 이 시간이 도움이 될까요?" },
+  { name: "주제의 명료화",              min: 1,   max: 1.5, q: "이 주제로 계속 대화를 진행할까요?" },
+  { name: "목표의 명료화",              min: 2,   max: 3,   q: "오늘 대화가 끝날 때 어떤 것을 희망하시는지 한 문장으로 말씀해주실 수 있을까요?" },
+  { name: "현재의 상황",                min: 3,   max: 4,   q: "이상적인 상황이 10점이라면 현재는 몇 점 정도일까요? 그렇게 점수를 주신 이유는 무엇일까요?" },
+  { name: "자원파악",                   min: 4,   max: 5,   q: "과거에 잘 했던 경험이 있으실까요? 그렇게 할 수 있었던 강점이나 자원은 무엇이었을까요?" },
+  { name: "대안탐색",                   min: 2,   max: 3,   q: "이 목표를 성취하기 위해서 다른 대안이 더 있다면 무엇일까요?" },
+  { name: "계획수립",                   min: 1,   max: 2,   q: "무엇을 언제부터 어떻게 해보시겠어요?" },
+  { name: "의지확인",                   min: 1,   max: 1.5, q: "잘 진행되고 있는지 스스로 어떻게 점검할 수 있을까요?" },
+  { name: "코칭성과확인",               min: 1,   max: 1.5, q: "오늘 코칭을 통해 얻으신 게 있다면 한 줄로 요약해주시겠어요?" },
+  { name: "변화와 성장축하 + 종료동의", min: 1,   max: 1.5, q: "오늘 깨달으신 것 진심으로 축하드립니다. 이것으로 코칭을 마무리해도 될까요?" },
+];
+const CHECK_ITEMS = [
+  "시작 동의 받음",
+  "목표 합의함 (주제→목표 한 문장 합의)",
+  "자원탐색 심화 질문함",
+  "성과 확인 + 축하함",
+];
+
+// ── 상태 ──
+let running = false;
+let ended = false;
+let targetMin = 15;
+let sessionMs = 0;
+let stepMs = STEPS.map(() => 0);
+let coachMs = 0;
+let coachOn = false;
+let current = 0;
+let completed = STEPS.map(() => false);
+let lastTick = null;
+let intervalId = null;
+
+// ── 유틸 ──
+const $ = id => document.getElementById(id);
+function fmt(ms) {
+  const s = Math.floor(ms / 1000);
+  return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+}
+function fmtRec(step) {
+  const m = v => (v % 1 === 0 ? v : v.toFixed(1));
+  return `권장 ${m(step.min)}~${m(step.max)}분`;
+}
+
+// ── 타이머 루프 ──
+function tick() {
+  const now = Date.now();
+  const dt = now - lastTick;
+  lastTick = now;
+  sessionMs += dt;
+  stepMs[current] += dt;
+  if (coachOn) coachMs += dt;
+  render();
+}
+function toggleRun() {
+  if (ended) return;
+  running = !running;
+  if (running) {
+    lastTick = Date.now();
+    intervalId = setInterval(tick, 250);
+    $("startBtn").textContent = "일시정지";
+    $("startBtn").className = "btn-main btn-pause";
+  } else {
+    clearInterval(intervalId);
+    $("startBtn").textContent = "시작";
+    $("startBtn").className = "btn-main btn-start";
+  }
+}
+function resetAll() {
+  if (!confirm("모든 기록을 초기화할까요?")) return;
+  clearInterval(intervalId);
+  running = false; ended = false;
+  sessionMs = 0; coachMs = 0; coachOn = false;
+  stepMs = STEPS.map(() => 0);
+  completed = STEPS.map(() => false);
+  current = 0;
+  $("startBtn").textContent = "시작";
+  $("startBtn").className = "btn-main btn-start";
+  $("talkBtn").textContent = "코치 발화 시작";
+  $("talkBtn").classList.remove("on");
+  $("memo").value = "";
+  document.querySelectorAll("#checkList input").forEach(c => (c.checked = false));
+  $("report").classList.remove("show");
+  $("endCard").style.display = "";
+  $("copyDone").textContent = "";
+  render();
+}
+function setTarget(min) {
+  targetMin = min;
+  $("target15").classList.toggle("active", min === 15);
+  $("target20").classList.toggle("active", min === 20);
+  render();
+}
+
+// ── 단계 이동 ──
+function nextStep() {
+  if (ended) return;
+  completed[current] = true;
+  if (current < STEPS.length - 1) current++;
+  render();
+}
+function prevStep() {
+  if (ended) return;
+  if (current > 0) current--;
+  render();
+}
+function gotoStep(i) {
+  if (ended) return;
+  current = i;
+  render();
+}
+
+// ── 코치 발화 ──
+function toggleTalk() {
+  if (ended) return;
+  coachOn = !coachOn;
+  $("talkBtn").textContent = coachOn ? "코치 발화 중 (누르면 끄기)" : "코치 발화 시작";
+  $("talkBtn").classList.toggle("on", coachOn);
+}
+
+// ── 렌더 ──
+function render() {
+  const st = $("sessionTimer");
+  st.textContent = fmt(sessionMs);
+  st.classList.toggle("over", sessionMs > targetMin * 60000);
+
+  const step = STEPS[current];
+  $("stepNum").textContent = current + 1;
+  $("stepName").textContent = step.name;
+  $("stepRec").textContent = fmtRec(step);
+  $("stepQuestion").textContent = "“" + step.q + "”";
+  $("stepTimer").textContent = fmt(stepMs[current]);
+
+  const maxMs = step.max * 60000;
+  const ratio = stepMs[current] / maxMs;
+  const fill = $("progressFill");
+  fill.style.width = Math.min(ratio * 100, 100) + "%";
+  fill.style.background = ratio > 1 ? "var(--status-over)" : ratio >= 0.8 ? "var(--status-warn)" : "var(--status-good)";
+  $("overtimeWarn").classList.toggle("show", ratio > 1);
+
+  $("talkTime").textContent = fmt(coachMs);
+  const pct = sessionMs > 0 ? (coachMs / sessionMs) * 100 : 0;
+  const pctEl = $("talkPct");
+  const good = pct <= 20;
+  pctEl.textContent = pct.toFixed(1) + "% · " + (good ? "목표 내" : "목표 초과");
+  pctEl.className = "talk-pct " + (good ? "good" : "bad");
+
+  const chips = $("chips");
+  chips.innerHTML = "";
+  STEPS.forEach((s, i) => {
+    const b = document.createElement("button");
+    b.className = "chip" + (completed[i] ? " done" : "") + (i === current ? " current" : "");
+    b.textContent = (completed[i] ? "✓ " : "") + (i + 1) + ". " + s.name;
+    b.onclick = () => gotoStep(i);
+    chips.appendChild(b);
+  });
+}
+
+// ── 판정 ──
+function judge(i) {
+  const ms = stepMs[i];
+  if (ms < 1000) return { t: "미진행", c: "j-none" };
+  const min = STEPS[i].min * 60000, max = STEPS[i].max * 60000;
+  if (ms > max) return { t: "초과", c: "j-over" };
+  if (ms < min) return { t: "미달", c: "j-under" };
+  return { t: "적정", c: "j-ok" };
+}
+
+// ── 세션 종료 리포트 ──
+function endSession() {
+  if (running) toggleRun();
+  ended = true;
+  coachOn = false;
+  $("talkBtn").textContent = "코치 발화 시작";
+  $("talkBtn").classList.remove("on");
+
+  const doneCount = completed.filter(Boolean).length;
+  const pct = sessionMs > 0 ? (coachMs / sessionMs) * 100 : 0;
+  const talkOk = pct <= 20;
+
+  $("rTotal").textContent = fmt(sessionMs);
+  $("rSteps").textContent = doneCount + " / 12";
+  $("rTalk").textContent = fmt(coachMs) + " (" + pct.toFixed(1) + "%) " + (talkOk ? "목표 달성" : "목표 초과");
+  $("rTalk").style.color = talkOk ? "var(--status-good)" : "var(--status-over)";
+
+  const tbody = $("rTable");
+  tbody.innerHTML = "";
+  STEPS.forEach((s, i) => {
+    const j = judge(i);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${i + 1}. ${s.name}</td><td>${fmt(stepMs[i])}</td><td>${fmtRec(s).replace("권장 ", "")}</td><td class="${j.c}">${j.t}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  const checks = [...document.querySelectorAll("#checkList input")].map(c => c.checked);
+  $("rChecks").innerHTML = "<strong>체크리스트</strong><br>" +
+    CHECK_ITEMS.map((t, i) => checks[i]
+      ? '<span class="ok">완료</span> · ' + t
+      : '<span class="miss">누락</span> · ' + t
+    ).join("<br>");
+
+  const memo = $("memo").value.trim();
+  $("rMemo").textContent = memo ? "메모\n" + memo : "메모: (없음)";
+
+  $("report").classList.add("show");
+  $("endCard").style.display = "none";
+  $("report").scrollIntoView({ behavior: "smooth" });
+}
+
+// ── 리포트 복사 ──
+function copyReport() {
+  const pct = sessionMs > 0 ? (coachMs / sessionMs) * 100 : 0;
+  const checks = [...document.querySelectorAll("#checkList input")].map(c => c.checked);
+  const lines = [];
+  lines.push("KAC 코칭 세션 리포트");
+  lines.push("일시: " + new Date().toLocaleString("ko-KR"));
+  lines.push("");
+  lines.push("총 세션 시간: " + fmt(sessionMs) + " (목표 " + targetMin + "분)");
+  lines.push("완료 단계: " + completed.filter(Boolean).length + " / 12");
+  lines.push("코치 발화: " + fmt(coachMs) + " (" + pct.toFixed(1) + "%) — 목표 20% 이하 " + (pct <= 20 ? "달성" : "초과"));
+  lines.push("");
+  lines.push("단계별 시간표");
+  STEPS.forEach((s, i) => {
+    lines.push(`${i + 1}. ${s.name} | 실제 ${fmt(stepMs[i])} | 권장 ${fmtRec(s).replace("권장 ", "")} | ${judge(i).t}`);
+  });
+  lines.push("");
+  lines.push("체크리스트");
+  CHECK_ITEMS.forEach((t, i) => lines.push((checks[i] ? "[완료]" : "[누락]") + " " + t));
+  lines.push("");
+  lines.push("메모");
+  lines.push($("memo").value.trim() || "(없음)");
+  const text = lines.join("\n");
+
+  const done = () => { $("copyDone").textContent = "복사 완료"; setTimeout(() => ($("copyDone").textContent = ""), 2500); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+function fallbackCopy(text, done) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand("copy");
+  document.body.removeChild(ta);
+  done();
+}
+
+render();
+</script>
+</body>
+</html>
